@@ -1,8 +1,15 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ChevronLeft, SplashLogo} from '../assets/images';
 
-const AuthLayout = ({children, headerText}: any) => {
+const AuthLayout = ({children, headerText, navigation}: any) => {
   return (
     <View style={styles.screen_container}>
       {!headerText && (
@@ -12,7 +19,9 @@ const AuthLayout = ({children, headerText}: any) => {
       )}
       {headerText && (
         <View style={styles.screen_header_container}>
-          <Image source={ChevronLeft} />
+          <Pressable onPress={() => navigation.navigate('LoginScreen')}>
+            <Image source={ChevronLeft} />
+          </Pressable>
           <View style={styles.screen_header_activation}>
             <Image source={SplashLogo} style={styles.image_screen} />
             <View style={styles.screen_header_info}>

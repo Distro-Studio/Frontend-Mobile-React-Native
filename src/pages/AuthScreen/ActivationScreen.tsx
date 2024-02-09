@@ -1,57 +1,64 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import {AuthLayout} from '../../layouts';
+import {Input} from '../../components';
 
-const ActivationScreen = () => {
+const ActivationScreen = ({navigation}: any) => {
   return (
-    <AuthLayout headerText={true}>
+    <AuthLayout headerText={true} navigation={navigation}>
       <View style={styles.form_container}>
-        <Text>asd</Text>
+        <Input name="Email" placeholder="Email address" type="email" />
+        <Input name="Password" placeholder="Password" type="password" />
+        <Input
+          name="Confirm Password"
+          placeholder="Confirm Password"
+          type="password"
+        />
+        <Pressable style={styles.send_button}>
+          <Text style={styles.send_button_text}>Send</Text>
+        </Pressable>
+        <Text style={styles.issues}>
+          <Text style={styles.issues_text}>
+            Having issues with the activation?{' '}
+          </Text>
+          Chat Us
+        </Text>
       </View>
     </AuthLayout>
   );
 };
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  screen_container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  screen_header_container: {
-    width,
-    height: height * 0.49,
-    backgroundColor: '#fffcfa',
-    padding: 24,
-  },
-  screen_header: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  screen_header_info: {
-    marginTop: 24,
-  },
-  screen_header_info_title: {
-    fontFamily: 'Inter',
-    fontWeight: 'bold',
-    fontSize: 16,
+  issues: {
     textAlign: 'center',
-  },
-  screen_header_info_text: {
+    marginTop: 8,
     fontSize: 14,
-    fontFamily: 'Inter',
-    color: '#6B6D79',
-    textAlign: 'center',
+    color: '#FF6000',
+    fontWeight: 'bold',
   },
-  image_screen: {
-    width: 163,
-    height: 163,
+  issues_text: {
+    fontWeight: 'normal',
+    color: '#222831',
   },
   form_container: {
     width,
     padding: 24,
+    gap: 16,
+  },
+  send_button: {
+    backgroundColor: '#FF6000',
+    height: 40,
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  send_button_text: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
 

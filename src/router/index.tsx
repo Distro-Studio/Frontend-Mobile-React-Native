@@ -26,7 +26,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="ActivationScreen">
+    <Stack.Navigator initialRouteName="SplashIndex">
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
         <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
