@@ -1,29 +1,14 @@
-import {View, Text, Dimensions, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import {ChevronLeft, SplashLogo} from '../../assets/images';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {AuthLayout} from '../../layouts';
 
 const ActivationScreen = () => {
   return (
-    <View style={styles.screen_container}>
-      <View style={styles.screen_header_container}>
-        <Image source={ChevronLeft} />
-        <View style={styles.screen_header}>
-          <Image source={SplashLogo} style={styles.image_screen} />
-          <View style={styles.screen_header_info}>
-            <Text style={styles.screen_header_info_title}>
-              Activate Your Account
-            </Text>
-            <Text style={styles.screen_header_info_text}>
-              Please make sure you have been invited by your company to activate
-              your account
-            </Text>
-          </View>
-        </View>
-      </View>
+    <AuthLayout headerText={true}>
       <View style={styles.form_container}>
         <Text>asd</Text>
       </View>
-    </View>
+    </AuthLayout>
   );
 };
 
