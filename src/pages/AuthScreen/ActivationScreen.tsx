@@ -2,6 +2,7 @@ import React from 'react';
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import {AuthLayout} from '../../layouts';
 import {Input} from '../../components';
+import {APP} from '../../utils/CONSTANT';
 
 const ActivationScreen = ({navigation}: any) => {
   return (
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 8,
     fontSize: 14,
-    color: '#FF6000',
+    color: APP.COLORS['primary-500'],
     fontWeight: 'bold',
   },
   issues_text: {
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   send_button: {
-    backgroundColor: '#FF6000',
+    backgroundColor: APP.COLORS['primary-500'],
     height: 40,
     borderRadius: 8,
     paddingVertical: 8,

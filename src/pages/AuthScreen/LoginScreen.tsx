@@ -2,15 +2,44 @@ import React from 'react';
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import {Input} from '../../components';
 import {AuthLayout} from '../../layouts';
+import {APP} from '../../utils/CONSTANT';
 
 const LoginScreen = ({navigation}: any) => {
+  const [email, onChangeEmail] = React.useState<string>('');
+  const [password, onChangePassword] = React.useState<string>('');
+
+  async function handleLogin() {
+    try {
+      if (email === 'ivan@gmail.com' && password === 'ivan123') {
+        navigation.navigate('MainApp');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  console.log(email);
+  console.log(password);
+
   return (
     <AuthLayout headerText={false}>
       <View style={styles.form_container}>
-        <Input name="Email" placeholder="Email address" type="email" />
-        <Input name="Password" placeholder="Password" type="password" />
+        <Input
+          name="Email"
+          placeholder="Email address"
+          type="email"
+          onChangeText={onChangeEmail}
+          value={email}
+        />
+        <Input
+          name="Password"
+          placeholder="Password"
+          type="password"
+          onChangeText={onChangePassword}
+          value={password}
+        />
         <Text style={styles.forgot_password}>Forgot Password?</Text>
-        <Pressable style={styles.login_button}>
+        <Pressable style={styles.login_button} onPress={handleLogin}>
           <Text style={styles.login_button_text}>Login</Text>
         </Pressable>
         <View style={styles.account}>
@@ -65,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   login_button: {
-    backgroundColor: '#FF6000',
+    backgroundColor: APP.COLORS['primary-500'],
     height: 40,
     borderRadius: 8,
     paddingVertical: 8,
@@ -79,7 +108,7 @@ const styles = StyleSheet.create({
   },
   activate_button: {
     backgroundColor: '#FFFFFF',
-    borderColor: '#FF6000',
+    borderColor: APP.COLORS['primary-500'],
     borderWidth: 1,
     height: 40,
     borderRadius: 8,
@@ -88,7 +117,7 @@ const styles = StyleSheet.create({
   },
   activate_button_text: {
     textAlign: 'center',
-    color: '#FF6000',
+    color: APP.COLORS['primary-500'],
     fontSize: 14,
     fontWeight: 'bold',
   },

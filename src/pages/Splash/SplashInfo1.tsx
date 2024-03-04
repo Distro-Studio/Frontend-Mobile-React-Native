@@ -2,6 +2,7 @@ import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {SplashInfoImage1} from '../../assets/images';
 import {SplashLayout} from '../../layouts';
+import {APP} from '../../utils/CONSTANT';
 const SplashInfo1 = ({navigation}: any) => {
   return (
     <SplashLayout imageHeader={SplashInfoImage1} navigation={navigation}>
@@ -61,13 +62,13 @@ const styles = StyleSheet.create({
     width: 16,
     height: 6,
     borderRadius: 4,
-    backgroundColor: '#FFCEB0',
+    backgroundColor: APP.COLORS['primary-100'],
   },
   splash_progress_bar_active: {
     width: 74,
     height: 6,
     borderRadius: 4,
-    backgroundColor: '#FF6000',
+    backgroundColor: APP.COLORS['primary-500'],
   },
   splash_button: {
     width: 90,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
-    backgroundColor: '#FF6000',
+    backgroundColor: APP.COLORS['primary-500'],
   },
   splash_button_text: {
     color: '#FFFFFF',
