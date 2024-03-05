@@ -1,314 +1,155 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  ScrollView,
-} from 'react-native';
 import React from 'react';
-import {APP} from '../../utils/CONSTANT';
 import {
-  HeaderHome,
-  HeaderUserProfile,
-  IconActivityIn,
-  IconActivityOut,
-  IconAttendance,
-  IconAttendanceIn,
-  IconAttendanceOut,
-  IconAttendanceTotal,
-  IconCuti,
-  IconDokumen,
-  IconIjin,
-  IconKoperasi,
-  IconLaporan,
-  IconLembur,
-  IconLocation,
-  IconNotification,
-  IconSlipGaji,
-  IconTukarJadwal,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
+import {
+  IconClose,
+  IconModalLocation,
+  IconModalRange,
 } from '../../assets/images';
+import {APP} from '../../utils/CONSTANT';
 
 const HomeScreen = () => {
+  const [isModalLocation, setIsModalLocation] = React.useState(false);
+  const [isModalRange, setIsModalRange] = React.useState(false);
+
   return (
-    <View style={styles.screen_container}>
-      <ScrollView>
-        <View style={styles.header_container}>
-          <Image source={HeaderHome} style={{position: 'absolute'}} />
-          <View style={styles.header_profile}>
-            <View style={styles.header_profile_container}>
-              <Image
-                source={HeaderUserProfile}
-                style={styles.header_profile_image}
-              />
-              <View style={styles.header_profile_info}>
-                <Text style={styles.header_profile_info_name}>
-                  Bayu Prasetya Adji S.
-                </Text>
-                <Text style={styles.header_profile_info_role}>
-                  Product Designer
-                </Text>
-              </View>
-            </View>
-            <Image source={IconNotification} style={{width: 24, height: 24}} />
-          </View>
-          <View style={styles.header_attendance_container}>
-            <Text style={styles.header_attendance_time}>07.40</Text>
-            <Text style={styles.header_attendance_date}>
-              Senin, 04 Maret 2024
+    <>
+      {isModalLocation && (
+        <ModalApp isModal={isModalLocation}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Pressable
+              onPress={() => setIsModalLocation(false)}
+              style={{marginLeft: 'auto', marginBottom: 16}}>
+              <Image source={IconClose} />
+            </Pressable>
+            <Image source={IconModalLocation} style={{marginBottom: 16}} />
+            <Text style={{color: '#0C0E11', fontWeight: 'bold'}}>
+              Aktifkan Lokasi
             </Text>
-            <View style={styles.header_attendance}>
-              <Image source={IconAttendance} style={{marginBottom: 8}} />
-              <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
-            </View>
-            <View style={styles.header_location_container}>
-              <Image source={IconLocation} />
-              <Text style={{color: '#F5F5F5'}}>
-                Jl. Majapahit No. 24, Semarang
-              </Text>
-            </View>
-          </View>
-          <View style={styles.header_attendance_time_container}>
-            <View style={styles.attendance_container}>
-              <View style={{maxHeight: 32, maxWidth: 32}}>
-                <Image
-                  source={IconAttendanceIn}
-                  style={{resizeMode: 'cover'}}
-                />
-              </View>
-              <Text style={styles.header_attendance_time_text}>07.40</Text>
-              <Text style={styles.header_attendance_time_status}>Masuk</Text>
-            </View>
-            <View style={styles.attendance_container}>
-              <View style={{maxHeight: 32, maxWidth: 32}}>
-                <Image
-                  source={IconAttendanceOut}
-                  style={{resizeMode: 'cover'}}
-                />
-              </View>
-              <Text style={styles.header_attendance_time_text}>16.40</Text>
-              <Text style={styles.header_attendance_time_status}>Keluar</Text>
-            </View>
-            <View style={styles.attendance_container}>
-              <View style={{maxHeight: 32, maxWidth: 32}}>
-                <Image
-                  source={IconAttendanceTotal}
-                  style={{resizeMode: 'cover'}}
-                />
-              </View>
-              <Text style={styles.header_attendance_time_text}>09h00m</Text>
-              <Text style={styles.header_attendance_time_status}>
-                Jam Kerja
-              </Text>
+            <Text style={{color: '#0C0E11', fontWeight: 'bold'}}>
+              untuk Kehadiran Tanpa Hambatan
+            </Text>
+            <View style={styles.button_modal_container}>
+              <Pressable
+                onPress={() => setIsModalLocation(false)}
+                style={[styles.button_modal, styles.button_modal_reject]}>
+                <Text
+                  style={[styles.button_modal_text, styles.modal_text_reject]}>
+                  Tidak
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setIsModalLocation(false)}
+                style={[styles.button_modal, styles.button_modal_accept]}>
+                <Text
+                  style={[styles.button_modal_text, styles.modal_text_accept]}>
+                  Ya
+                </Text>
+              </Pressable>
             </View>
           </View>
-        </View>
-        <View style={styles.home_menu_container}>
-          <View style={styles.home_menus}>
-            <View style={styles.home_menu}>
-              <Image source={IconCuti} />
-              <Text style={styles.home_menu_text}>Cuti</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconTukarJadwal} />
-              <Text style={styles.home_menu_text}>Tukar Jadwal</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconLembur} />
-              <Text style={styles.home_menu_text}>Lembur</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconIjin} />
-              <Text style={styles.home_menu_text}>Ijin</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconSlipGaji} />
-              <Text style={styles.home_menu_text}>Slip Gajiku</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconDokumen} />
-              <Text style={styles.home_menu_text}>Dokumen</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconKoperasi} />
-              <Text style={styles.home_menu_text}>Koperasi</Text>
-            </View>
-            <View style={styles.home_menu}>
-              <Image source={IconLaporan} />
-              <Text style={styles.home_menu_text}>Laporan</Text>
-            </View>
-          </View>
-          <View style={styles.menu_pagination_container}>
-            <View style={styles.menu_pagination_active}></View>
-            <View style={styles.menu_pagination}></View>
-          </View>
-          <View style={styles.activity_container}>
-            <Text style={styles.activity_text_title}>Your Activity</Text>
-            <View style={styles.activity_card}>
-              <View style={styles.activity_status}>
-                <Image source={IconActivityIn} />
-                <View>
-                  <Text
-                    style={{color: '#222831', fontSize: 16, fontWeight: '600'}}>
-                    Masuk
-                  </Text>
-                  <Text
-                    style={{color: '#BABCBF', fontSize: 14, fontWeight: '400'}}>
-                    01 November 2023
-                  </Text>
-                </View>
-              </View>
-              <Text style={{fontSize: 16, fontWeight: '600', color: '#222831'}}>
-                07.30
-              </Text>
-            </View>
-            <View style={styles.activity_card}>
-              <View style={styles.activity_status}>
-                <Image source={IconActivityOut} />
-                <View>
-                  <Text
-                    style={{color: '#222831', fontSize: 16, fontWeight: '600'}}>
-                    Keluar
-                  </Text>
-                  <Text
-                    style={{color: '#BABCBF', fontSize: 14, fontWeight: '400'}}>
-                    01 November 2023
-                  </Text>
-                </View>
-              </View>
-              <Text style={{fontSize: 16, fontWeight: '600', color: '#222831'}}>
-                07.30
-              </Text>
+        </ModalApp>
+      )}
+
+      {isModalRange && (
+        <ModalApp isModal={isModalRange}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Pressable
+              onPress={() => setIsModalRange(false)}
+              style={{marginLeft: 'auto', marginBottom: 16}}>
+              <Image source={IconClose} />
+            </Pressable>
+            <Image source={IconModalRange} style={{marginBottom: 16}} />
+            <Text style={{fontWeight: 'bold', fontSize: 16}}>
+              Anda berada di luar area kehadiran
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: '#777986',
+                marginVertical: 8,
+                textAlign: 'center',
+              }}>
+              {`Maaf, sepertinya Anda berada di
+luar area absen. Untuk
+melanjutkan, silakan lakukan 
+dengan izin.`}
+            </Text>
+            <View style={styles.button_modal_container}>
+              <Pressable
+                onPress={() => setIsModalRange(false)}
+                style={[styles.button_modal, styles.button_modal_accept]}>
+                <Text
+                  style={[styles.button_modal_text, styles.modal_text_accept]}>
+                  Ijin Sekarang!
+                </Text>
+              </Pressable>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </View>
+        </ModalApp>
+      )}
+
+      <View style={styles.screen_container}>
+        <ScrollView>
+          <HomeHeader />
+          <View style={styles.home_menu_container}>
+            <HomeMenus />
+            <HomeActivity />
+          </View>
+        </ScrollView>
+      </View>
+    </>
   );
 };
 
-const {width, height} = Dimensions.get('window');
-
 const styles = StyleSheet.create({
-  menu_pagination_container: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    flexDirection: 'row',
-    gap: 8,
-    marginTop: 24,
-  },
-  menu_pagination: {
-    width: 6,
-    height: 6,
-    borderRadius: 12,
-    backgroundColor: '#FFE7D9',
-  },
-  menu_pagination_active: {
-    width: 24,
-    height: 6,
-    borderRadius: 12,
-    backgroundColor: APP.COLORS['primary-500'],
-  },
   screen_container: {
     flex: 1,
   },
-  header_container: {
-    width,
-    height: height * 0.55,
+  button_modal_container: {
+    flexDirection: 'row',
+    gap: 16,
+    marginTop: 16,
+  },
+  button_modal: {
+    paddingVertical: 10,
+    flex: 1,
+    borderRadius: 8,
+  },
+  button_modal_reject: {
+    borderColor: '#CA3D30',
+    borderWidth: 1,
+  },
+  button_modal_accept: {
     backgroundColor: APP.COLORS['primary-500'],
-    paddingHorizontal: 24,
-    paddingVertical: 24,
   },
-  header_profile: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  header_profile_container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  header_profile_image: {
-    width: 48,
-    height: 48,
-    borderRadius: 50,
-  },
-  header_profile_info: {
-    gap: 2,
-  },
-  header_profile_info_name: {
-    fontWeight: 'bold',
-    color: '#F5F5F5',
-    fontSize: 16,
-  },
-  header_profile_info_role: {
-    color: '#F1F2F3',
-    fontSize: 14,
-  },
-  header_attendance_container: {
-    marginTop: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header_attendance_time: {
-    fontSize: 24,
-    color: '#F5F5F5',
-    fontWeight: 'bold',
+  button_modal_text: {
     textAlign: 'center',
-  },
-  header_attendance_date: {
-    color: '#F5F5F5',
     fontSize: 14,
-    textAlign: 'center',
+    fontWeight: '500',
   },
-  header_attendance: {
-    backgroundColor: '#FFFFFF',
-    marginTop: 24,
-    width: 118,
-    height: 118,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
+  modal_text_reject: {
+    color: '#CA3D30',
   },
-  header_location_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 24,
-  },
-  header_attendance_time_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginTop: 24,
-    // flex: 1,
-  },
-  attendance_container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header_attendance_time_text: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#F5F5F5',
-    marginTop: 8,
-  },
-  header_attendance_time_status: {
-    fontSize: 12,
-    fontWeight: '400',
-    color: '#F5F5F5',
+  modal_text_accept: {
+    color: '#FFFFFF',
   },
   home_menu_container: {
     flex: 1,
@@ -317,51 +158,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 16,
     marginTop: -10,
     paddingHorizontal: 24,
-  },
-  home_menus: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 8,
-    marginTop: 24,
-  },
-  home_menu: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 8,
-    width: 73.5,
-    height: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 2,
-  },
-  home_menu_text: {
-    textAlign: 'center',
-    fontSize: 12,
-    color: '#222831',
-  },
-  activity_container: {
-    marginTop: 24,
-    paddingBottom: 16,
-  },
-  activity_text_title: {
-    color: '#0C0E11',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  activity_card: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  activity_status: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
   },
 });
 

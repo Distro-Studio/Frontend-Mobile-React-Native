@@ -8,6 +8,7 @@ import {
   EmployeeScreen,
   HomeScreen,
   LoginScreen,
+  MapsScreen,
   ProfileScreen,
   ScheduleScreen,
   SplashScreenIndex,
@@ -55,6 +56,11 @@ const Router = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
       </Stack.Group>
+      <Stack.Screen
+        name="MapsScreen"
+        component={MapsScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="MainApp"
         component={MainApp}

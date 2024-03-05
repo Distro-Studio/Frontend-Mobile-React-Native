@@ -33,3 +33,9 @@ export {default as IconLaporan} from './icon-laporan.png';
 //
 export {default as IconActivityIn} from './icon-activity-in.png';
 export {default as IconActivityOut} from './icon-activity-out.png';
+//
+export {default as IconModalLocation} from './icon-modal-location.png';
+export {default as IconModalRange} from './icon-modal-range.png';
+export {default as IconClose} from './icon-close.png';
+//
+export {default as dummyMap} from './location-img.png';
