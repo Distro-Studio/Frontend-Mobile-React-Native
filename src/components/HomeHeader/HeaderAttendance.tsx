@@ -7,7 +7,7 @@ const HeaderAttendance = () => {
   const navigation = useNavigation();
 
   function handleNavigation() {
-    navigation.navigate('MapsScreen');
+    navigation.navigate('MapsScreen' as never);
   }
 
   return (

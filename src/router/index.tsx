@@ -20,17 +20,18 @@ import {
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const screenOptions = ({route}: any) => ({
+  headerShown: false,
+  tabBarShowLabel: false,
+  tabBarIcon: ({focused}: any) => (
+    <BottomTabIcon focused={focused} title={route.name} />
+  ),
+  tabBarStyle: {
+    height: 60,
+  },
+});
+
 const MainApp = () => {
-  const screenOptions = ({route}: any) => ({
-    headerShown: false,
-    tabBarShowLabel: false,
-    tabBarIcon: ({focused}: any) => (
-      <BottomTabIcon focused={focused} title={route.name} />
-    ),
-    tabBarStyle: {
-      height: 60,
-    },
-  });
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
