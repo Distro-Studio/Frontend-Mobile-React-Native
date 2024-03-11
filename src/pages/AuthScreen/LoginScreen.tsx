@@ -1,8 +1,16 @@
 import React from 'react';
-import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {Input} from '../../components';
 import {AuthLayout} from '../../layouts';
 import {APP} from '../../utils/CONSTANT';
+import {webView} from '../../utils/WebView';
 
 const LoginScreen = ({navigation}: any) => {
   const [email, onChangeEmail] = React.useState<string>('');
@@ -23,7 +31,10 @@ const LoginScreen = ({navigation}: any) => {
 
   return (
     <AuthLayout headerText={false}>
-      <View style={styles.form_container}>
+      <View
+        style={
+          Platform.OS === 'web' ? styles.webViewInstance : styles.form_container
+        }>
         <Input
           name="Email"
           placeholder="Email address"
@@ -62,7 +73,14 @@ const LoginScreen = ({navigation}: any) => {
 
 const {width} = Dimensions.get('window');
 
+let webViewInstance = webView;
+webViewInstance = {
+  padding: 16,
+  gap: 16,
+};
+
 const styles = StyleSheet.create({
+  webViewInstance,
   app_ver: {
     textAlign: 'center',
     marginTop: 24,

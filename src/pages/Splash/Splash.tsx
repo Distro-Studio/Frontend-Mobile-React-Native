@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import {SplashLogo} from '../../assets/images';
+import {webView} from '../../utils/WebView';
 
 const Splash = ({navigation}) => {
   React.useEffect(() => {
@@ -10,13 +11,14 @@ const Splash = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={Platform.OS === 'web' ? styles.webView : styles.container}>
       <Image source={SplashLogo} style={styles.splash_logo} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  webView,
   container: {
     flex: 1,
     alignItems: 'center',

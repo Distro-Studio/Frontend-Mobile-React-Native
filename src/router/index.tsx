@@ -16,6 +16,7 @@ import {
   SplashScreenInfo2,
   SplashScreenInfo3,
 } from '../pages';
+import {Platform} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,8 @@ const screenOptions = ({route}: any) => ({
   ),
   tabBarStyle: {
     height: 60,
+    width: Platform.OS === 'web' ? '500px' : 'auto',
+    margin: Platform.OS === 'web' ? 'auto' : 'null',
   },
 });
 
@@ -46,7 +49,7 @@ const MainApp = () => {
 const Router = () => {
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
-      <Stack.Group screenOptions={{headerShown: false}}>
+      {/* <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
         <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
       </Stack.Group>
@@ -56,15 +59,15 @@ const Router = () => {
         <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
-      </Stack.Group>
-      <Stack.Screen
-        name="MapsScreen"
-        component={MapsScreen}
-        options={{headerShown: false}}
-      />
+      </Stack.Group> */}
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MapsScreen"
+        component={MapsScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

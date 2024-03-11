@@ -1,13 +1,24 @@
 import React from 'react';
-import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {AuthLayout} from '../../layouts';
 import {Input} from '../../components';
 import {APP} from '../../utils/CONSTANT';
+import {webView} from '../../utils/WebView';
 
 const ActivationScreen = ({navigation}: any) => {
   return (
     <AuthLayout headerText={true} navigation={navigation}>
-      <View style={styles.form_container}>
+      <View
+        style={
+          Platform.OS === 'web' ? styles.webViewInstance : styles.form_container
+        }>
         <Input name="Email" placeholder="Email address" type="email" />
         <Input name="Password" placeholder="Password" type="password" />
         <Input
@@ -31,7 +42,14 @@ const ActivationScreen = ({navigation}: any) => {
 
 const {width} = Dimensions.get('window');
 
+let webViewInstance = webView;
+webViewInstance = {
+  padding: 16,
+  gap: 16,
+};
+
 const styles = StyleSheet.create({
+  webViewInstance,
   issues: {
     textAlign: 'center',
     marginTop: 8,

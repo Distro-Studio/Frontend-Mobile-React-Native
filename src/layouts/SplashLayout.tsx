@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -8,11 +9,15 @@ import {
 } from 'react-native';
 import React from 'react';
 import {ChevronRight} from '../assets/images';
+import {webView} from '../utils/WebView';
 
 const SplashLayout = ({children, imageHeader, navigation}: any) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header_container}>
+    <View style={Platform.OS === 'web' ? styles.webView : styles.container}>
+      <View
+        style={
+          Platform.OS === 'web' ? styles.webViewHeader : styles.header_container
+        }>
         <Pressable
           style={styles.skip_text_container}
           onPress={() => navigation.navigate('LoginScreen')}>
@@ -20,7 +25,12 @@ const SplashLayout = ({children, imageHeader, navigation}: any) => {
           <Image source={ChevronRight} style={styles.skip_icon} />
         </Pressable>
         <View style={styles.header_image_container}>
-          <Image source={imageHeader} style={styles.header_image} />
+          <Image
+            source={imageHeader}
+            style={
+              Platform.OS === 'web' ? styles.webViewImage : styles.header_image
+            }
+          />
         </View>
       </View>
       {children}
@@ -30,7 +40,25 @@ const SplashLayout = ({children, imageHeader, navigation}: any) => {
 
 const {width, height} = Dimensions.get('window');
 
+const webViewHeader = {
+  width: '100%',
+  maxWidth: '500px',
+  padding: 24,
+  backgroundColor: '#fffcfa',
+  margin: 'auto',
+};
+
+const webViewImage = {
+  display: 'block',
+  width: 342,
+  height: 271,
+  margin: 'auto',
+};
+
 const styles = StyleSheet.create({
+  webView,
+  webViewHeader,
+  webViewImage,
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',

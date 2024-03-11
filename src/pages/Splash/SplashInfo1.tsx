@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View, Platform} from 'react-native';
 import {SplashInfoImage1} from '../../assets/images';
 import {SplashLayout} from '../../layouts';
 import {APP} from '../../utils/CONSTANT';
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
   content_text_bold: {
     fontSize: 22,
     fontWeight: 'bold',
-    fontFamily: 'Inter',
   },
   content_text: {
     fontSize: 14,

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Image,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -14,6 +15,7 @@ import {
   IconModalRange,
 } from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
+import {webView} from '../../utils/WebView';
 
 const HomeScreen = () => {
   const [isModalLocation, setIsModalLocation] = React.useState(false);
@@ -106,7 +108,10 @@ dengan izin.`}
         </ModalApp>
       )}
 
-      <View style={styles.screen_container}>
+      <View
+        style={
+          Platform.OS === 'web' ? styles.webView : styles.screen_container
+        }>
         <ScrollView>
           <HomeHeader />
           <View style={styles.home_menu_container}>
@@ -120,6 +125,7 @@ dengan izin.`}
 };
 
 const styles = StyleSheet.create({
+  webView,
   screen_container: {
     flex: 1,
   },
