@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   Platform,
   Pressable,
@@ -15,6 +16,8 @@ import {webView} from '../../utils/WebView';
 const LoginScreen = ({navigation}: any) => {
   const [email, onChangeEmail] = React.useState<string>('');
   const [password, onChangePassword] = React.useState<string>('');
+  const [isError, setIsError] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   async function handleLogin() {
     try {
@@ -26,34 +29,52 @@ const LoginScreen = ({navigation}: any) => {
     }
   }
 
-  console.log(email);
-  console.log(password);
-
   return (
-    <AuthLayout headerText={false}>
-      <View
-        style={
-          Platform.OS === 'web' ? styles.webViewInstance : styles.form_container
-        }>
-        <Input
-          name="Email"
-          placeholder="Email address"
-          type="email"
-          onChangeText={onChangeEmail}
-          value={email}
+    <>
+      {isLoading ? (
+        <ActivityIndicator
+          style={styles.loading_screen}
+          color="#10A9A5"
+          size="large"
         />
-        <Input
-          name="Password"
-          placeholder="Password"
-          type="password"
-          onChangeText={onChangePassword}
-          value={password}
-        />
-        <Text style={styles.forgot_password}>Forgot Password?</Text>
-        <Pressable style={styles.login_button} onPress={handleLogin}>
-          <Text style={styles.login_button_text}>Login</Text>
-        </Pressable>
-        <View style={styles.account}>
+      ) : (
+        <AuthLayout headerText={false}>
+          <View
+            style={
+              Platform.OS === 'web'
+                ? styles.webViewInstance
+                : styles.form_container
+            }>
+            <Input
+              name="Email"
+              placeholder="Email"
+              type="email"
+              onChangeText={onChangeEmail}
+              value={email}
+            />
+            <Input
+              name="Kata Sandi"
+              placeholder="Kata Sandi"
+              type="password"
+              onChangeText={onChangePassword}
+              value={password}
+            />
+            <Text
+              style={styles.forgot_password}
+              onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+              Lupa Password?
+            </Text>
+            {isError && (
+              <View style={styles.wrong_password}>
+                <Text style={{color: '#CA3D30'}}>
+                  Oops! Email atau kata sandimu salah
+                </Text>
+              </View>
+            )}
+            <Pressable style={styles.login_button} onPress={handleLogin}>
+              <Text style={styles.login_button_text}>Login</Text>
+            </Pressable>
+            {/* <View style={styles.account}>
           <View style={styles.divider} />
           <View style={styles.account_block}>
             <Text>Don’t have an account?</Text>
@@ -64,10 +85,12 @@ const LoginScreen = ({navigation}: any) => {
           style={styles.activate_button}
           onPress={() => navigation.navigate('ActivationScreen')}>
           <Text style={styles.activate_button_text}>Activate Now</Text>
-        </Pressable>
-        <Text style={styles.app_ver}>App ver 1.0</Text>
-      </View>
-    </AuthLayout>
+        </Pressable> */}
+            <Text style={styles.app_ver}>App ver 1.0</Text>
+          </View>
+        </AuthLayout>
+      )}
+    </>
   );
 };
 
@@ -81,6 +104,15 @@ webViewInstance = {
 
 const styles = StyleSheet.create({
   webViewInstance,
+  loading_screen: {
+    flex: 1,
+  },
+  wrong_password: {
+    borderRadius: 8,
+    backgroundColor: '#FFE4E2',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
   app_ver: {
     textAlign: 'center',
     marginTop: 24,
@@ -108,7 +140,8 @@ const styles = StyleSheet.create({
   },
   forgot_password: {
     textAlign: 'right',
-    fontWeight: 'bold',
+    fontWeight: '500',
+    color: '#10A9A5',
     fontSize: 14,
   },
   login_button: {

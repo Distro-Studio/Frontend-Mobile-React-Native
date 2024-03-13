@@ -5,10 +5,13 @@ import {BottomTabIcon} from '../components';
 import {
   ActivationScreen,
   ActivityScreen,
+  EmailVerificationScreen,
   EmployeeScreen,
+  ForgotPasswordScreen,
   HomeScreen,
   LoginScreen,
   MapsScreen,
+  NewPasswordScreen,
   ProfileScreen,
   ScheduleScreen,
   SplashScreenIndex,
@@ -49,7 +52,7 @@ const MainApp = () => {
 const Router = () => {
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
-      {/* <Stack.Group screenOptions={{headerShown: false}}>
+      <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
         <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
       </Stack.Group>
@@ -58,8 +61,17 @@ const Router = () => {
         <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
         <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen
+          name="ForgotPasswordScreen"
+          component={ForgotPasswordScreen}
+        />
+        <Stack.Screen
+          name="EmailVerificationScreen"
+          component={EmailVerificationScreen}
+        />
+        <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
-      </Stack.Group> */}
+      </Stack.Group>
       <Stack.Screen
         name="MainApp"
         component={MainApp}

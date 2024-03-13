@@ -11,5 +11,8 @@ export {default as SplashScreenInfo3} from './Splash/SplashInfo3';
 //
 export {default as ActivationScreen} from './AuthScreen/ActivationScreen';
 export {default as LoginScreen} from './AuthScreen/LoginScreen';
+export {default as ForgotPasswordScreen} from './AuthScreen/ForgotPasswordScreen';
+export {default as EmailVerificationScreen} from './AuthScreen/EmailVerificationScreen';
+export {default as NewPasswordScreen} from './AuthScreen/NewPasswordScreen';
 //
 export {default as MapsScreen} from './MapsScreen/MapsScreen';

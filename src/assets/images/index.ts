@@ -4,6 +4,7 @@ export {default as SplashLogo} from './splash-logo.png';
 export {default as SplashInfoImage1} from './splash-info-1.png';
 export {default as SplashInfoImage2} from './splash-info-2.png';
 export {default as SplashInfoImage3} from './splash-info-3.png';
+export {default as SplashVerification} from './splash-verification.png';
 //
 export {default as IconHomeActive} from './icon-home-active.png';
 //
@@ -17,6 +18,7 @@ export {default as HeaderUserProfile} from './header_profile_user.png';
 //
 export {default as IconNotification} from './icon-notification.png';
 export {default as IconAttendance} from './icon-attendance.png';
+export {default as IconAttendanceExit} from './icon-attendance-exit.png';
 export {default as IconLocation} from './icon-location.png';
 export {default as IconAttendanceIn} from './icon-attendance-in.png';
 export {default as IconAttendanceOut} from './icon-attendance-out.png';
@@ -37,5 +39,14 @@ export {default as IconActivityOut} from './icon-activity-out.png';
 export {default as IconModalLocation} from './icon-modal-location.png';
 export {default as IconModalRange} from './icon-modal-range.png';
 export {default as IconClose} from './icon-close.png';
+export {default as IconEye} from './icon-eye.png';
+export {default as IconHelp} from './icon-help.png';
+export {default as IconSuccessPresence} from './icon-success-presence.png';
+export {default as IconFailPresence} from './icon-fail-presence.png';
+
 //
 export {default as dummyMap} from './location-img.png';
+//
+export {default as IconCheck} from './icon-check.png';
+export {default as IconCheckBig} from './icon-check-big.png';
+export {default as IconFail} from './icon-fail.png';

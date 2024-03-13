@@ -11,8 +11,10 @@ import {
 import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
 import {
   IconClose,
+  IconFailPresence,
   IconModalLocation,
   IconModalRange,
+  IconSuccessPresence,
 } from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
@@ -20,9 +22,84 @@ import {webView} from '../../utils/WebView';
 const HomeScreen = () => {
   const [isModalLocation, setIsModalLocation] = React.useState(false);
   const [isModalRange, setIsModalRange] = React.useState(false);
+  const [isModalSuccessPresence, setIsModalSuccessPresence] =
+    React.useState(false);
+  const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
 
   return (
     <>
+      {isModalSuccessPresence && (
+        <ModalApp isModal={isModalSuccessPresence}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image source={IconSuccessPresence} />
+            <Text style={{marginTop: 16, fontSize: 16, fontWeight: 'bold'}}>
+              Absen Telah Berhasil
+            </Text>
+            <Text style={{marginTop: 16, color: '#777986'}}>
+              {` Kerja bagus! Kehadiran Anda telah
+  berhasil dicatat. Anda sudah siap
+                    untuk hari ini.`}
+            </Text>
+            <View style={styles.button_modal_container}>
+              <Pressable
+                onPress={() => setIsModalSuccessPresence(false)}
+                style={{
+                  flex: 1,
+                  borderRadius: 8,
+                  paddingHorizontal: 16,
+                  paddingVertical: 8,
+                  backgroundColor: APP.COLORS['primary-500'],
+                }}>
+                <Text style={{color: '#FFFFFF', textAlign: 'center'}}>
+                  Selesai
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </ModalApp>
+      )}
+
+      {isModalFailPresence && (
+        <ModalApp isModal={isModalFailPresence}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image source={IconFailPresence} />
+            <Text style={{marginTop: 16, fontSize: 16, fontWeight: 'bold'}}>
+              Maaf Absensi Anda Tidak Berhasil
+            </Text>
+            <Text style={{marginTop: 16, color: '#777986'}}>
+              {`      Maaf! Kehadiran Anda belum 
+berhasil dicatat. Silahkan lakukan 
+                  absensi ulang.`}
+            </Text>
+            <View style={styles.button_modal_container}>
+              <Pressable
+                onPress={() => setIsModalFailPresence(false)}
+                style={{
+                  flex: 1,
+                  borderRadius: 8,
+                  paddingHorizontal: 16,
+                  paddingVertical: 8,
+                  backgroundColor: APP.COLORS['primary-500'],
+                }}>
+                <Text style={{color: '#FFFFFF', textAlign: 'center'}}>
+                  Ulangi
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </ModalApp>
+      )}
+
       {isModalLocation && (
         <ModalApp isModal={isModalLocation}>
           <View
