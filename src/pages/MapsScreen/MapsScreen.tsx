@@ -1,21 +1,26 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  Pressable,
-} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
-import {dummyMap} from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
+import MapView, {Marker} from 'react-native-maps';
 
-const {width} = Dimensions.get('window');
+const MapsScreen = ({navigation}) => {
+  const RSKIRegion = {
+    latitude: -7.562910072905711,
+    longitude: 110.8016758224319,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+  const [userCoordinate, setUserCoordinate] = React.useState({
+    latitude: -6.907544081621263,
+    longitude: 109.73515693754467,
+  });
 
-const MapsScreen = () => {
   return (
     <View style={styles.screen_container}>
-      <Image source={dummyMap} style={{width}} />
+      <MapView style={styles.map} initialRegion={RSKIRegion}>
+        <Marker coordinate={RSKIRegion} />
+        <Marker coordinate={userCoordinate} />
+      </MapView>
       <View style={styles.address_container}>
         <View style={styles.address_header}>
           <Text>Konfirmasi Alamat</Text>
@@ -31,7 +36,9 @@ const MapsScreen = () => {
               Refresh
             </Text>
           </Pressable>
-          <Pressable style={[styles.button, styles.active_button]}>
+          <Pressable
+            style={[styles.button, styles.active_button]}
+            onPress={() => navigation.navigate('CameraScreen')}>
             <Text style={[styles.button_text, styles.active_text]}>
               Konfirmasi
             </Text>
@@ -43,6 +50,9 @@ const MapsScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
   secondary_text: {
     color: APP.COLORS['primary-500'],
   },

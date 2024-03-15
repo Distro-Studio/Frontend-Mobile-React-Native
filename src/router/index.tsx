@@ -5,6 +5,7 @@ import {BottomTabIcon} from '../components';
 import {
   ActivationScreen,
   ActivityScreen,
+  CameraScreen,
   EmailVerificationScreen,
   EmployeeScreen,
   ForgotPasswordScreen,
@@ -80,6 +81,11 @@ const Router = () => {
       <Stack.Screen
         name="MapsScreen"
         component={MapsScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CameraScreen"
+        component={CameraScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -8,7 +8,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
 import {
   IconClose,
   IconFailPresence,
@@ -16,8 +15,10 @@ import {
   IconModalRange,
   IconSuccessPresence,
 } from '../../assets/images';
+import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
+import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = () => {
   const [isModalLocation, setIsModalLocation] = React.useState(false);
@@ -26,6 +27,21 @@ const HomeScreen = () => {
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
 
+  /*
+    mendapatkan lokasi koordinat user lalu passing koordinat menggunakan context api / props ke mapsScreen
+    Next step:
+    1. Bagaimana cara mengetahui bahwa user mengaktifkan GPS?
+      -> menggunakan PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+  */
+  Geolocation.getCurrentPosition(
+    info => console.log(info),
+    error => console.log(error),
+    {
+      enableHighAccuracy: true,
+      timeout: 20000,
+      maximumAge: 0,
+    },
+  );
   return (
     <>
       {isModalSuccessPresence && (

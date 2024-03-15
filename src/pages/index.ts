@@ -16,3 +16,4 @@ export {default as EmailVerificationScreen} from './AuthScreen/EmailVerification
 export {default as NewPasswordScreen} from './AuthScreen/NewPasswordScreen';
 //
 export {default as MapsScreen} from './MapsScreen/MapsScreen';
+export {default as CameraScreen} from './CameraScreen/CameraScreen';
