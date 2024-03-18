@@ -50,3 +50,6 @@ export {default as dummyMap} from './location-img.png';
 export {default as IconCheck} from './icon-check.png';
 export {default as IconCheckBig} from './icon-check-big.png';
 export {default as IconFail} from './icon-fail.png';
+//
+export {default as IconSearch} from './icon-search.png';
+export {default as IconNotificationBlack} from './icon-notification-black.png';

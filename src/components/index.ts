@@ -4,3 +4,4 @@ export {default as HomeHeader} from './HomeHeader/HomeHeader';
 export {default as HomeMenus} from './HomeMenus/HomeMenus';
 export {default as HomeActivity} from './HomeActivity/HomeActivity';
 export {default as ModalApp} from './Modal/ModalApp';
+export {default as CustomHeaderApp} from './CustomHeaderApp/CustomHeaderApp';

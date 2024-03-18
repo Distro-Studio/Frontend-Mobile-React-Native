@@ -32,7 +32,7 @@ const AppImages = {
   },
 };
 
-const BottomTabIcon = ({title, focused}) => {
+const BottomTabIcon = ({title, focused}: any) => {
   const iconName = `${focused ? '' : 'in'}active${title}Icon`;
   const imgSrc = AppImages[iconName];
   return (

@@ -1,11 +1,13 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import {Platform} from 'react-native';
 import {BottomTabIcon} from '../components';
 import {
   ActivationScreen,
   ActivityScreen,
   CameraScreen,
+  DetailEmployeeScreen,
   EmailVerificationScreen,
   EmployeeScreen,
   ForgotPasswordScreen,
@@ -20,13 +22,12 @@ import {
   SplashScreenInfo2,
   SplashScreenInfo3,
 } from '../pages';
-import {Platform} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const screenOptions = ({route}: any) => ({
-  headerShown: false,
+  header: () => null,
   tabBarShowLabel: false,
   tabBarIcon: ({focused}: any) => (
     <BottomTabIcon focused={focused} title={route.name} />
@@ -87,6 +88,11 @@ const Router = () => {
         name="CameraScreen"
         component={CameraScreen}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailEmployeeScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={DetailEmployeeScreen}
       />
     </Stack.Navigator>
   );
