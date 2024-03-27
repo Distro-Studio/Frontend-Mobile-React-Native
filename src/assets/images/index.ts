@@ -7,7 +7,10 @@ export {default as SplashInfoImage3} from './splash-info-3.png';
 export {default as SplashVerification} from './splash-verification.png';
 //
 export {default as IconHomeActive} from './icon-home-active.png';
+export {default as IconScheduleActive} from './icon-schedule-active.png';
+export {default as IconEmployeeActive} from './icon-employee-active.png';
 //
+export {default as IconHome} from './icon-home.png';
 export {default as IconSchedule} from './icon-schedule.png';
 export {default as IconEmployee} from './icon-employee.png';
 export {default as IconActivity} from './icon-activity.png';

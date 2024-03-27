@@ -8,6 +8,7 @@ import {
   ActivityScreen,
   CameraScreen,
   DetailEmployeeScreen,
+  DetailScheduleScreen,
   EmailVerificationScreen,
   EmployeeScreen,
   ForgotPasswordScreen,
@@ -93,6 +94,11 @@ const Router = () => {
         name="DetailEmployeeScreen"
         options={{headerTitleAlign: 'center', header: () => null}}
         component={DetailEmployeeScreen}
+      />
+      <Stack.Screen
+        name="DetailScheduleScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={DetailScheduleScreen}
       />
     </Stack.Navigator>
   );

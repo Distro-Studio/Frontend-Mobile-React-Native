@@ -1,20 +1,27 @@
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {ChevronLeft} from '../../assets/images';
 
-const CustomHeaderApp = ({backButton, children, rightIcon}) => {
+const CustomHeaderApp = ({
+  backButton,
+  children,
+  rightIcon,
+  screenName,
+}: any) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.container_header_top}>
+      <View style={styles.container_header_top(children)}>
         <View style={{width: 24, height: 24}}>
           {backButton && (
-            <Pressable>
+            <Pressable onPress={() => navigation.goBack()}>
               <Image source={ChevronLeft} style={{width: 24, height: 24}} />
             </Pressable>
           )}
         </View>
         <View style={{flex: 1}}>
-          <Text style={styles.headerText}>Employee</Text>
+          <Text style={styles.headerText}>{screenName}</Text>
         </View>
         {rightIcon}
       </View>
@@ -38,12 +45,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 8,
   },
-  container_header_top: {
+  container_header_top: (children: any) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
-  },
+    marginBottom: children === undefined ? 0 : 16,
+  }),
   headerText: {
     fontSize: 16,
     fontWeight: '600',

@@ -1,26 +1,29 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  StyleSheet,
-  Image,
-} from 'react-native';
 import React from 'react';
-import {CustomHeaderApp} from '../../components';
-import {IconNotificationBlack} from '../../assets/images';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {IconSearch} from '../../assets/images';
+import {CustomHeaderApp, EmployeeCard} from '../../components';
 
 const EmployeeScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 24, height: 24}} />
+        <Image source={IconSearch} style={{width: 24, height: 24}} />
       </Pressable>
     );
   };
   return (
     <ScrollView>
-      <CustomHeaderApp backButton={false} rightIcon={headerIcon()}>
+      <CustomHeaderApp
+        backButton={false}
+        rightIcon={headerIcon()}
+        screenName={'Employee'}>
         <View style={styles.header_dropdown_menu}>
           <View>
             <Text>Menu Dropdown 1</Text>
@@ -31,9 +34,11 @@ const EmployeeScreen = ({navigation}) => {
         </View>
       </CustomHeaderApp>
       <View style={styles.container}>
-        <Pressable onPress={() => navigation.navigate('DetailEmployeeScreen')}>
-          <Text>asd</Text>
-        </Pressable>
+        {[
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        ].map(item => (
+          <EmployeeCard key={item} navigation={navigation} />
+        ))}
       </View>
     </ScrollView>
   );
@@ -42,6 +47,7 @@ const EmployeeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
+    gap: 16,
   },
   header_dropdown_menu: {
     flexDirection: 'row',

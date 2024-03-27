@@ -4,14 +4,29 @@ import {APP} from '../../utils/CONSTANT';
 import {
   IconActivity,
   IconEmployee,
+  IconEmployeeActive,
+  IconHome,
   IconHomeActive,
   IconProfile,
   IconSchedule,
+  IconScheduleActive,
 } from '../../assets/images';
 
 const AppImages = {
   activeHomeIcon: {
     source: IconHomeActive,
+    style: {width: 24, height: 24},
+  },
+  activeScheduleIcon: {
+    source: IconScheduleActive,
+    style: {width: 24, height: 24},
+  },
+  activeEmployeeIcon: {
+    source: IconEmployeeActive,
+    style: {width: 24, height: 24},
+  },
+  inactiveHomeIcon: {
+    source: IconHome,
     style: {width: 24, height: 24},
   },
   inactiveScheduleIcon: {
@@ -49,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabTitle: active => ({
+  tabTitle: (active: any) => ({
     color: active ? APP.COLORS['primary-500'] : '#454545',
   }),
 });

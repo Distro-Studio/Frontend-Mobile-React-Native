@@ -1,5 +1,6 @@
 export {default as HomeScreen} from './HomeScreen/HomeScreen';
 export {default as ScheduleScreen} from './ScheduleScreen/ScheduleScreen';
+export {default as DetailScheduleScreen} from './ScheduleScreen/DetailScheduleScreen';
 export {default as EmployeeScreen} from './EmployeeScreen/EmployeeScreen';
 export {default as DetailEmployeeScreen} from './EmployeeScreen/DetailEmployeeScreen';
 export {default as ActivityScreen} from './ActivityScreen/ActivityScreen';
