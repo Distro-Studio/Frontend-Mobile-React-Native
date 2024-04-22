@@ -1,4 +1,4 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
@@ -16,6 +16,8 @@ const CustomButtonSheet = ({
   snapPoints,
   isStatus,
   isStatusSuccess,
+  onClose,
+  onPress,
 }: any) => {
   return (
     <BottomSheet
@@ -54,6 +56,7 @@ const CustomButtonSheet = ({
                     : 'Kamu bisa pilih tanggal lain yang masih kosong, atau cari karyawan lain yang mau tukar di tanggal tersebut.'}
                 </Text>
                 <CustomButton
+                  onPress={onClose}
                   mt={16}
                   borad={8}
                   padding={10}
@@ -67,7 +70,9 @@ const CustomButtonSheet = ({
             <View>
               <View style={styles.sheetHeader}>
                 <Text>Set The Dates</Text>
-                <Image source={IconClose} width={24} height={24} />
+                <Pressable onPress={onClose}>
+                  <Image source={IconClose} width={24} height={24} />
+                </Pressable>
               </View>
               <View style={{marginHorizontal: 5}}>
                 <CustomDatePicker modeCalendar="calendar" />
@@ -120,6 +125,7 @@ const CustomButtonSheet = ({
                   padding={10}
                   mt={16}
                   text="Tukar"
+                  onPress={onPress}
                 />
               </View>
             </View>

@@ -13,16 +13,17 @@ import {
 import {IconNotificationBlack} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard, ScheduleCard} from '../../components';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 
 const {height} = Dimensions.get('window');
 
 const DetailEmployeeScreen = ({navigation}: any) => {
   const route = useRoute();
-  const state = true; // membuka bottomsheet
-  const isStatus = true; // toggle status apakah success || failed | if status true -> calendar off  | if false -> calendar on
-  const isStatusSuccess = false; // for showing if status success or fail
+  const [state, setState] = React.useState(false); // membuka bottomsheet
+  const [isStatus, setIsStatus] = React.useState(false); // toggle status apakah success || failed | if status true -> calendar off  | if false -> calendar on
+  const [isStatusSuccess, setIsStatusSuccess] = React.useState(false); // for showing if status success or fail
   const snapPoints = React.useMemo(
-    () => (isStatus ? [310, 32] : [32, 700, height / 2]),
+    () => (isStatus ? [32, 320] : [700, height / 2, 32]),
     [isStatus],
   );
   // ref
@@ -40,6 +41,13 @@ const DetailEmployeeScreen = ({navigation}: any) => {
       </Pressable>
     );
   };
+  const width = Dimensions.get('window').width;
+  const ref = React.useRef<ICarouselInstance>(null);
+  const baseOptions = {
+    vertical: false,
+    width: width * 0.73,
+    height: width / 5,
+  } as const;
   return (
     <View style={{flex: 1}}>
       <CustomHeaderApp
@@ -49,13 +57,32 @@ const DetailEmployeeScreen = ({navigation}: any) => {
       />
       <View style={styles.container}>
         <View style={styles.employee_card_container}>
-          {[1, 2, 3, 4, 5].map(item => (
+          <Carousel
+            {...baseOptions}
+            ref={ref}
+            loop={false}
+            style={{width: '100%'}}
+            autoPlay={false}
+            data={[...new Array(6).keys()]}
+            onSnapToItem={index => console.log('current index:', index)}
+            renderItem={({index}) => (
+              <View key={index}>
+                <EmployeeCard
+                  key={index}
+                  navigation={navigation}
+                  active={index === 0 ? true : false}
+                  routeName={route.name}
+                />
+              </View>
+            )}
+          />
+          {/* {[1, 2, 3, 4, 5].map(item => (
             <EmployeeCard
               key={item}
               navigation={navigation}
               active={item === 1 ? true : false}
             />
-          ))}
+          ))} */}
         </View>
         <View style={[styles.schedule_container, {paddingBottom: 120}]}>
           <Text style={styles.schedule_title}>Schedule</Text>
@@ -66,6 +93,10 @@ const DetailEmployeeScreen = ({navigation}: any) => {
                   key={item}
                   routeName={route.name}
                   cardState={'active'}
+                  onSwap={() => {
+                    setState(!state);
+                    setIsStatus(false);
+                  }}
                 />
               ))}
             </View>
@@ -79,6 +110,11 @@ const DetailEmployeeScreen = ({navigation}: any) => {
           snapPoints={snapPoints}
           isStatus={isStatus}
           isStatusSuccess={isStatusSuccess}
+          onClose={() => setState(false)}
+          onPress={() => {
+            setIsStatus(true);
+            setIsStatusSuccess(true);
+          }}
         />
       )}
     </View>
@@ -99,13 +135,12 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   employee_card_container: {
-    flexDirection: 'row',
-    gap: 16,
-    overflow: 'scroll',
+    // flexDirection: 'row',
+    // gap: 16,
+    // overflow: 'scroll',
   },
   container: {
     paddingHorizontal: 24,
-    flex: 1,
   },
 });
 

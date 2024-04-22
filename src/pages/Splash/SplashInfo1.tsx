@@ -9,11 +9,12 @@ const SplashInfo1 = ({navigation}: any) => {
       <View style={styles.content_container}>
         <View>
           <Text style={styles.content_text_bold}>
-            Welcome to the HR Application
+            Selamat Datang di Aplikasi Absensi Rumah Sakit Kasih Ibu!
           </Text>
           <Text style={styles.content_text}>
-            Welcome to HRD App! elevate your attendance experience with ease and
-            efficiency! begin your productive journey today!"
+            Kami sangat senang Anda bergabung dengan tim kami. Aplikasi ini
+            dirancang untuk memudahkan Anda dalam melakukan absensi dan
+            mengelola waktu kerja Anda di Rumah Sakit Kasih Ibu.
           </Text>
         </View>
         <View style={styles.bottom_nav}>

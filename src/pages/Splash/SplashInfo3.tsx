@@ -9,11 +9,11 @@ const SplashInfo3 = ({navigation}: any) => {
       <View style={styles.content_container}>
         <View>
           <Text style={styles.content_text_bold}>
-            All employee duty in one app!
+            Semua tugas karyawan dalam satu aplikasi!
           </Text>
           <Text style={styles.content_text}>
-            Ready for peak productivity? Let's dive in and elevate your
-            efficiency!
+            Siap untuk produktivitas puncak? Mari selami dan tingkatkan
+            efisiensi Anda!
           </Text>
         </View>
         <View style={styles.bottom_nav}>
@@ -25,7 +25,7 @@ const SplashInfo3 = ({navigation}: any) => {
           <Pressable
             style={styles.splash_button}
             onPress={() => navigation.navigate('LoginScreen')}>
-            <Text style={styles.splash_button_text}>Next</Text>
+            <Text style={styles.splash_button_text}>Masuk</Text>
           </Pressable>
         </View>
       </View>

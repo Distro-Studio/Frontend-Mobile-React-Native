@@ -23,6 +23,7 @@ import {
   SplashScreenInfo2,
   SplashScreenInfo3,
 } from '../pages';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,17 +54,37 @@ const MainApp = () => {
 };
 
 const Router = () => {
+  const [stateLoggedIn, setStateLoggedIn] = React.useState(null);
+  async function getLoggedIn() {
+    try {
+      const value = await AsyncStorage.getItem('logged_in');
+      setStateLoggedIn(value);
+    } catch (e) {
+      // saving error
+    }
+  }
+  React.useEffect(() => {
+    getLoggedIn();
+  }, []);
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
-        <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
+        {stateLoggedIn === null && (
+          <>
+            <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
+          </>
+        )}
       </Stack.Group>
       <Stack.Group
         screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
-        <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
-        <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        {stateLoggedIn === null && (
+          <>
+            <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
+            <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          </>
+        )}
         <Stack.Screen
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}

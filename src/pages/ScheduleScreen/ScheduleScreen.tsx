@@ -10,9 +10,34 @@ import {
 } from 'react-native';
 import {IconNotificationBlack} from '../../assets/images';
 import {CustomHeaderApp, ScheduleCard} from '../../components';
+import {Dropdown} from 'react-native-element-dropdown';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
+  const [valueMonth, setValueMonth] = React.useState(null);
+  const [isFocusMonth, setIsFocusMonth] = React.useState(false);
+  const [valueWeeks, setValueWeeks] = React.useState(null);
+  const [isFocusWeeks, setIsFocusWeeks] = React.useState(false);
+  const dataMonth = [
+    {label: 'Januari', value: 'Januari'},
+    {label: 'Februari', value: 'Februari'},
+    {label: 'Maret', value: 'Maret'},
+    {label: 'April', value: 'April'},
+    {label: 'Mei', value: 'Mei'},
+    {label: 'Juni', value: 'Juni'},
+    {label: 'Juli', value: 'Juli'},
+    {label: 'Agustus', value: 'Agustus'},
+    {label: 'September', value: 'September'},
+    {label: 'Oktober', value: 'Oktober'},
+    {label: 'November', value: 'November'},
+    {label: 'Desember', value: 'Desember'},
+  ];
+  const dataWeeks = [
+    {label: 'Minggu 1', value: 'Minggu 1'},
+    {label: 'Minggu 2', value: 'Minggu 2'},
+    {label: 'Minggu 3', value: 'Minggu 3'},
+    {label: 'Minggu 4', value: 'Minggu 4'},
+  ];
   const headerIcon = () => {
     return (
       <Pressable>
@@ -22,60 +47,134 @@ const ScheduleScreen = ({navigation}) => {
   };
   console.log(route);
   return (
-    <ScrollView>
+    <>
       <CustomHeaderApp
         backButton={false}
         rightIcon={headerIcon()}
         screenName={'Schedule'}>
         <View style={styles.header_dropdown_menu}>
-          <View>
-            <Text>Menu Dropdown 1</Text>
-          </View>
-          <View>
-            <Text>Menu Dropdown 2</Text>
-          </View>
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataMonth}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocusMonth ? 'Select item' : '...'}
+            value={dataMonth[0]}
+            onFocus={() => setIsFocusMonth(true)}
+            onBlur={() => setIsFocusMonth(false)}
+            onChange={item => {
+              setValueMonth(item.value);
+              setIsFocusMonth(false);
+            }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+          />
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataWeeks}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocusWeeks ? 'Select item' : '...'}
+            value={dataWeeks[0]}
+            onFocus={() => setIsFocusWeeks(true)}
+            onBlur={() => setIsFocusWeeks(false)}
+            onChange={item => {
+              setValueWeeks(item.value);
+              setIsFocusWeeks(false);
+            }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+          />
         </View>
       </CustomHeaderApp>
-      {/* reminder */}
-      <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: '#287DFC26',
-            padding: 16,
-            borderRadius: 8,
-            marginBottom: 16,
-          }}>
-          <Text style={{lineHeight: 20, color: '#222831'}}>
-            Just a reminder: HRD updates your work schedule every Week. Keep an
-            eye out for the latest changes!!!
-          </Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <View
+            style={{
+              backgroundColor: '#287DFC26',
+              padding: 16,
+              borderRadius: 8,
+              marginBottom: 16,
+            }}>
+            <Text style={{lineHeight: 20, color: '#222831'}}>
+              Just a reminder: HRD updates your work schedule every Week. Keep
+              an eye out for the latest changes!!!
+            </Text>
+          </View>
         </View>
-      </View>
-      {/* cards */}
-      <View style={styles.container}>
-        <ScheduleCard
-          routeName={route.name}
-          cardState={'active'}
-          navigation={navigation}
-        />
-        <ScheduleCard
-          routeName={route.name}
-          cardState={'inactive'}
-          isHoliday={true}
-        />
-      </View>
-    </ScrollView>
+
+        <View style={styles.container}>
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'active'}
+            navigation={navigation}
+          />
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'active'}
+            navigation={navigation}
+          />
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'active'}
+            navigation={navigation}
+          />
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'active'}
+            navigation={navigation}
+          />
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'active'}
+            navigation={navigation}
+          />
+          <ScheduleCard
+            routeName={route.name}
+            cardState={'inactive'}
+            isHoliday={true}
+          />
+        </View>
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  placeholderStyle: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  dropdown: {
+    flex: 1,
+    height: 50,
+    borderWidth: 0,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
   container: {
     paddingHorizontal: 24,
     gap: 16,
+    paddingBottom: 16,
   },
   header_dropdown_menu: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    gap: 16,
   },
 });
 

@@ -9,12 +9,13 @@ const EmployeeCard = ({
   active,
   navigation,
   isShowBadge = true,
+  routeName,
 }) => {
   return (
     <Pressable
-      style={active && styles.employee_card_active}
+      style={styles.employee_card_active(active)}
       onPress={() => navigation.navigate('DetailEmployeeScreen')}>
-      <View style={styles.employee_card_container}>
+      <View style={styles.employee_card_container(routeName)}>
         <View style={styles.employee_info}>
           <View style={styles.employee_img}>{/* <Text>img</Text> */}</View>
           <View>
@@ -28,11 +29,11 @@ const EmployeeCard = ({
           </View>
         </View>
         {isShowBadge && (
-          <View style={[styles.employee_badge, styles.employee_badge_libur]}>
+          <View style={[styles.employee_badge, styles.employee_badge_kerja]}>
             <Text
               style={[
                 styles.employee_badge_text,
-                styles.employee_badge_text_libur,
+                styles.employee_badge_text_kerja,
               ]}>
               Kerja
             </Text>
@@ -44,11 +45,12 @@ const EmployeeCard = ({
 };
 
 const styles = StyleSheet.create({
-  employee_card_active: {
+  employee_card_active: state => ({
     paddingLeft: 6,
-    backgroundColor: '#287DFC',
+    backgroundColor: state && '#287DFC',
     borderRadius: 12,
-  },
+    width: state && 300,
+  }),
   employee_badge_kerja: {
     backgroundColor: '#37BA72',
   },
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#287DFC',
   },
   employee_badge: {
-    paddingHorizontal: 22,
+    paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 1000,
   },
@@ -97,14 +99,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  employee_card_container: {
+  employee_card_container: route => ({
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
+    // width: route === 'DetailEmployeeScreen' && 290,
+  }),
 });
 
 export default EmployeeCard;

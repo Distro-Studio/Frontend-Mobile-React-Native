@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 
 const CustomButton = (props: any) => {
   return (
-    <Pressable style={styles.buttonBase(props)}>
+    <Pressable style={styles.buttonBase(props)} onPress={props.onPress}>
       <Text
         style={{
           color: props.color ? props.color : '#FFFFFF',

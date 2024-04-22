@@ -2,17 +2,20 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
 import {APP} from '../../utils/CONSTANT';
 import MapView, {Marker} from 'react-native-maps';
+import {MapsContext} from '../../contexts/MapsContext';
 
 const MapsScreen = ({navigation}) => {
+  const {state} = React.useContext(MapsContext);
   const RSKIRegion = {
     latitude: -7.562910072905711,
     longitude: 110.8016758224319,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
+  console.log('maps coords', JSON.parse(state.coords).lat);
   const [userCoordinate, setUserCoordinate] = React.useState({
-    latitude: -6.907544081621263,
-    longitude: 109.73515693754467,
+    latitude: JSON.parse(state.coords).lat,
+    longitude: JSON.parse(state.coords).long,
   });
 
   return (

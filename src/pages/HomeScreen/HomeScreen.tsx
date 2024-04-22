@@ -19,6 +19,8 @@ import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
 import Geolocation from '@react-native-community/geolocation';
+import {MapsContext} from '../../contexts/MapsContext';
+// import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = () => {
   const [isModalLocation, setIsModalLocation] = React.useState(false);
@@ -26,6 +28,8 @@ const HomeScreen = () => {
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
+  const [userLocation, setUserLocation] = React.useState('');
+  const {state, dispatch} = React.useContext(MapsContext);
 
   /*
     mendapatkan lokasi koordinat user lalu passing koordinat menggunakan context api / props ke mapsScreen
@@ -34,14 +38,32 @@ const HomeScreen = () => {
       -> menggunakan PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
   */
   Geolocation.getCurrentPosition(
-    info => console.log(info),
-    error => console.log(error),
-    {
-      enableHighAccuracy: true,
-      timeout: 20000,
-      maximumAge: 0,
+    (position: any) => {
+      const location = JSON.stringify({
+        long: position.coords.longitude,
+        lat: position.coords.latitude,
+      });
+      setUserLocation(location);
+      // this.setState({location});
     },
+    (error: any) => console.log(error.message),
+    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
   );
+  // Geolocation.getCurrentPosition(
+  //   info => console.log(info),
+  //   error => console.log(error),
+  //   {
+  //     enableHighAccuracy: true,
+  //     timeout: 20000,
+  //     maximumAge: 0,
+  //   },
+  // );
+  console.log(state);
+  React.useEffect(() => {
+    if (userLocation !== undefined) {
+      dispatch({type: 'save_coords', payload: userLocation});
+    }
+  }, [userLocation]);
   return (
     <>
       {isModalSuccessPresence && (

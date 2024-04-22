@@ -10,7 +10,12 @@ const ScheduleCard = ({
   isSmall = false,
   cardState,
   navigation,
+  onSwap,
 }) => {
+  // cardState 3 -> active, inactive, default
+  // inactive + isHoliday -> holiday
+  // active -> people img
+  // default -> swap
   return (
     <Pressable
       style={styles.schedule_card_state(cardState, isSmall)}
@@ -63,6 +68,7 @@ const ScheduleCard = ({
           routeName === 'DetailEmployeeScreen' &&
           cardState !== 'inactive' && (
             <Pressable
+              onPress={onSwap}
               style={{
                 padding: 12,
                 borderWidth: 2,

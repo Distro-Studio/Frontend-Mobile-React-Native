@@ -12,6 +12,7 @@ import {Input} from '../../components';
 import {AuthLayout} from '../../layouts';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({navigation}: any) => {
   const [email, onChangeEmail] = React.useState<string>('');
@@ -19,10 +20,19 @@ const LoginScreen = ({navigation}: any) => {
   const [isError, setIsError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  async function storeLoggedIn(value: string) {
+    try {
+      await AsyncStorage.setItem('logged_in', value);
+    } catch (e) {
+      // saving error
+    }
+  }
+
   async function handleLogin() {
     try {
       if (email === 'ivan@gmail.com' && password === 'ivan123') {
         navigation.navigate('MainApp');
+        storeLoggedIn('logged_in');
       }
     } catch (e) {
       console.log(e);

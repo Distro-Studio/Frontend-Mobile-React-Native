@@ -2,13 +2,28 @@ import React from 'react';
 import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import {SplashLogo} from '../../assets/images';
 import {webView} from '../../utils/WebView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Splash = ({navigation}) => {
+const Splash = ({navigation}: any) => {
+  async function getLoggedIn() {
+    try {
+      const value = await AsyncStorage.getItem('logged_in');
+      if (value !== null) {
+        setTimeout(() => {
+          navigation.replace('MainApp');
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          navigation.replace('SplashInfo1');
+        });
+      }
+    } catch (e) {
+      // saving error
+    }
+  }
   React.useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('SplashInfo1');
-    }, 3000);
-  }, [navigation]);
+    getLoggedIn();
+  }, []);
 
   return (
     <View style={Platform.OS === 'web' ? styles.webView : styles.container}>

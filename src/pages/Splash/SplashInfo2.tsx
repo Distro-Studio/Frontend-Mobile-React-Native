@@ -9,11 +9,11 @@ const SplashInfo2 = ({navigation}: any) => {
       <View style={styles.content_container}>
         <View>
           <Text style={styles.content_text_bold}>
-            Seamless design and feature improvement
+            Desain dan peningkatan fitur yang mulus
           </Text>
           <Text style={styles.content_text}>
-            Simplify your HR processes and enhance your workflow with our
-            intuitive features designed for ultimate flexibility
+            Sederhanakan proses SDM Anda dan tingkatkan alur kerja Anda dengan
+            fitur intuitif kami yang dirancang untuk fleksibilitas tertinggi
           </Text>
         </View>
         <View style={styles.bottom_nav}>
