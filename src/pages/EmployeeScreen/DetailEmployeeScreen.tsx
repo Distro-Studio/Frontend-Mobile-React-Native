@@ -14,6 +14,7 @@ import {IconNotificationBlack} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard, ScheduleCard} from '../../components';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
+import {FlatList} from 'react-native-gesture-handler';
 
 const {height} = Dimensions.get('window');
 
@@ -23,7 +24,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
   const [isStatus, setIsStatus] = React.useState(false); // toggle status apakah success || failed | if status true -> calendar off  | if false -> calendar on
   const [isStatusSuccess, setIsStatusSuccess] = React.useState(false); // for showing if status success or fail
   const snapPoints = React.useMemo(
-    () => (isStatus ? [32, 320] : [700, height / 2, 32]),
+    () => (isStatus ? [32, height * 0.36] : [height * 0.82, height / 2, 32]),
     [isStatus],
   );
   // ref
@@ -42,66 +43,64 @@ const DetailEmployeeScreen = ({navigation}: any) => {
     );
   };
   const width = Dimensions.get('window').width;
-  const ref = React.useRef<ICarouselInstance>(null);
-  const baseOptions = {
-    vertical: false,
-    width: width * 0.73,
-    height: width / 5,
-  } as const;
+
   return (
-    <View style={{flex: 1}}>
+    <>
       <CustomHeaderApp
         backButton={true}
         screenName={'Detail Employee'}
         rightIcon={headerIcon()}
       />
       <View style={styles.container}>
-        <View style={styles.employee_card_container}>
-          <Carousel
-            {...baseOptions}
-            ref={ref}
-            loop={false}
-            style={{width: '100%'}}
-            autoPlay={false}
-            data={[...new Array(6).keys()]}
-            onSnapToItem={index => console.log('current index:', index)}
+        <View>
+          <FlatList
+            data={[1, 2, 3, 4]}
+            horizontal
+            showsHorizontalScrollIndicator={false}
             renderItem={({index}) => (
-              <View key={index}>
-                <EmployeeCard
-                  key={index}
-                  navigation={navigation}
-                  active={index === 0 ? true : false}
-                  routeName={route.name}
-                />
-              </View>
+              <EmployeeCard
+                key={index}
+                navigation={navigation}
+                active={index === 0 ? true : false}
+                routeName={route.name}
+              />
             )}
           />
-          {/* {[1, 2, 3, 4, 5].map(item => (
-            <EmployeeCard
-              key={item}
-              navigation={navigation}
-              active={item === 1 ? true : false}
-            />
-          ))} */}
         </View>
-        <View style={[styles.schedule_container, {paddingBottom: 120}]}>
-          <Text style={styles.schedule_title}>Schedule</Text>
-          <ScrollView>
-            <View style={styles.schedule_cards_container}>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(item => (
-                <ScheduleCard
-                  key={item}
-                  routeName={route.name}
-                  cardState={'active'}
-                  onSwap={() => {
-                    setState(!state);
-                    setIsStatus(false);
-                  }}
-                />
-              ))}
+        <Text style={styles.schedule_title}>Schedule</Text>
+        <FlatList
+          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+          renderItem={({item}) => (
+            <View style={{marginVertical: 8}}>
+              <ScheduleCard
+                key={item}
+                routeName={route.name}
+                cardState={item % 3 ? 'active' : 'inactive'}
+                isHoliday={item % 3 ? false : true}
+                onSwap={() => {
+                  setState(!state);
+                  setIsStatus(false);
+                }}
+              />
             </View>
-          </ScrollView>
-        </View>
+          )}
+        />
+        {/* <View style={[styles.schedule_container]}> */}
+
+        {/* <View style={styles.schedule_cards_container}>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(item => (
+              <ScheduleCard
+                key={item}
+                routeName={route.name}
+                cardState={'active'}
+                onSwap={() => {
+                  setState(!state);
+                  setIsStatus(false);
+                }}
+              />
+            ))}
+          </View> */}
+        {/* </View> */}
       </View>
       {state && (
         <CustomButtonSheet
@@ -117,7 +116,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
           }}
         />
       )}
-    </View>
+    </>
   );
 };
 
@@ -126,6 +125,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   schedule_title: {
+    marginVertical: 16,
     fontSize: 16,
     color: '#222831',
     fontWeight: '600',
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 24,
+    flex: 1,
   },
 });
 

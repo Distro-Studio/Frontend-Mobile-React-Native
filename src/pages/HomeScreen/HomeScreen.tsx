@@ -28,7 +28,7 @@ const HomeScreen = () => {
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
-  const [userLocation, setUserLocation] = React.useState('');
+  const [userLocation, setUserLocation] = React.useState({});
   const {state, dispatch} = React.useContext(MapsContext);
 
   /*
@@ -58,9 +58,9 @@ const HomeScreen = () => {
   //     maximumAge: 0,
   //   },
   // );
-  console.log(state);
   React.useEffect(() => {
-    if (userLocation !== undefined) {
+    if (Object.keys(userLocation).length !== 0) {
+      console.log('user: ', userLocation);
       dispatch({type: 'save_coords', payload: userLocation});
     }
   }, [userLocation]);
@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
   webView,
   screen_container: {
     flex: 1,
+    backgroundColor: APP.COLORS['primary-500'],
   },
   button_modal_container: {
     flexDirection: 'row',
@@ -277,7 +278,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
-    marginTop: -10,
     paddingHorizontal: 24,
   },
 });

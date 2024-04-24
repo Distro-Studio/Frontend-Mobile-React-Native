@@ -25,7 +25,7 @@ const ScheduleCard = ({
       <View style={styles.schedule_card_container}>
         {/* info */}
         <View>
-          <Text>Minggu 1 - Shift Pagi</Text>
+          <Text style={{color: '#0C0E11'}}>Minggu 1 - Shift Pagi</Text>
           <Text style={styles.schedule_date(cardState)}>
             01 Nov 2023, Monday
           </Text>
@@ -33,11 +33,11 @@ const ScheduleCard = ({
             <View style={styles.schedule_times}>
               <View style={styles.schedule_time}>
                 <Image source={IconActivityIn} style={styles.schedule_icon} />
-                <Text style={{fontSize: 16}}>07.30</Text>
+                <Text style={{fontSize: 16, color: '#0C0E11'}}>07.30</Text>
               </View>
               <View style={styles.schedule_time}>
                 <Image source={IconActivityOut} style={styles.schedule_icon} />
-                <Text style={{fontSize: 16}}>16.30</Text>
+                <Text style={{fontSize: 16, color: '#0C0E11'}}>16.30</Text>
               </View>
             </View>
           )}
@@ -59,7 +59,7 @@ const ScheduleCard = ({
                     alignItems: 'center',
                   },
                 ]}>
-                <Text>+3</Text>
+                <Text style={{color: '#0C0E11'}}>+3</Text>
               </View>
             </View>
           )}

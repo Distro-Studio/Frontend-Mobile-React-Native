@@ -57,18 +57,20 @@ const HomeMenus = () => {
   ];
 
   return (
-    <View style={styles.home_menus}>
-      {menus.map(item => (
-        <View key={item.id} style={styles.home_menu}>
-          <Image source={item.iconSource} />
-          <Text style={styles.home_menu_text}>{item.name}</Text>
-        </View>
-      ))}
+    <>
+      <View style={styles.home_menus}>
+        {menus.map(item => (
+          <View key={item.id} style={styles.home_menu}>
+            <Image source={item.iconSource} />
+            <Text style={styles.home_menu_text}>{item.name}</Text>
+          </View>
+        ))}
+      </View>
       <View style={styles.menu_pagination_container}>
         <View style={styles.menu_pagination_active} />
         <View style={styles.menu_pagination} />
       </View>
-    </View>
+    </>
   );
 };
 
@@ -93,6 +95,9 @@ const styles = StyleSheet.create({
     backgroundColor: APP.COLORS['primary-500'],
   },
   home_menus: {
+    flex: 4,
+    width: 360,
+    marginHorizontal: 'auto',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

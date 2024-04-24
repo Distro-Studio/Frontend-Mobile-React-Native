@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  FlatList,
   Image,
   Pressable,
   ScrollView,
@@ -96,16 +97,21 @@ const EmployeeScreen = ({navigation}) => {
           />
         </View>
       </CustomHeaderApp>
-      <ScrollView>
-        <View style={styles.container}>
-          {[
+
+      <View style={styles.container}>
+        <FlatList
+          data={[
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20,
-          ].map(item => (
-            <EmployeeCard key={item} navigation={navigation} />
-          ))}
-        </View>
-      </ScrollView>
+          ]}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item}) => (
+            <View style={{marginVertical: 8}}>
+              <EmployeeCard key={item} navigation={navigation} />
+            </View>
+          )}
+        />
+      </View>
     </>
   );
 };
@@ -130,6 +136,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     gap: 16,
     paddingBottom: 16,
+    flex: 1,
   },
   header_dropdown_menu: {
     flexDirection: 'row',

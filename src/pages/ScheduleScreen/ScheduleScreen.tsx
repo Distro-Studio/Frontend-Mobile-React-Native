@@ -1,6 +1,7 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
+  FlatList,
   Image,
   Pressable,
   ScrollView,
@@ -45,7 +46,91 @@ const ScheduleScreen = ({navigation}) => {
       </Pressable>
     );
   };
-  console.log(route);
+  const data = [
+    {
+      id: 1,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 2,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 3,
+      isHoliday: true,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'inactive',
+    },
+    {
+      id: 4,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 5,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 6,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 7,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 8,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+    {
+      id: 9,
+      isHoliday: true,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'inactive',
+    },
+    {
+      id: 10,
+      isHoliday: false,
+      routeName: route.name,
+      navigation: navigation,
+      cardState: 'active',
+    },
+  ];
+  function renderItem({item}) {
+    console.log(item.routeName);
+    return (
+      <View style={{marginTop: 16}}>
+        <ScheduleCard
+          routeName={item.routeName}
+          navigation={item.navigation}
+          isHoliday={item.isHoliday}
+          cardState={item.cardState}
+        />
+      </View>
+    );
+  }
   return (
     <>
       <CustomHeaderApp
@@ -97,55 +182,62 @@ const ScheduleScreen = ({navigation}) => {
           />
         </View>
       </CustomHeaderApp>
-      <ScrollView>
-        <View style={styles.container}>
-          <View
-            style={{
-              backgroundColor: '#287DFC26',
-              padding: 16,
-              borderRadius: 8,
-              marginBottom: 16,
-            }}>
-            <Text style={{lineHeight: 20, color: '#222831'}}>
-              Just a reminder: HRD updates your work schedule every Week. Keep
-              an eye out for the latest changes!!!
-            </Text>
-          </View>
+      <View style={styles.container_top}>
+        <View
+          style={{
+            backgroundColor: '#287DFC26',
+            padding: 16,
+            borderRadius: 8,
+            marginBottom: 16,
+          }}>
+          <Text style={{lineHeight: 20, color: '#222831'}}>
+            Just a reminder: HRD updates your work schedule every Week. Keep an
+            eye out for the latest changes!!!
+          </Text>
         </View>
+      </View>
 
-        <View style={styles.container}>
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'active'}
-            navigation={navigation}
-          />
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'active'}
-            navigation={navigation}
-          />
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'active'}
-            navigation={navigation}
-          />
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'active'}
-            navigation={navigation}
-          />
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'active'}
-            navigation={navigation}
-          />
-          <ScheduleCard
-            routeName={route.name}
-            cardState={'inactive'}
-            isHoliday={true}
-          />
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          showsVerticalScrollIndicator={false}
+          renderItem={renderItem}
+          // renderItem={() => (
+          //   <>
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'active'}
+          //       navigation={navigation}
+          //     />
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'active'}
+          //       navigation={navigation}
+          //     />
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'active'}
+          //       navigation={navigation}
+          //     />
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'active'}
+          //       navigation={navigation}
+          //     />
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'active'}
+          //       navigation={navigation}
+          //     />
+          //     <ScheduleCard
+          //       routeName={route.name}
+          //       cardState={'inactive'}
+          //       isHoliday={true}
+          //     />
+          //   </>
+          // )}
+        />
+      </View>
     </>
   );
 };
@@ -165,8 +257,15 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 8,
     paddingHorizontal: 8,
+    color: '#0C0E11',
+  },
+  container_top: {
+    paddingHorizontal: 24,
+    gap: 16,
+    paddingBottom: 16,
   },
   container: {
+    flex: 1,
     paddingHorizontal: 24,
     gap: 16,
     paddingBottom: 16,

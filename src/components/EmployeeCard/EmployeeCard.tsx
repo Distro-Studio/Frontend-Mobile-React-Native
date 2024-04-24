@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   employee_name: {
     fontWeight: '700',
+    color: '#0C0E11',
   },
   employee_role: {
     color: '#5F616B',

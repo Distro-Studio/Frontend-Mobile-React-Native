@@ -9,10 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const HeaderAttendance = () => {
-  const dateTime = new Date().toLocaleTimeString('id-ID', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const date = new Date().toLocaleString('id-ID', {
     weekday: 'long',
     year: 'numeric',
@@ -25,11 +22,28 @@ const HeaderAttendance = () => {
     navigation.navigate('MapsScreen' as never);
   }
 
+  function hhmmss() {
+    const dateTime = new Date().toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    setTime(dateTime);
+    return;
+  }
+
+  React.useEffect(() => {
+    hhmmss();
+    const dateInterval = setInterval(() => {
+      hhmmss();
+    }, 1000);
+    return () => clearInterval(dateInterval);
+  }, []);
+
   console.log(date);
 
   return (
     <View style={styles.header_attendance_container}>
-      <Text style={styles.header_attendance_time}>{dateTime}</Text>
+      <Text style={styles.header_attendance_time}>{time}</Text>
       <Text style={styles.header_attendance_date}>{date}</Text>
       <Pressable style={styles.header_attendance} onPress={handleNavigation}>
         <Image source={IconAttendance} style={{marginBottom: 8}} />
