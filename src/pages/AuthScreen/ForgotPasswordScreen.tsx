@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 24,
     fontSize: 14,
+    color: '#777986',
   },
   login_button: {
     backgroundColor: APP.COLORS['primary-500'],

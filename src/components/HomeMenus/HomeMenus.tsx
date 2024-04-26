@@ -95,9 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: APP.COLORS['primary-500'],
   },
   home_menus: {
-    flex: 4,
-    width: 360,
-    marginHorizontal: 'auto',
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

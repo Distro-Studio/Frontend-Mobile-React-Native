@@ -120,10 +120,12 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 16,
     fontWeight: '700',
+    color: '#0C0E11',
   },
   selectedTextStyle: {
     fontSize: 16,
     fontWeight: '700',
+    color: '#0C0E11',
   },
   dropdown: {
     flex: 1,

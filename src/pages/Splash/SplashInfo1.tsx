@@ -43,11 +43,13 @@ const styles = StyleSheet.create({
   content_text_bold: {
     fontSize: 22,
     fontWeight: 'bold',
+    color: '#222831',
   },
   content_text: {
     fontSize: 14,
     marginTop: 8,
     fontFamily: 'Inter',
+    color: '#454545',
   },
   bottom_nav: {
     flexDirection: 'row',

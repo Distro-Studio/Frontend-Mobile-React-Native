@@ -279,6 +279,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
     paddingHorizontal: 24,
+    marginTop: 24,
   },
 });
 

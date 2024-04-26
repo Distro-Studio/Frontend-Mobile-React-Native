@@ -27,6 +27,7 @@ const Input = (props: any) => {
             backgroundColor: '#F1F2F3',
             borderColor: '#ECECEC',
             borderWidth: 1,
+            color: '#181818',
           }}
           underlineColorAndroid="transparent"
           placeholder={placeholder}

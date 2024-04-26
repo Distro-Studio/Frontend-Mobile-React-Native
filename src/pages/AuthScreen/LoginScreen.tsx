@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 24,
     fontSize: 14,
+    color: '#777986',
   },
   account_block: {
     backgroundColor: '#F5F5F5',

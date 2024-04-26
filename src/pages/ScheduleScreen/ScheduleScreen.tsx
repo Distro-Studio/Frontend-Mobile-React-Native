@@ -246,10 +246,12 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 16,
     fontWeight: '700',
+    color: '#0C0E11',
   },
   selectedTextStyle: {
     fontSize: 16,
     fontWeight: '700',
+    color: '#0C0E11',
   },
   dropdown: {
     flex: 1,
@@ -257,7 +259,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 8,
     paddingHorizontal: 8,
-    color: '#0C0E11',
+    color: 'red',
   },
   container_top: {
     paddingHorizontal: 24,
