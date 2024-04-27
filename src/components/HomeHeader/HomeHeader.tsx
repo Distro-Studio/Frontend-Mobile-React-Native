@@ -6,6 +6,7 @@ import Header from './Header';
 import HeaderAttendance from './HeaderAttendance';
 import HeaderTimeAttendance from './HeaderTimeAttendance';
 import {webView} from '../../utils/WebView';
+import {getResponsive} from '../../utils';
 
 const HomeHeader = () => {
   return (
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
   webViewInstance,
   header_container: {
     width,
-    height: height * 0.55,
+    height: getResponsive(476, 'height'),
     backgroundColor: APP.COLORS['primary-500'],
     paddingHorizontal: 24,
     paddingVertical: 24,

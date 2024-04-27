@@ -19,6 +19,10 @@ const LoginScreen = ({navigation}: any) => {
   const [password, onChangePassword] = React.useState<string>('');
   const [isError, setIsError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isEmailError, setIsEmailError] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [isPasswordError, setIsPasswordError] = React.useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
 
   async function storeLoggedIn(value: string) {
     try {
@@ -30,6 +34,39 @@ const LoginScreen = ({navigation}: any) => {
 
   async function handleLogin() {
     try {
+      if (email === '' && password === '') {
+        setIsEmailError(true);
+        setIsPasswordError(true);
+        setEmailErrorMessage('Email harus diisi!');
+        setPasswordErrorMessage('Password harus diisi!');
+        return;
+      }
+
+      if (email === '') {
+        setIsEmailError(true);
+        setEmailErrorMessage('Email harus diisi!');
+        return;
+      } else if (email !== 'ivan@gmail.com') {
+        setIsEmailError(true);
+        setEmailErrorMessage('Email tidak ditemukan!');
+        return;
+      } else {
+        setIsEmailError(false);
+        setEmailErrorMessage('');
+      }
+      if (password === '') {
+        setIsPasswordError(true);
+        setPasswordErrorMessage('Password harus diisi!');
+        return;
+      } else if (password !== 'ivan123') {
+        setIsPasswordError(true);
+        setPasswordErrorMessage('Password salah!');
+        return;
+      } else {
+        setIsPasswordError(false);
+        setPasswordErrorMessage('');
+      }
+
       if (email === 'ivan@gmail.com' && password === 'ivan123') {
         navigation.navigate('MainApp');
         storeLoggedIn('logged_in');
@@ -61,14 +98,22 @@ const LoginScreen = ({navigation}: any) => {
               type="email"
               onChangeText={onChangeEmail}
               value={email}
+              customStyle={isEmailError}
             />
+            {isEmailError && (
+              <Text style={{color: 'red'}}>{emailErrorMessage}</Text>
+            )}
             <Input
               name="Kata Sandi"
               placeholder="Kata Sandi"
               type="password"
               onChangeText={onChangePassword}
               value={password}
+              customStyle={isPasswordError}
             />
+            {isPasswordError && (
+              <Text style={{color: 'red'}}>{passwordErrorMessage}</Text>
+            )}
             <Text
               style={styles.forgot_password}
               onPress={() => navigation.navigate('ForgotPasswordScreen')}>

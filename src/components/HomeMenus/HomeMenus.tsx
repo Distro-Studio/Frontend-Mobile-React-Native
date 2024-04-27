@@ -11,6 +11,7 @@ import {
   IconTukarJadwal,
 } from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
+import {getResponsive} from '../../utils';
 
 const HomeMenus = () => {
   const menus = [
@@ -95,10 +96,10 @@ const styles = StyleSheet.create({
     backgroundColor: APP.COLORS['primary-500'],
   },
   home_menus: {
-    flex: 1,
+    justifyContent: 'space-between',
+    width: getResponsive(360, 'width'),
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
     gap: 8,
     marginTop: 24,
   },

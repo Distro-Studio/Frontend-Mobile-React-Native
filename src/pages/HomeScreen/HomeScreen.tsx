@@ -43,6 +43,7 @@ const HomeScreen = () => {
         long: position.coords.longitude,
         lat: position.coords.latitude,
       });
+      // dispatch({type: 'save_coords', payload: location});
       setUserLocation(location);
       // this.setState({location});
     },
@@ -279,7 +280,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
     paddingHorizontal: 24,
-    marginTop: 24,
   },
 });
 

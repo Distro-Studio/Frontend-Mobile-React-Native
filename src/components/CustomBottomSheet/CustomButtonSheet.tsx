@@ -45,12 +45,19 @@ const CustomButtonSheet = ({
                     fontSize: 16,
                     fontWeight: '700',
                     textAlign: 'center',
+                    color: '#000000',
                   }}>
                   {isStatusSuccess
-                    ? 'Jadwal Penukaran Berhasil Diterapkan'
+                    ? 'Penukaran Jadwal Berhasil Diterapkan'
                     : 'Maaf, tanggal yang kamu pilih sudah ada yang ingin tukar.'}
                 </Text>
-                <Text style={{textAlign: 'center', marginVertical: 16}}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    marginVertical: 16,
+                    color: '#000000',
+                    fontSize: 14,
+                  }}>
                   {isStatusSuccess
                     ? 'Permintaan tukar jadwal Anda sedang dalam proses di bagian SDM dan menunggu persetujuan teman Anda. Mohon bersabar.Terima kasih!'
                     : 'Kamu bisa pilih tanggal lain yang masih kosong, atau cari karyawan lain yang mau tukar di tanggal tersebut.'}
@@ -68,7 +75,59 @@ const CustomButtonSheet = ({
           )}
           {!isStatus && (
             <View>
-              <View style={styles.sheetHeader}>
+              <View style={{padding: 24}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}>
+                  <View>
+                    <Text
+                      style={{
+                        color: '#000000',
+                        fontSize: 12,
+                        fontWeight: '400',
+                      }}>
+                      Jadwal Karyawan
+                    </Text>
+                    <Text
+                      style={{
+                        color: '#000000',
+                        fontWeight: '600',
+                        fontSize: 14,
+                      }}>
+                      01 Nov 2023
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        color: '#000000',
+                        fontSize: 12,
+                        fontWeight: '400',
+                      }}>
+                      Jadwal Anda
+                    </Text>
+                    <Text
+                      style={{
+                        color: '#000000',
+                        fontWeight: '600',
+                        fontSize: 14,
+                      }}>
+                      02 Nov 2023
+                    </Text>
+                  </View>
+                </View>
+                <CustomButton
+                  bgColor="#10A9A5"
+                  borad={8}
+                  padding={10}
+                  mt={16}
+                  text="Tukar"
+                  onPress={onPress}
+                />
+              </View>
+              {/* <View style={styles.sheetHeader}>
                 <Text>Set The Dates</Text>
                 <Pressable onPress={onClose}>
                   <Image source={IconClose} width={24} height={24} />
@@ -127,7 +186,7 @@ const CustomButtonSheet = ({
                   text="Tukar"
                   onPress={onPress}
                 />
-              </View>
+              </View> */}
             </View>
           )}
         </>

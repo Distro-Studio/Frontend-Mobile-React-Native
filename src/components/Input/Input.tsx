@@ -13,22 +13,26 @@ import {APP} from '../../utils/CONSTANT';
 const Input = (props: any) => {
   const {name, placeholder, type, ...rest} = props;
   const [isShowPassword, setIsShowPassword] = React.useState(false);
+  console.log(props);
   return (
     <View style={styles.form_group}>
       <Text style={styles.label}>{name}</Text>
       <View style={{position: 'relative'}}>
         <TextInput
           {...rest}
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 14,
-            height: 48,
-            borderRadius: 12,
-            backgroundColor: '#F1F2F3',
-            borderColor: '#ECECEC',
-            borderWidth: 1,
-            color: '#181818',
-          }}
+          style={[
+            {
+              paddingHorizontal: 16,
+              paddingVertical: 14,
+              height: 48,
+              borderRadius: 12,
+              backgroundColor: '#F1F2F3',
+              borderColor: '#ECECEC',
+              borderWidth: 1,
+              color: '#181818',
+            },
+            props.customStyle !== false && styles.isError,
+          ]}
           underlineColorAndroid="transparent"
           placeholder={placeholder}
           secureTextEntry={
@@ -55,6 +59,9 @@ const Input = (props: any) => {
 };
 
 const styles = StyleSheet.create({
+  isError: {
+    borderColor: 'red',
+  },
   form_group: {
     gap: 8,
   },
