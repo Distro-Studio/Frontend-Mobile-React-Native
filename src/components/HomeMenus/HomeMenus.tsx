@@ -1,4 +1,4 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, FlatList, LogBox} from 'react-native';
 import React from 'react';
 import {
   IconCuti,
@@ -59,13 +59,71 @@ const HomeMenus = () => {
 
   return (
     <>
-      <View style={styles.home_menus}>
-        {menus.map(item => (
-          <View key={item.id} style={styles.home_menu}>
-            <Image source={item.iconSource} />
+      <View style={{flex: 1}}>
+        <View
+          style={{
+            // gap: getResponsive(8, 'width'),
+            flex: 4,
+            marginHorizontal: 'auto',
+            marginTop: 24,
+            // width: getResponsive(300, 'width'),
+          }}>
+          <FlatList
+            data={menus}
+            numColumns={4}
+            scrollEnabled={false}
+            renderItem={({item}) => (
+              <View key={item.id} style={[styles.home_menu]}>
+                <Image
+                  source={item.iconSource}
+                  width={getResponsive(28, 'width')}
+                  height={getResponsive(28, 'height')}
+                />
+                <Text style={styles.home_menu_text}>{item.name}</Text>
+              </View>
+            )}
+          />
+          {/* <View style={{backgroundColor: 'red', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View
+          style={{backgroundColor: 'green', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View
+          style={{backgroundColor: 'yellow', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View style={{backgroundColor: 'pink', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View style={{backgroundColor: 'red', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View
+          style={{backgroundColor: 'green', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View
+          style={{backgroundColor: 'yellow', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View>
+        <View style={{backgroundColor: 'pink', flex: 1, width: 68, height: 68}}>
+          <Text>1</Text>
+        </View> */}
+          {/* {menus.map(item => (
+          <View key={item.id} style={[styles.home_menu]}>
+            <Image
+              source={item.iconSource}
+              width={getResponsive(28, 'width')}
+              height={getResponsive(28, 'height')}
+            />
             <Text style={styles.home_menu_text}>{item.name}</Text>
           </View>
-        ))}
+        ))} */}
+          {/* <View style={styles.home_menus}>
+        </View> */}
+        </View>
       </View>
       <View style={styles.menu_pagination_container}>
         <View style={styles.menu_pagination_active} />
@@ -97,21 +155,24 @@ const styles = StyleSheet.create({
   },
   home_menus: {
     justifyContent: 'space-between',
-    width: getResponsive(360, 'width'),
+    width: getResponsive(350, 'width'),
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
     marginTop: 24,
+    backgroundColor: 'red',
   },
   home_menu: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
-    padding: 8,
-    width: 73.5,
-    height: 80,
+    paddingHorizontal: getResponsive(8, 'width'),
+    paddingVertical: getResponsive(8, 'height'),
+    // width: getResponsive(73, 'width'),
+    height: getResponsive(80, 'height'),
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 2,
+    flex: 1,
+    margin: 2,
   },
   home_menu_text: {
     textAlign: 'center',

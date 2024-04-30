@@ -158,6 +158,7 @@ const ScheduleScreen = ({navigation}) => {
               borderBottomLeftRadius: 8,
               borderBottomRightRadius: 8,
             }}
+            itemTextStyle={{color: '#454545'}}
           />
           <Dropdown
             style={[styles.dropdown]}
@@ -179,6 +180,7 @@ const ScheduleScreen = ({navigation}) => {
               borderBottomLeftRadius: 8,
               borderBottomRightRadius: 8,
             }}
+            itemTextStyle={{color: '#454545'}}
           />
         </View>
       </CustomHeaderApp>
@@ -259,7 +261,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 8,
     paddingHorizontal: 8,
-    color: 'red',
   },
   container_top: {
     paddingHorizontal: 24,

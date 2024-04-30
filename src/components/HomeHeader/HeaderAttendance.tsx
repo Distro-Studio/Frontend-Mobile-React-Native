@@ -7,8 +7,10 @@ import {
 } from '../../assets/images';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {MapsContext} from '../../contexts/MapsContext';
 
 const HeaderAttendance = () => {
+  const {state} = React.useContext(MapsContext);
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const date = new Date().toLocaleString('id-ID', {
     weekday: 'long',
@@ -39,7 +41,7 @@ const HeaderAttendance = () => {
     return () => clearInterval(dateInterval);
   }, []);
 
-  console.log(date);
+  console.log(state);
 
   return (
     <View style={styles.header_attendance_container}>
@@ -62,7 +64,11 @@ const HeaderAttendance = () => {
       </Pressable> */}
       <View style={styles.header_location_container}>
         <Image source={IconLocation} />
-        <Text style={{color: '#F5F5F5'}}>Jl. Majapahit No. 24, Semarang</Text>
+        <Text style={{color: '#F5F5F5'}}>
+          {state.coords.lat === 0 && state.coords.long === 0
+            ? 'Sedang Mengambil Lokasi Anda'
+            : 'Jl. Majapahit No. 24, Semarang'}
+        </Text>
       </View>
     </View>
   );

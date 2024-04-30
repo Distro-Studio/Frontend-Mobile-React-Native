@@ -28,8 +28,8 @@ const HomeScreen = () => {
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
-  const [userLocation, setUserLocation] = React.useState({});
-  const {state, dispatch} = React.useContext(MapsContext);
+  const [userLocation, setUserLocation] = React.useState('');
+  const {dispatch} = React.useContext(MapsContext);
 
   /*
     mendapatkan lokasi koordinat user lalu passing koordinat menggunakan context api / props ke mapsScreen
@@ -43,12 +43,14 @@ const HomeScreen = () => {
         long: position.coords.longitude,
         lat: position.coords.latitude,
       });
+      console.log('halooo');
+      console.log(location);
       // dispatch({type: 'save_coords', payload: location});
       setUserLocation(location);
       // this.setState({location});
     },
     (error: any) => console.log(error.message),
-    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
   );
   // Geolocation.getCurrentPosition(
   //   info => console.log(info),
@@ -59,10 +61,13 @@ const HomeScreen = () => {
   //     maximumAge: 0,
   //   },
   // );
+
+  console.log('userLocation:', userLocation);
+
   React.useEffect(() => {
     if (Object.keys(userLocation).length !== 0) {
-      console.log('user: ', userLocation);
-      dispatch({type: 'save_coords', payload: userLocation});
+      dispatch({type: 'save_coords', payload: JSON.parse(userLocation)});
+      console.log(userLocation);
     }
   }, [userLocation]);
   return (

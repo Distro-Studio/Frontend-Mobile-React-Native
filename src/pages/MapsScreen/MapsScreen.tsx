@@ -4,7 +4,7 @@ import {APP} from '../../utils/CONSTANT';
 import MapView, {Marker} from 'react-native-maps';
 import {MapsContext} from '../../contexts/MapsContext';
 
-const MapsScreen = ({navigation}) => {
+const MapsScreen = ({navigation}: any) => {
   const {state} = React.useContext(MapsContext);
   const RSKIRegion = {
     latitude: -7.562910072905711,
@@ -12,24 +12,38 @@ const MapsScreen = ({navigation}) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
-  console.log('maps coords', JSON.parse(state.coords).lat);
-  const [userCoordinate, setUserCoordinate] = React.useState({
-    latitude: JSON.parse(state.coords).lat,
-    longitude: JSON.parse(state.coords).long,
-  });
+
+  console.log(state.coords);
+
+  // const [userCoordinate, setUserCoordinate] = React.useState({
+  //   latitude: state.coords.lat ? state.coords.lat : 0,
+  //   longitude: state.coords.long ? state.coords.long : 0,
+  // });
+
+  // React.useEffect(() => {
+  //   setUserCoordinate({
+  //     latitude: state.coords.lat,
+  //     longitude: state.coords.long,
+  //   });
+  // }, [state.coords]);
 
   return (
     <View style={styles.screen_container}>
       <MapView style={styles.map} initialRegion={RSKIRegion}>
         <Marker coordinate={RSKIRegion} />
-        <Marker coordinate={userCoordinate} />
+        <Marker
+          coordinate={{
+            latitude: state.coords.lat,
+            longitude: state.coords.long,
+          }}
+        />
       </MapView>
       <View style={styles.address_container}>
         <View style={styles.address_header}>
-          <Text>Konfirmasi Alamat</Text>
-          <Text>Akurat hingga 1.5 km</Text>
+          <Text style={{color: '#777986'}}>Konfirmasi Alamat</Text>
+          <Text style={{color: '#777986'}}>Akurat hingga 1.5 km</Text>
         </View>
-        <Text>
+        <Text style={{color: '#222831'}}>
           Jl. Simpang Lima, Mugassari, Kec. Semarang Sel., Kota Semarang, Jawa
           Tengah 50249
         </Text>

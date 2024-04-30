@@ -5,7 +5,10 @@ type MapsProviderContext = {
 };
 
 type MapsCoords = {
-  coords: {};
+  coords: {
+    lat: number;
+    long: number;
+  };
 };
 
 type MapsActionType = {
@@ -14,7 +17,10 @@ type MapsActionType = {
 };
 
 const initialState = {
-  coords: {},
+  coords: {
+    lat: 0,
+    long: 0,
+  },
 };
 
 const ModalReducers = (state: MapsCoords, action: MapsActionType) => {

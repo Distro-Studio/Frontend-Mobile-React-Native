@@ -72,6 +72,7 @@ const EmployeeScreen = ({navigation}) => {
               borderBottomLeftRadius: 8,
               borderBottomRightRadius: 8,
             }}
+            itemTextStyle={{color: '#454545'}}
           />
           <Dropdown
             style={[styles.dropdown]}
@@ -94,6 +95,7 @@ const EmployeeScreen = ({navigation}) => {
               borderBottomLeftRadius: 8,
               borderBottomRightRadius: 8,
             }}
+            itemTextStyle={{color: '#454545'}}
           />
         </View>
       </CustomHeaderApp>
