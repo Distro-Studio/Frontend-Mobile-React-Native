@@ -50,7 +50,7 @@ const MapsScreen = ({navigation}: any) => {
         <View style={styles.buttons}>
           <Pressable style={[styles.button, styles.secondary_button]}>
             <Text style={[styles.button_text, styles.secondary_text]}>
-              Refresh
+              Kembali
             </Text>
           </Pressable>
           <Pressable

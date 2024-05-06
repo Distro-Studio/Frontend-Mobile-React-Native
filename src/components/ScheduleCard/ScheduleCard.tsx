@@ -11,6 +11,8 @@ const ScheduleCard = ({
   cardState,
   navigation,
   onSwap,
+  id,
+  onActive,
 }) => {
   // cardState 3 -> active, inactive, default
   // inactive + isHoliday -> holiday
@@ -19,13 +21,20 @@ const ScheduleCard = ({
   return (
     <Pressable
       style={styles.schedule_card_state(cardState, isSmall)}
-      onPress={() =>
-        navigation !== null && navigation?.navigate('DetailScheduleScreen')
-      }>
+      onPress={() => {
+        if (onActive) {
+          return onActive(id);
+        }
+        if (navigation !== null) {
+          return navigation?.navigate('DetailScheduleScreen');
+        }
+      }}>
       <View style={styles.schedule_card_container}>
         {/* info */}
         <View>
-          <Text style={{color: '#0C0E11'}}>Minggu 1 - Shift Pagi</Text>
+          <Text style={{color: '#0C0E11'}}>
+            Minggu 1 - {isHoliday ? 'Libur' : 'Shift Pagi'}
+          </Text>
           <Text style={styles.schedule_date(cardState)}>
             01 Nov 2023, Monday
           </Text>
@@ -43,26 +52,24 @@ const ScheduleCard = ({
           )}
         </View>
         {/* schedule screen people */}
-        {isNull === false &&
-          routeName === 'Schedule' &&
-          cardState !== 'inactive' && (
-            <View style={styles.schedule_people}>
-              <View style={styles.schedule_img}></View>
-              <View
-                style={[styles.schedule_img, {backgroundColor: 'blue'}]}></View>
-              <View
-                style={[
-                  styles.schedule_img,
-                  {
-                    backgroundColor: '#F5F5F5',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  },
-                ]}>
-                <Text style={{color: '#0C0E11'}}>+3</Text>
-              </View>
+        {isNull === false && routeName === 'Jadwal' && (
+          <View style={styles.schedule_people}>
+            <View style={styles.schedule_img}></View>
+            <View
+              style={[styles.schedule_img, {backgroundColor: 'blue'}]}></View>
+            <View
+              style={[
+                styles.schedule_img,
+                {
+                  backgroundColor: '#F5F5F5',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                },
+              ]}>
+              <Text style={{color: '#0C0E11'}}>+3</Text>
             </View>
-          )}
+          </View>
+        )}
         {/* detail employee screen */}
         {isNull === false &&
           routeName === 'DetailEmployeeScreen' &&

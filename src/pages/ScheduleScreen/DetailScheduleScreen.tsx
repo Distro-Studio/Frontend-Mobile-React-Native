@@ -12,6 +12,7 @@ import React from 'react';
 import {IconNotificationBlack} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard, ScheduleCard} from '../../components';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
+import {dummyEmployee} from '../../utils/CONSTANT';
 
 const DetailScheduleScreen = ({navigation}) => {
   const headerIcon = () => {
@@ -21,18 +22,34 @@ const DetailScheduleScreen = ({navigation}) => {
       </Pressable>
     );
   };
-  const width = Dimensions.get('window').width;
-  const ref = React.useRef<ICarouselInstance>(null);
-  const baseOptions = {
-    vertical: false,
-    width: width * 0.73,
-    height: width / 3.5,
-  } as const;
+  const [active, setActive] = React.useState(1);
+
+  function getActiveCard(index) {
+    console.log(index);
+    setActive(index);
+    return;
+  }
+
+  function renderItem({item}) {
+    console.log(item);
+    return (
+      <View style={{marginRight: 16}}>
+        <ScheduleCard
+          id={item}
+          isSmall={true}
+          cardState={item === active ? 'active' : ''}
+          onActive={getActiveCard}
+        />
+      </View>
+    );
+  }
+
+  console.log(active);
   return (
     <>
       <CustomHeaderApp
         backButton={true}
-        screenName={'Detail Schedule'}
+        screenName={'Detail Jadwal'}
         rightIcon={headerIcon()}
       />
       <View style={styles.container}>
@@ -41,26 +58,22 @@ const DetailScheduleScreen = ({navigation}) => {
             data={[1, 2, 3, 4]}
             horizontal
             showsHorizontalScrollIndicator={false}
-            renderItem={({index}) => (
-              <View style={{marginRight: 16}}>
-                <ScheduleCard
-                  isSmall={true}
-                  cardState={index === 0 ? 'active' : ''}
-                />
-              </View>
-            )}
+            renderItem={renderItem}
           />
         </View>
-        <Text style={styles.employee_text}>Employee</Text>
+        <Text style={styles.employee_text}>Karyawan</Text>
         <FlatList
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+          data={dummyEmployee}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <View style={{marginVertical: 8}}>
               <EmployeeCard
-                key={item}
+                key={item.id}
                 isShowBadge={true}
                 navigation={navigation}
+                name={item.name}
+                role={item.role}
+                status={item.state}
               />
             </View>
           )}

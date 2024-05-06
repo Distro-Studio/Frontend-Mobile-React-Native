@@ -11,6 +11,7 @@ import {
 import {IconSearch} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard} from '../../components';
 import {Dropdown} from 'react-native-element-dropdown';
+import {dummyEmployee} from '../../utils/CONSTANT';
 
 const EmployeeScreen = ({navigation}) => {
   const [valueMonth, setValueMonth] = React.useState(null);
@@ -49,7 +50,7 @@ const EmployeeScreen = ({navigation}) => {
       <CustomHeaderApp
         backButton={false}
         rightIcon={headerIcon()}
-        screenName={'Employee'}>
+        screenName={'Karyawan'}>
         <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
@@ -102,14 +103,17 @@ const EmployeeScreen = ({navigation}) => {
 
       <View style={styles.container}>
         <FlatList
-          data={[
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-            20,
-          ]}
+          data={dummyEmployee}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <View style={{marginVertical: 8}}>
-              <EmployeeCard key={item} navigation={navigation} />
+              <EmployeeCard
+                key={item}
+                navigation={navigation}
+                name={item.name}
+                role={item.role}
+                status={item.state}
+              />
             </View>
           )}
         />

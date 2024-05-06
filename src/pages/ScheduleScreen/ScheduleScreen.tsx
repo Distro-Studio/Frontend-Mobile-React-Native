@@ -126,7 +126,7 @@ const ScheduleScreen = ({navigation}) => {
           routeName={item.routeName}
           navigation={item.navigation}
           isHoliday={item.isHoliday}
-          cardState={item.cardState}
+          // cardState={item.cardState}
         />
       </View>
     );
@@ -136,7 +136,7 @@ const ScheduleScreen = ({navigation}) => {
       <CustomHeaderApp
         backButton={false}
         rightIcon={headerIcon()}
-        screenName={'Schedule'}>
+        screenName={'Jadwal'}>
         <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}

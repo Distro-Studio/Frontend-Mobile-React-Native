@@ -16,6 +16,7 @@ import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSh
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {FlatList} from 'react-native-gesture-handler';
 import {getResponsive} from '../../utils';
+import {dummyEmployee} from '../../utils/CONSTANT';
 
 const {height} = Dimensions.get('window');
 
@@ -24,6 +25,8 @@ const DetailEmployeeScreen = ({navigation}: any) => {
   const [state, setState] = React.useState(false); // membuka bottomsheet
   const [isStatus, setIsStatus] = React.useState(false); // toggle status apakah success || failed | if status true -> calendar off  | if false -> calendar on
   const [isStatusSuccess, setIsStatusSuccess] = React.useState(false); // for showing if status success or fail
+  const [data, setData] = React.useState(dummyEmployee);
+  const [activeEmployee, setACtiveEmployee] = React.useState(1);
   const snapPoints = React.useMemo(
     () =>
       isStatus
@@ -46,7 +49,34 @@ const DetailEmployeeScreen = ({navigation}: any) => {
       </Pressable>
     );
   };
-  const width = Dimensions.get('window').width;
+
+  function getActiveCard(index) {
+    console.log('index', index);
+    setACtiveEmployee(index);
+    return;
+  }
+
+  function renderCard({item}) {
+    console.log(item);
+    console.log(activeEmployee);
+    return (
+      <View style={{marginRight: 16}}>
+        <EmployeeCard
+          key={item.id}
+          id={item.id}
+          navigation={navigation}
+          active={item.id === activeEmployee ? true : false}
+          routeName={route.name}
+          name={item.name}
+          role={item.role}
+          status={item.state}
+          onActive={getActiveCard}
+        />
+      </View>
+    );
+  }
+
+  console.log(activeEmployee);
 
   return (
     <>
@@ -58,20 +88,13 @@ const DetailEmployeeScreen = ({navigation}: any) => {
       <View style={styles.container}>
         <View>
           <FlatList
-            data={[1, 2, 3, 4]}
+            data={data}
             horizontal
             showsHorizontalScrollIndicator={false}
-            renderItem={({index}) => (
-              <EmployeeCard
-                key={index}
-                navigation={navigation}
-                active={index === 0 ? true : false}
-                routeName={route.name}
-              />
-            )}
+            renderItem={renderCard}
           />
         </View>
-        <Text style={styles.schedule_title}>Schedule</Text>
+        <Text style={styles.schedule_title}>Jadwal</Text>
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
           renderItem={({item}) => (
@@ -79,7 +102,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
               <ScheduleCard
                 key={item}
                 routeName={route.name}
-                cardState={item % 3 ? 'active' : 'inactive'}
+                // cardState={item % 3 ? 'active' : 'inactive'}
                 isHoliday={item % 3 ? false : true}
                 onSwap={() => {
                   setState(!state);

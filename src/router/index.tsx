@@ -44,11 +44,11 @@ const screenOptions = ({route}: any) => ({
 const MainApp = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Schedule" component={ScheduleScreen} />
-      <Tab.Screen name="Employee" component={EmployeeScreen} />
-      <Tab.Screen name="Activity" component={ActivityScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Beranda" component={HomeScreen} />
+      <Tab.Screen name="Jadwal" component={ScheduleScreen} />
+      <Tab.Screen name="Karyawan" component={EmployeeScreen} />
+      <Tab.Screen name="Aktivitas" component={ActivityScreen} />
+      <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
 };

@@ -12,3 +12,66 @@ export const APP = {
     'primary-900': '#074745',
   },
 };
+
+export const dummyEmployee = [
+  {
+    id: 1,
+    name: 'Andrew',
+    role: 'Fullstack Developer',
+    state: 'kerja',
+  },
+  {
+    id: 2,
+    name: 'Andrew',
+    role: 'Frontend Developer',
+    state: 'libur',
+  },
+  {
+    id: 3,
+    name: 'Andrew',
+    role: 'Backend Developer',
+    state: 'cuti',
+  },
+  {
+    id: 4,
+    name: 'Andrew',
+    role: 'UX Developer',
+    state: 'kerja',
+  },
+  {
+    id: 5,
+    name: 'Andrew',
+    role: 'UI Developer',
+    state: 'kerja',
+  },
+  {
+    id: 6,
+    name: 'Andrew',
+    role: 'Mobile Developer',
+    state: 'kerja',
+  },
+  {
+    id: 7,
+    name: 'Andrew',
+    role: 'Linux Developer',
+    state: 'cuti',
+  },
+  {
+    id: 8,
+    name: 'Andrew',
+    role: 'OS Developer',
+    state: 'kerja',
+  },
+  {
+    id: 9,
+    name: 'Andrew',
+    role: 'Software Developer',
+    state: 'libur',
+  },
+  {
+    id: 10,
+    name: 'Andrew',
+    role: 'IT Architect',
+    state: 'ijin',
+  },
+];

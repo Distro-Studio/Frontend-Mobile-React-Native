@@ -1,11 +1,14 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
+import {APP} from '../../utils/CONSTANT';
+import {capitalizeFirstLetter} from '../../utils';
 
 const EmployeeCard = ({
   name,
   role,
   status,
   id,
+  onActive,
   active,
   navigation,
   isShowBadge = true,
@@ -14,28 +17,52 @@ const EmployeeCard = ({
   return (
     <Pressable
       style={styles.employee_card_active(active)}
-      onPress={() => navigation.navigate('DetailEmployeeScreen')}>
+      onPress={() => {
+        if (onActive) {
+          onActive(id);
+          return;
+        }
+        if (navigation !== null) {
+          return navigation?.navigate('DetailEmployeeScreen');
+        }
+      }}>
       <View style={styles.employee_card_container(routeName)}>
         <View style={styles.employee_info}>
           <View style={styles.employee_img}>{/* <Text>img</Text> */}</View>
           <View>
-            <Text style={styles.employee_name}>John Doe</Text>
+            <Text style={styles.employee_name}>{name}</Text>
             <Text
               style={styles.employee_role}
               numberOfLines={1}
               ellipsizeMode="tail">
-              Software Development
+              {role}
             </Text>
           </View>
         </View>
         {isShowBadge && (
-          <View style={[styles.employee_badge, styles.employee_badge_kerja]}>
+          <View
+            style={[
+              styles.employee_badge,
+              status === 'kerja'
+                ? styles.employee_badge_kerja
+                : status === 'cuti'
+                ? styles.employee_badge_cuti
+                : status === 'libur'
+                ? styles.employee_badge_libur
+                : styles.employee_badge_ijin,
+            ]}>
             <Text
               style={[
                 styles.employee_badge_text,
-                styles.employee_badge_text_kerja,
+                status === 'kerja'
+                  ? styles.employee_badge_text_kerja
+                  : status === 'cuti'
+                  ? styles.employee_badge_text_cuti
+                  : status === 'libur'
+                  ? styles.employee_badge_text_libur
+                  : styles.employee_badge_text_ijin,
               ]}>
-              Kerja
+              {capitalizeFirstLetter(status)}
             </Text>
           </View>
         )}
@@ -47,9 +74,9 @@ const EmployeeCard = ({
 const styles = StyleSheet.create({
   employee_card_active: state => ({
     paddingLeft: 6,
-    backgroundColor: state && '#287DFC',
+    backgroundColor: state ? APP.COLORS['primary-500'] : '#FFFFFF',
     borderRadius: 12,
-    width: state && 300,
+    width: 300,
   }),
   employee_badge_kerja: {
     backgroundColor: '#37BA72',
