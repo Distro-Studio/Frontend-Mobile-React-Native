@@ -41,7 +41,7 @@ const EmployeeScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 24, height: 24}} />
+        <Image source={IconSearch} style={{width: 20, height: 20}} />
       </Pressable>
     );
   };

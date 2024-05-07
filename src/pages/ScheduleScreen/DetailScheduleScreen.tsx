@@ -18,7 +18,7 @@ const DetailScheduleScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 24, height: 24}} />
+        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
       </Pressable>
     );
   };

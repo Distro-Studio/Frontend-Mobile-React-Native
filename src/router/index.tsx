@@ -13,6 +13,7 @@ import {
   EmployeeScreen,
   ForgotPasswordScreen,
   HomeScreen,
+  CutiScreen,
   LoginScreen,
   MapsScreen,
   NewPasswordScreen,
@@ -22,6 +23,13 @@ import {
   SplashScreenInfo1,
   SplashScreenInfo2,
   SplashScreenInfo3,
+  DokumenScreen,
+  GantiJadwalScreen,
+  IjinScreen,
+  KoperasiScreen,
+  LaporanScreen,
+  LemburScreen,
+  SlipGajiScreen,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -96,11 +104,13 @@ const Router = () => {
         <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
       </Stack.Group>
+      {/* non splash screen */}
       <Stack.Screen
         name="MainApp"
         component={MainApp}
         options={{headerShown: false}}
       />
+      {/* utility devices screen */}
       <Stack.Screen
         name="MapsScreen"
         component={MapsScreen}
@@ -111,6 +121,7 @@ const Router = () => {
         component={CameraScreen}
         options={{headerShown: false}}
       />
+      {/* detail pages */}
       <Stack.Screen
         name="DetailEmployeeScreen"
         options={{headerTitleAlign: 'center', header: () => null}}
@@ -121,6 +132,53 @@ const Router = () => {
         options={{headerTitleAlign: 'center', header: () => null}}
         component={DetailScheduleScreen}
       />
+      {/* menus screen */}
+      <Stack.Group
+        screenOptions={{
+          headerTitleAlign: 'center',
+          header: () => null,
+        }}>
+        <Stack.Screen
+          name="CutiScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={CutiScreen}
+        />
+        <Stack.Screen
+          name="DokumenScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={DokumenScreen}
+        />
+        <Stack.Screen
+          name="GantiJadwalScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={GantiJadwalScreen}
+        />
+        <Stack.Screen
+          name="IjinScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={IjinScreen}
+        />
+        <Stack.Screen
+          name="KoperasiScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={KoperasiScreen}
+        />
+        <Stack.Screen
+          name="LaporanScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={LaporanScreen}
+        />
+        <Stack.Screen
+          name="LemburScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={LemburScreen}
+        />
+        <Stack.Screen
+          name="SlipGajiScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={SlipGajiScreen}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };

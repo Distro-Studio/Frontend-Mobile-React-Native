@@ -1,4 +1,4 @@
-import {View, Text, Image, StyleSheet, FlatList, LogBox} from 'react-native';
+import {View, Text, Image, StyleSheet, FlatList, Pressable} from 'react-native';
 import React from 'react';
 import {
   IconCuti,
@@ -12,6 +12,7 @@ import {
 } from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
 import {getResponsive} from '../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const HomeMenus = () => {
   const menus = [
@@ -19,43 +20,53 @@ const HomeMenus = () => {
       id: 1,
       name: 'Cuti',
       iconSource: IconCuti,
+      route: 'CutiScreen',
     },
     {
       id: 2,
       name: 'Tukar Jadwal',
       iconSource: IconTukarJadwal,
+      route: 'GantiJadwalScreen',
     },
     {
       id: 3,
       name: 'Lembur',
       iconSource: IconLembur,
+      route: 'LemburScreen',
     },
     {
       id: 4,
       name: 'Ijin',
       iconSource: IconIjin,
+      route: 'IjinScreen',
     },
     {
       id: 5,
       name: 'Slip Gajiku',
       iconSource: IconSlipGaji,
+      route: 'SlipGajiScreen',
     },
     {
       id: 6,
       name: 'Dokumen',
       iconSource: IconDokumen,
+      route: 'DokumenScreen',
     },
     {
       id: 7,
       name: 'Koperasi',
       iconSource: IconKoperasi,
+      route: 'KoperasiScreen',
     },
     {
       id: 8,
       name: 'Laporan',
       iconSource: IconLaporan,
+      route: 'LaporanScreen',
     },
   ];
+
+  const navigation = useNavigation();
 
   return (
     <>
@@ -73,14 +84,17 @@ const HomeMenus = () => {
             numColumns={4}
             scrollEnabled={false}
             renderItem={({item}) => (
-              <View key={item.id} style={[styles.home_menu]}>
+              <Pressable
+                key={item.id}
+                style={[styles.home_menu]}
+                onPress={() => navigation.navigate(item.route)}>
                 <Image
                   source={item.iconSource}
                   width={getResponsive(28, 'width')}
                   height={getResponsive(28, 'height')}
                 />
                 <Text style={styles.home_menu_text}>{item.name}</Text>
-              </View>
+              </Pressable>
             )}
           />
           {/* <View style={{backgroundColor: 'red', flex: 1, width: 68, height: 68}}>

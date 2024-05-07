@@ -13,17 +13,17 @@ const CustomHeaderApp = ({
   return (
     <View style={styles.container}>
       <View style={styles.container_header_top(children)}>
-        <View style={{width: 24, height: 24}}>
+        <View style={{width: 20, height: 20}}>
           {backButton && (
             <Pressable onPress={() => navigation.goBack()}>
-              <Image source={ChevronLeft} style={{width: 24, height: 24}} />
+              <Image source={ChevronLeft} style={{width: 20, height: 20}} />
             </Pressable>
           )}
         </View>
         <View style={{flex: 1}}>
           <Text style={styles.headerText}>{screenName}</Text>
         </View>
-        {rightIcon}
+        <View style={{width: 20, height: 20}}>{rightIcon}</View>
       </View>
       {children}
     </View>
@@ -33,7 +33,8 @@ const CustomHeaderApp = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingTop: 16,
+    paddingBottom: 14,
     marginBottom: 24,
     backgroundColor: '#FFFFFF',
     shadowColor: '#000',

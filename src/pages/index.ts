@@ -19,3 +19,12 @@ export {default as NewPasswordScreen} from './AuthScreen/NewPasswordScreen';
 //
 export {default as MapsScreen} from './MapsScreen/MapsScreen';
 export {default as CameraScreen} from './CameraScreen/CameraScreen';
+//
+export {default as CutiScreen} from './MenusScreen/CutiScreen';
+export {default as DokumenScreen} from './MenusScreen/DokumenScreen';
+export {default as GantiJadwalScreen} from './MenusScreen/GantiJadwalScreen';
+export {default as IjinScreen} from './MenusScreen/IjinScreen';
+export {default as KoperasiScreen} from './MenusScreen/KoperasiScreen';
+export {default as LaporanScreen} from './MenusScreen/LaporanScreen';
+export {default as LemburScreen} from './MenusScreen/LemburScreen';
+export {default as SlipGajiScreen} from './MenusScreen/SlipGajiScreen';

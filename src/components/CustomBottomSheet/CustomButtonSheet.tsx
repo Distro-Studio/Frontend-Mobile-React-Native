@@ -18,6 +18,7 @@ const CustomButtonSheet = ({
   isStatusSuccess,
   onClose,
   onPress,
+  showCalendar,
 }: any) => {
   return (
     <BottomSheet
@@ -127,66 +128,70 @@ const CustomButtonSheet = ({
                   onPress={onPress}
                 />
               </View>
-              {/* <View style={styles.sheetHeader}>
-                <Text>Set The Dates</Text>
-                <Pressable onPress={onClose}>
-                  <Image source={IconClose} width={24} height={24} />
-                </Pressable>
-              </View>
-              <View style={{marginHorizontal: 5}}>
-                <CustomDatePicker modeCalendar="calendar" />
-              </View>
-              <View style={{paddingHorizontal: 24}}>
-                <View style={{marginBottom: 16}}>
-                  <Text
-                    style={{
-                      fontSize: 12,
-                      color: '#454545',
-                      fontWeight: '500',
-                    }}>
-                    Tanggal
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: '#0C0E11',
-                      fontWeight: '500',
-                    }}>
-                    15 Dec 2023
-                  </Text>
-                </View>
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: '#0C0E11',
-                      fontWeight: '500',
-                    }}>
-                    Nama Karyawan
-                  </Text>
-                  <View style={styles.sheetEmployeeContainer}>
-                    <View
-                      style={{
-                        height: 24,
-                        width: 24,
-                        borderRadius: 1000,
-                        backgroundColor: 'red',
-                      }}
-                    />
-                    <Text style={{fontSize: 14, color: '#181818'}}>
-                      Albert Flores
-                    </Text>
+              {showCalendar && (
+                <>
+                  <View style={styles.sheetHeader}>
+                    <Text>Set The Dates</Text>
+                    <Pressable onPress={onClose}>
+                      <Image source={IconClose} width={24} height={24} />
+                    </Pressable>
                   </View>
-                </View>
-                <CustomButton
-                  bgColor="#10A9A5"
-                  borad={8}
-                  padding={10}
-                  mt={16}
-                  text="Tukar"
-                  onPress={onPress}
-                />
-              </View> */}
+                  <View style={{marginHorizontal: 5}}>
+                    <CustomDatePicker modeCalendar="calendar" />
+                  </View>
+                  <View style={{paddingHorizontal: 24}}>
+                    <View style={{marginBottom: 16}}>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          color: '#454545',
+                          fontWeight: '500',
+                        }}>
+                        Tanggal
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: '#0C0E11',
+                          fontWeight: '500',
+                        }}>
+                        15 Dec 2023
+                      </Text>
+                    </View>
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: '#0C0E11',
+                          fontWeight: '500',
+                        }}>
+                        Nama Karyawan
+                      </Text>
+                      <View style={styles.sheetEmployeeContainer}>
+                        <View
+                          style={{
+                            height: 24,
+                            width: 24,
+                            borderRadius: 1000,
+                            backgroundColor: 'red',
+                          }}
+                        />
+                        <Text style={{fontSize: 14, color: '#181818'}}>
+                          Albert Flores
+                        </Text>
+                      </View>
+                    </View>
+                    <CustomButton
+                      bgColor="#10A9A5"
+                      borad={8}
+                      padding={10}
+                      mt={16}
+                      text="Tukar"
+                      onPress={onPress}
+                    />
+                  </View>
+                </>
+              )}
             </View>
           )}
         </>
