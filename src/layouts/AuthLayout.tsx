@@ -16,6 +16,7 @@ import {
   SplashVerification,
 } from '../assets/images';
 import {webView, webViewImageCenter} from '../utils/WebView';
+import {getResponsive} from '../utils';
 
 const {width, height} = Dimensions.get('window');
 
@@ -54,7 +55,10 @@ const AuthLayout = ({children, headerText, type}: any) => {
     },
     screen_header: {
       width,
-      height: type === 'NewPassword' ? height * 0.32 : height * 0.56,
+      height:
+        type === 'NewPassword'
+          ? getResponsive(391, 'height')
+          : getResponsive(391, 'height'),
       backgroundColor: '#fffcfa',
       padding: 24,
     },

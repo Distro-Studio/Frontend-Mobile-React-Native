@@ -25,7 +25,7 @@ const SplashInfo2 = ({navigation}: any) => {
           <Pressable
             style={styles.splash_button}
             onPress={() => navigation.navigate('SplashInfo3')}>
-            <Text style={styles.splash_button_text}>Next</Text>
+            <Text style={styles.splash_button_text}>Masuk</Text>
           </Pressable>
         </View>
       </View>

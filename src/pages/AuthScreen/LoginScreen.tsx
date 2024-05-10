@@ -68,7 +68,7 @@ const LoginScreen = ({navigation}: any) => {
       }
 
       if (email === 'ivan@gmail.com' && password === 'ivan123') {
-        navigation.navigate('MainApp');
+        navigation.navigate('FillScreen1');
         storeLoggedIn('logged_in');
       }
     } catch (e) {
@@ -127,7 +127,7 @@ const LoginScreen = ({navigation}: any) => {
               </View>
             )}
             <Pressable style={styles.login_button} onPress={handleLogin}>
-              <Text style={styles.login_button_text}>Login</Text>
+              <Text style={styles.login_button_text}>Masuk</Text>
             </Pressable>
             {/* <View style={styles.account}>
           <View style={styles.divider} />

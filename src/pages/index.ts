@@ -28,3 +28,10 @@ export {default as KoperasiScreen} from './MenusScreen/KoperasiScreen';
 export {default as LaporanScreen} from './MenusScreen/LaporanScreen';
 export {default as LemburScreen} from './MenusScreen/LemburScreen';
 export {default as SlipGajiScreen} from './MenusScreen/SlipGajiScreen';
+//
+export {default as FillScreen1} from './FillDataScreen/FillScreen1';
+export {default as FillScreen2} from './FillDataScreen/FillScreen2';
+export {default as FillScreen3} from './FillDataScreen/FillScreen3';
+export {default as FillScreen4} from './FillDataScreen/FillScreen4';
+export {default as FillScreen5} from './FillDataScreen/FillScreen5';
+export {default as FillScreen6} from './FillDataScreen/FillScreen6';

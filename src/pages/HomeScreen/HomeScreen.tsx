@@ -1,6 +1,8 @@
 import React from 'react';
 import {
+  Alert,
   Image,
+  PermissionsAndroid,
   Platform,
   Pressable,
   ScrollView,
@@ -23,13 +25,39 @@ import {MapsContext} from '../../contexts/MapsContext';
 // import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = () => {
-  const [isModalLocation, setIsModalLocation] = React.useState(false);
+  const [isModalLocation, setIsModalLocation] = React.useState(true);
   const [isModalRange, setIsModalRange] = React.useState(false);
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
   const [userLocation, setUserLocation] = React.useState('');
   const {dispatch} = React.useContext(MapsContext);
+
+  console.log(PermissionsAndroid.RESULTS.GRANTED);
+
+  async function requestLocationPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'RSKI Attendance App',
+          message: 'RSKI Attendance App ingin mengakses lokasi anda ',
+          buttonNegative: 'Batal',
+          buttonPositive: 'Ijinkan',
+        },
+      );
+      console.log(granted);
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        setIsModalLocation(false);
+        console.log('You can use the location');
+      } else {
+        setIsModalLocation(true);
+        console.log('location permission denied');
+      }
+    } catch (err) {
+      console.warn('err', err);
+    }
+  }
 
   /*
     mendapatkan lokasi koordinat user lalu passing koordinat menggunakan context api / props ke mapsScreen
@@ -49,20 +77,17 @@ const HomeScreen = () => {
       setUserLocation(location);
       // this.setState({location});
     },
-    (error: any) => console.log(error.message),
+    (error: any) => {
+      console.log(error);
+      if (error.message === 'No location provider available.') {
+        Alert.alert(
+          'RSKI membutuhkan lokasi anda',
+          'Aktifkan GPS anda untuk presensi!',
+        );
+      }
+    },
     {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
   );
-  // Geolocation.getCurrentPosition(
-  //   info => console.log(info),
-  //   error => console.log(error),
-  //   {
-  //     enableHighAccuracy: true,
-  //     timeout: 20000,
-  //     maximumAge: 0,
-  //   },
-  // );
-
-  console.log('userLocation:', userLocation);
 
   React.useEffect(() => {
     if (Object.keys(userLocation).length !== 0) {
@@ -70,6 +95,11 @@ const HomeScreen = () => {
       console.log(userLocation);
     }
   }, [userLocation]);
+
+  React.useEffect(() => {
+    requestLocationPermission();
+  }, []);
+
   return (
     <>
       {isModalSuccessPresence && (
@@ -153,7 +183,7 @@ berhasil dicatat. Silahkan lakukan
               alignItems: 'center',
             }}>
             <Pressable
-              onPress={() => setIsModalLocation(false)}
+              onPress={() => requestLocationPermission()}
               style={{marginLeft: 'auto', marginBottom: 16}}>
               <Image source={IconClose} />
             </Pressable>
@@ -166,7 +196,7 @@ berhasil dicatat. Silahkan lakukan
             </Text>
             <View style={styles.button_modal_container}>
               <Pressable
-                onPress={() => setIsModalLocation(false)}
+                onPress={() => requestLocationPermission()}
                 style={[styles.button_modal, styles.button_modal_reject]}>
                 <Text
                   style={[styles.button_modal_text, styles.modal_text_reject]}>
@@ -174,7 +204,7 @@ berhasil dicatat. Silahkan lakukan
                 </Text>
               </Pressable>
               <Pressable
-                onPress={() => setIsModalLocation(false)}
+                onPress={() => requestLocationPermission()}
                 style={[styles.button_modal, styles.button_modal_accept]}>
                 <Text
                   style={[styles.button_modal_text, styles.modal_text_accept]}>

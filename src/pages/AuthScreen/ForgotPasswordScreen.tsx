@@ -28,6 +28,7 @@ const ForgotPasswordScreen = ({navigation}: any) => {
             name="Email"
             placeholder="Email"
             type="email"
+            customStyle={false}
             // onChangeText={onChangeEmail}
             // value={email}
           />

@@ -1,4 +1,12 @@
-import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  PermissionsAndroid,
+  Alert,
+} from 'react-native';
 import React from 'react';
 import {
   IconAttendance,
@@ -8,9 +16,11 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {MapsContext} from '../../contexts/MapsContext';
+import Geolocation from '@react-native-community/geolocation';
 
 const HeaderAttendance = () => {
   const {state} = React.useContext(MapsContext);
+  const [isGPSEnabled, setIsGPSEnabled] = React.useState('');
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const date = new Date().toLocaleString('id-ID', {
     weekday: 'long',
@@ -20,8 +30,17 @@ const HeaderAttendance = () => {
   });
   const navigation = useNavigation();
 
+  console.log('header button', isGPSEnabled);
+
   function handleNavigation() {
-    navigation.navigate('MapsScreen' as never);
+    if (isGPSEnabled !== 'No location provider available.') {
+      return navigation.navigate('MapsScreen' as never);
+    } else {
+      return Alert.alert(
+        'RSKI membutuhkan lokasi anda',
+        'Aktifkan GPS anda untuk presensi!',
+      );
+    }
   }
 
   function hhmmss() {
@@ -39,6 +58,18 @@ const HeaderAttendance = () => {
       hhmmss();
     }, 1000);
     return () => clearInterval(dateInterval);
+  }, []);
+
+  React.useEffect(() => {
+    Geolocation.getCurrentPosition(
+      (position: any) => {},
+      (error: any) => {
+        if (error.message === 'No location provider available.') {
+          setIsGPSEnabled(error.message);
+        }
+      },
+      {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
+    );
   }, []);
 
   console.log(state);

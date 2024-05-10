@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import {ChevronRight} from '../assets/images';
 import {webView} from '../utils/WebView';
+import {getResponsive} from '../utils';
 
 const SplashLayout = ({children, imageHeader, navigation}: any) => {
   return (
@@ -73,10 +74,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: '500',
+    color: '#0C0E11',
   },
   skip_icon: {
-    width: 8,
-    height: 14,
+    width: getResponsive(8, 'width'),
+    height: getResponsive(14, 'height'),
   },
   header_container: {
     backgroundColor: '#fffcfa',

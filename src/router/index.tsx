@@ -30,6 +30,12 @@ import {
   LaporanScreen,
   LemburScreen,
   SlipGajiScreen,
+  FillScreen1,
+  FillScreen2,
+  FillScreen3,
+  FillScreen4,
+  FillScreen5,
+  FillScreen6,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -74,8 +80,10 @@ const Router = () => {
   React.useEffect(() => {
     getLoggedIn();
   }, []);
+  console.log(stateLoggedIn);
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
+      {/* Splash */}
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
         {stateLoggedIn === null && (
@@ -104,34 +112,6 @@ const Router = () => {
         <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
       </Stack.Group>
-      {/* non splash screen */}
-      <Stack.Screen
-        name="MainApp"
-        component={MainApp}
-        options={{headerShown: false}}
-      />
-      {/* utility devices screen */}
-      <Stack.Screen
-        name="MapsScreen"
-        component={MapsScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="CameraScreen"
-        component={CameraScreen}
-        options={{headerShown: false}}
-      />
-      {/* detail pages */}
-      <Stack.Screen
-        name="DetailEmployeeScreen"
-        options={{headerTitleAlign: 'center', header: () => null}}
-        component={DetailEmployeeScreen}
-      />
-      <Stack.Screen
-        name="DetailScheduleScreen"
-        options={{headerTitleAlign: 'center', header: () => null}}
-        component={DetailScheduleScreen}
-      />
       {/* menus screen */}
       <Stack.Group
         screenOptions={{
@@ -179,6 +159,44 @@ const Router = () => {
           component={SlipGajiScreen}
         />
       </Stack.Group>
+      {/* fill data screen */}
+      <Stack.Group
+        screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
+        <Stack.Screen name="FillScreen1" component={FillScreen1} />
+        <Stack.Screen name="FillScreen2" component={FillScreen2} />
+        <Stack.Screen name="FillScreen3" component={FillScreen3} />
+        <Stack.Screen name="FillScreen4" component={FillScreen4} />
+        <Stack.Screen name="FillScreen5" component={FillScreen5} />
+        <Stack.Screen name="FillScreen6" component={FillScreen6} />
+      </Stack.Group>
+      {/* non splash screen */}
+      <Stack.Screen
+        name="MainApp"
+        component={MainApp}
+        options={{headerShown: false}}
+      />
+      {/* utility devices screen */}
+      <Stack.Screen
+        name="MapsScreen"
+        component={MapsScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CameraScreen"
+        component={CameraScreen}
+        options={{headerShown: false}}
+      />
+      {/* detail pages */}
+      <Stack.Screen
+        name="DetailEmployeeScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={DetailEmployeeScreen}
+      />
+      <Stack.Screen
+        name="DetailScheduleScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={DetailScheduleScreen}
+      />
     </Stack.Navigator>
   );
 };

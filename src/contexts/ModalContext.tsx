@@ -5,8 +5,8 @@ type ModalProviderType = {
 };
 
 type ModalType = {
-  modal_out_range: string;
-  modal_location: string;
+  modal_out_range: boolean;
+  modal_location: boolean;
 };
 
 type ModalActionType = {
@@ -16,7 +16,7 @@ type ModalActionType = {
 
 const initialState = {
   modal_out_range: '',
-  modal_location: '',
+  modal_location: true,
 };
 
 const ModalReducers = (state: ModalType, action: ModalActionType) => {

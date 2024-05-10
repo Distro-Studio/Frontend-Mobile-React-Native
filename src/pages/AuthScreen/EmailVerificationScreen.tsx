@@ -2,6 +2,7 @@ import {View, Text, Pressable, Dimensions, StyleSheet} from 'react-native';
 import React from 'react';
 import {AuthLayout} from '../../layouts';
 import {APP} from '../../utils/CONSTANT';
+import {getResponsive} from '../../utils';
 
 const {height} = Dimensions.get('window');
 
@@ -51,7 +52,7 @@ const EmailVerificationScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: height * 0.41,
+    height: getResponsive(363, 'height'),
     padding: 24,
   },
 });
