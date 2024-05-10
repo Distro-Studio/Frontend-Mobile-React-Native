@@ -7,7 +7,7 @@ import {getResponsive} from '../../utils';
 
 const FillScreen2 = ({navigation}) => {
   const route = useRoute();
-  console.log(route);
+
   return (
     <FillDataScreenLayout routeName={route.name}>
       <ScrollView>

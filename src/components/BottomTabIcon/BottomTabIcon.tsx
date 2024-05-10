@@ -2,46 +2,57 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {APP} from '../../utils/CONSTANT';
 import {
-  IconActivity,
-  IconEmployee,
   IconEmployeeActive,
+  IconEmployee,
   IconHome,
   IconHomeActive,
-  IconProfile,
   IconSchedule,
   IconScheduleActive,
-} from '../../assets/images';
+  IconActivity,
+  IconProfile,
+  IconProfileActive,
+  IconActivityActive,
+} from '../../assets/icons';
+// import {IconActivity, IconEmployee, IconProfile} from '../../assets/images';
 
 const AppImages = {
-  activeHomeIcon: {
+  activeBerandaIcon: {
     source: IconHomeActive,
     style: {width: 24, height: 24},
   },
-  activeScheduleIcon: {
+  activeJadwalIcon: {
     source: IconScheduleActive,
     style: {width: 24, height: 24},
   },
-  activeEmployeeIcon: {
+  activeKaryawanIcon: {
     source: IconEmployeeActive,
     style: {width: 24, height: 24},
   },
-  inactiveHomeIcon: {
+  activeAktivitasIcon: {
+    source: IconActivityActive,
+    style: {width: 24, height: 24},
+  },
+  activeProfilIcon: {
+    source: IconProfileActive,
+    style: {width: 24, height: 24},
+  },
+  inactiveBerandaIcon: {
     source: IconHome,
     style: {width: 24, height: 24},
   },
-  inactiveScheduleIcon: {
+  inactiveJadwalIcon: {
     source: IconSchedule,
     style: {width: 24, height: 24},
   },
-  inactiveEmployeeIcon: {
+  inactiveKaryawanIcon: {
     source: IconEmployee,
     style: {width: 24, height: 24},
   },
-  inactiveActivityIcon: {
+  inactiveAktivitasIcon: {
     source: IconActivity,
     style: {width: 24, height: 24},
   },
-  inactiveProfileIcon: {
+  inactiveProfilIcon: {
     source: IconProfile,
     style: {width: 24, height: 24},
   },
@@ -50,9 +61,12 @@ const AppImages = {
 const BottomTabIcon = ({title, focused}: any) => {
   const iconName = `${focused ? '' : 'in'}active${title}Icon`;
   const imgSrc = AppImages[iconName];
+  console.log('title:', title, imgSrc);
   return (
     <View style={styles.tabButton}>
-      <Image {...imgSrc} />
+      <View>
+        <imgSrc.source />
+      </View>
       <Text style={styles.tabTitle(focused)}>{title}</Text>
     </View>
   );

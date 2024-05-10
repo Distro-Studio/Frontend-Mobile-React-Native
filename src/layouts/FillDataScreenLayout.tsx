@@ -8,8 +8,6 @@ const FillDataScreenLayout = ({children, routeName}) => {
   const paginationBar = [1, 2, 3, 4, 5, 6];
   const navigation = useNavigation();
 
-  console.log(routeName.split('').pop());
-
   return (
     <>
       <View

@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
 import {APP} from '../../utils/CONSTANT';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Circle, Marker} from 'react-native-maps';
 import {MapsContext} from '../../contexts/MapsContext';
 
 const MapsScreen = ({navigation}: any) => {
@@ -12,8 +12,6 @@ const MapsScreen = ({navigation}: any) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
-
-  console.log(state.coords);
 
   // const [userCoordinate, setUserCoordinate] = React.useState({
   //   latitude: state.coords.lat ? state.coords.lat : 0,
@@ -31,6 +29,13 @@ const MapsScreen = ({navigation}: any) => {
     <View style={styles.screen_container}>
       <MapView style={styles.map} initialRegion={RSKIRegion}>
         <Marker coordinate={RSKIRegion} />
+        <Circle
+          center={RSKIRegion}
+          radius={1000}
+          strokeWidth={1}
+          strokeColor={'#1a66ff'}
+          fillColor={'rgba(230,238,255,0.6)'}
+        />
         <Marker
           coordinate={{
             latitude: state.coords.lat,
@@ -48,7 +53,9 @@ const MapsScreen = ({navigation}: any) => {
           Tengah 50249
         </Text>
         <View style={styles.buttons}>
-          <Pressable style={[styles.button, styles.secondary_button]}>
+          <Pressable
+            style={[styles.button, styles.secondary_button]}
+            onPress={() => navigation.goBack()}>
             <Text style={[styles.button_text, styles.secondary_text]}>
               Kembali
             </Text>

@@ -7,7 +7,7 @@ import {useRoute} from '@react-navigation/native';
 
 const FillScreen3 = ({navigation}) => {
   const route = useRoute();
-  console.log(route);
+
   return (
     <FillDataScreenLayout routeName={route.name}>
       <ScrollView>

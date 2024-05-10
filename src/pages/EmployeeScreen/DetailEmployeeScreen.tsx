@@ -51,14 +51,11 @@ const DetailEmployeeScreen = ({navigation}: any) => {
   };
 
   function getActiveCard(index) {
-    console.log('index', index);
     setACtiveEmployee(index);
     return;
   }
 
   function renderCard({item}) {
-    console.log(item);
-    console.log(activeEmployee);
     return (
       <View style={{marginRight: 16}}>
         <EmployeeCard
@@ -75,8 +72,6 @@ const DetailEmployeeScreen = ({navigation}: any) => {
       </View>
     );
   }
-
-  console.log(activeEmployee);
 
   return (
     <>

@@ -11,11 +11,11 @@ type ModalType = {
 
 type ModalActionType = {
   type: string;
-  payload: string;
+  payload: boolean;
 };
 
 const initialState = {
-  modal_out_range: '',
+  modal_out_range: true,
   modal_location: true,
 };
 

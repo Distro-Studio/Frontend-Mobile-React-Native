@@ -25,13 +25,11 @@ const DetailScheduleScreen = ({navigation}) => {
   const [active, setActive] = React.useState(1);
 
   function getActiveCard(index) {
-    console.log(index);
     setActive(index);
     return;
   }
 
   function renderItem({item}) {
-    console.log(item);
     return (
       <View style={{marginRight: 16}}>
         <ScheduleCard
@@ -44,7 +42,6 @@ const DetailScheduleScreen = ({navigation}) => {
     );
   }
 
-  console.log(active);
   return (
     <>
       <CustomHeaderApp

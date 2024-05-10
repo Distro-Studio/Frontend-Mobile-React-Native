@@ -13,7 +13,7 @@ import {APP} from '../../utils/CONSTANT';
 const Input = (props: any) => {
   const {name, placeholder, type, ...rest} = props;
   const [isShowPassword, setIsShowPassword] = React.useState(false);
-  console.log(props);
+
   return (
     <View style={styles.form_group}>
       <Text style={styles.label}>{name}</Text>

@@ -17,9 +17,12 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {MapsContext} from '../../contexts/MapsContext';
 import Geolocation from '@react-native-community/geolocation';
+import calculateDistance from '../../utils';
+import {ModalContext} from '../../contexts/ModalContext';
 
 const HeaderAttendance = () => {
   const {state} = React.useContext(MapsContext);
+  const {dispatch} = React.useContext(ModalContext);
   const [isGPSEnabled, setIsGPSEnabled] = React.useState('');
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const date = new Date().toLocaleString('id-ID', {
@@ -30,9 +33,21 @@ const HeaderAttendance = () => {
   });
   const navigation = useNavigation();
 
-  console.log('header button', isGPSEnabled);
+  console.log('header button:', state.coords.lat);
 
   function handleNavigation() {
+    if (state.coords.lat === 0 && state.coords.long === 0) return;
+    // if (
+    //   calculateDistance(
+    //     -7.562910072905711,
+    //     110.8016758224319,
+    //     state.coords.lat,
+    //     state.coords.long,
+    //   ) > 10
+    // ) {
+    //   return dispatch({type: 'show_modal_out_range', payload: true});
+    // }
+
     if (isGPSEnabled !== 'No location provider available.') {
       return navigation.navigate('MapsScreen' as never);
     } else {
@@ -71,8 +86,6 @@ const HeaderAttendance = () => {
       {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
     );
   }, []);
-
-  console.log(state);
 
   return (
     <View style={styles.header_attendance_container}>

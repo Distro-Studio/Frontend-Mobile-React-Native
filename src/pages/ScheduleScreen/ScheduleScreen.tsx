@@ -119,7 +119,6 @@ const ScheduleScreen = ({navigation}) => {
     },
   ];
   function renderItem({item}) {
-    console.log(item.routeName);
     return (
       <View style={{marginTop: 16}}>
         <ScheduleCard

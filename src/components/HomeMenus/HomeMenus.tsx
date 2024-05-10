@@ -97,52 +97,12 @@ const HomeMenus = () => {
               </Pressable>
             )}
           />
-          {/* <View style={{backgroundColor: 'red', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View
-          style={{backgroundColor: 'green', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View
-          style={{backgroundColor: 'yellow', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View style={{backgroundColor: 'pink', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View style={{backgroundColor: 'red', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View
-          style={{backgroundColor: 'green', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View
-          style={{backgroundColor: 'yellow', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View>
-        <View style={{backgroundColor: 'pink', flex: 1, width: 68, height: 68}}>
-          <Text>1</Text>
-        </View> */}
-          {/* {menus.map(item => (
-          <View key={item.id} style={[styles.home_menu]}>
-            <Image
-              source={item.iconSource}
-              width={getResponsive(28, 'width')}
-              height={getResponsive(28, 'height')}
-            />
-            <Text style={styles.home_menu_text}>{item.name}</Text>
-          </View>
-        ))} */}
-          {/* <View style={styles.home_menus}>
-        </View> */}
         </View>
       </View>
-      <View style={styles.menu_pagination_container}>
+      {/* <View style={styles.menu_pagination_container}>
         <View style={styles.menu_pagination_active} />
         <View style={styles.menu_pagination} />
-      </View>
+      </View> */}
     </>
   );
 };

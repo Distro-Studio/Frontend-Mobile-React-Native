@@ -80,7 +80,6 @@ const Router = () => {
   React.useEffect(() => {
     getLoggedIn();
   }, []);
-  console.log(stateLoggedIn);
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
       {/* Splash */}

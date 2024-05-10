@@ -5,6 +5,7 @@ import {
   PermissionsAndroid,
   Platform,
   Pressable,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,18 +23,53 @@ import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
 import Geolocation from '@react-native-community/geolocation';
 import {MapsContext} from '../../contexts/MapsContext';
+import calculateDistance from '../../utils';
+import {ModalContext} from '../../contexts/ModalContext';
 // import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = () => {
+  const {dispatch: dispactherModal, state} = React.useContext(ModalContext);
   const [isModalLocation, setIsModalLocation] = React.useState(true);
-  const [isModalRange, setIsModalRange] = React.useState(false);
+  const [isModalRange, setIsModalRange] = React.useState(true);
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
   const [isModalFailPresence, setIsModalFailPresence] = React.useState(false);
   const [userLocation, setUserLocation] = React.useState('');
   const {dispatch} = React.useContext(MapsContext);
+  const [refreshing, setRefreshing] = React.useState(false);
+  const [distanceFromLocation, setDistanceFromLocation] = React.useState(0);
 
-  console.log(PermissionsAndroid.RESULTS.GRANTED);
+  const onRefresh = () => {
+    setRefreshing(true);
+    setUserLocation('');
+    dispatch({
+      type: 'delete_coords',
+      payload: {
+        lat: 0,
+        long: 0,
+      },
+    });
+    Geolocation.getCurrentPosition(
+      (position: any) => {
+        const location = JSON.stringify({
+          long: position.coords.longitude,
+          lat: position.coords.latitude,
+        });
+
+        setUserLocation(location);
+        setRefreshing(false);
+      },
+      (error: any) => {
+        if (error.message === 'No location provider available.') {
+          Alert.alert(
+            'RSKI membutuhkan lokasi anda',
+            'Aktifkan GPS anda untuk presensi!',
+          );
+        }
+      },
+      {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
+    );
+  };
 
   async function requestLocationPermission() {
     try {
@@ -46,7 +82,6 @@ const HomeScreen = () => {
           buttonPositive: 'Ijinkan',
         },
       );
-      console.log(granted);
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         setIsModalLocation(false);
         console.log('You can use the location');
@@ -71,14 +106,9 @@ const HomeScreen = () => {
         long: position.coords.longitude,
         lat: position.coords.latitude,
       });
-      console.log('halooo');
-      console.log(location);
-      // dispatch({type: 'save_coords', payload: location});
       setUserLocation(location);
-      // this.setState({location});
     },
     (error: any) => {
-      console.log(error);
       if (error.message === 'No location provider available.') {
         Alert.alert(
           'RSKI membutuhkan lokasi anda',
@@ -92,9 +122,20 @@ const HomeScreen = () => {
   React.useEffect(() => {
     if (Object.keys(userLocation).length !== 0) {
       dispatch({type: 'save_coords', payload: JSON.parse(userLocation)});
-      console.log(userLocation);
+      setDistanceFromLocation(
+        calculateDistance(
+          -7.562910072905711,
+          110.8016758224319,
+          JSON.parse(userLocation).lat,
+          JSON.parse(userLocation).long,
+        ),
+      );
     }
   }, [userLocation]);
+
+  React.useEffect(() => {
+    setIsModalRange(state.modal_out_range);
+  }, [state.modal_out_range]);
 
   React.useEffect(() => {
     requestLocationPermission();
@@ -216,7 +257,7 @@ berhasil dicatat. Silahkan lakukan
         </ModalApp>
       )}
 
-      {isModalRange && (
+      {isModalRange && distanceFromLocation > 10 && (
         <ModalApp isModal={isModalRange}>
           <View
             style={{
@@ -225,7 +266,10 @@ berhasil dicatat. Silahkan lakukan
               alignItems: 'center',
             }}>
             <Pressable
-              onPress={() => setIsModalRange(false)}
+              onPress={() => {
+                setIsModalRange(false);
+                // dispactherModal({type: 'hide_modal_out_range', payload: false});
+              }}
               style={{marginLeft: 'auto', marginBottom: 16}}>
               <Image source={IconClose} />
             </Pressable>
@@ -247,7 +291,12 @@ dengan izin.`}
             </Text>
             <View style={styles.button_modal_container}>
               <Pressable
-                onPress={() => setIsModalRange(false)}
+                onPress={() => {
+                  dispactherModal({
+                    type: 'hide_modal_out_range',
+                    payload: false,
+                  });
+                }}
                 style={[styles.button_modal, styles.button_modal_accept]}>
                 <Text
                   style={[styles.button_modal_text, styles.modal_text_accept]}>
@@ -263,7 +312,10 @@ dengan izin.`}
         style={
           Platform.OS === 'web' ? styles.webView : styles.screen_container
         }>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
           <HomeHeader />
           <View style={styles.home_menu_container}>
             <HomeMenus />
