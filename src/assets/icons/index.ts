@@ -8,3 +8,5 @@ export {default as IconActivity} from './IconActivity.svg';
 export {default as IconActivityActive} from './IconActivityActive.svg';
 export {default as IconProfile} from './IconProfile.svg';
 export {default as IconProfileActive} from './IconProfileActive.svg';
+//
+export {default as CameraButton} from './CameraButton.svg';

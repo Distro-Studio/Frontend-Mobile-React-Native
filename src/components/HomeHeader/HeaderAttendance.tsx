@@ -19,8 +19,10 @@ import {MapsContext} from '../../contexts/MapsContext';
 import Geolocation from '@react-native-community/geolocation';
 import calculateDistance from '../../utils';
 import {ModalContext} from '../../contexts/ModalContext';
+import {PresenceContext} from '../../contexts/PresenceContext';
 
 const HeaderAttendance = () => {
+  const {state: presenceState} = React.useContext(PresenceContext);
   const {state} = React.useContext(MapsContext);
   const {dispatch} = React.useContext(ModalContext);
   const [isGPSEnabled, setIsGPSEnabled] = React.useState('');
@@ -32,8 +34,6 @@ const HeaderAttendance = () => {
     day: '2-digit',
   });
   const navigation = useNavigation();
-
-  console.log('header button:', state.coords.lat);
 
   function handleNavigation() {
     if (state.coords.lat === 0 && state.coords.long === 0) return;
@@ -87,25 +87,35 @@ const HeaderAttendance = () => {
     );
   }, []);
 
+  console.log(presenceState);
+
   return (
     <View style={styles.header_attendance_container}>
       <Text style={styles.header_attendance_time}>{time}</Text>
       <Text style={styles.header_attendance_date}>{date}</Text>
-      <Pressable style={styles.header_attendance} onPress={handleNavigation}>
-        <Image source={IconAttendance} style={{marginBottom: 8}} />
-        <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
-      </Pressable>
-      {/* <Pressable onPress={handleNavigation}>
-        <LinearGradient
-          start={{x: -1.6, y: 0.3}}
-          end={{x: 0.5, y: -3.6}}
-          locations={[0.1, 0.4]}
-          colors={['#6C47FF', '#FC4C3C']}
-          style={styles.header_attendance}>
-          <Image source={IconAttendanceExit} style={{marginBottom: 8}} />
-          <Text style={{color: '#FFFFFF', fontWeight: '700'}}>Keluar</Text>
-        </LinearGradient>
-      </Pressable> */}
+      {presenceState.presence_in === false &&
+        presenceState.presence_success === false && (
+          <Pressable
+            style={styles.header_attendance}
+            onPress={handleNavigation}>
+            <Image source={IconAttendance} style={{marginBottom: 8}} />
+            <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
+          </Pressable>
+        )}
+      {presenceState.presence_in === true && (
+        <Pressable onPress={handleNavigation}>
+          <LinearGradient
+            start={{x: -1.6, y: 0.3}}
+            end={{x: 0.5, y: -3.6}}
+            locations={[0.1, 0.4]}
+            colors={['#6C47FF', '#FC4C3C']}
+            style={styles.header_attendance}>
+            <Image source={IconAttendanceExit} style={{marginBottom: 8}} />
+            <Text style={{color: '#FFFFFF', fontWeight: '700'}}>Keluar</Text>
+          </LinearGradient>
+        </Pressable>
+      )}
+
       <View style={styles.header_location_container}>
         <Image source={IconLocation} />
         <Text style={{color: '#F5F5F5'}}>

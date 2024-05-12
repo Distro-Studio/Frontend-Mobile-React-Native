@@ -25,9 +25,12 @@ import Geolocation from '@react-native-community/geolocation';
 import {MapsContext} from '../../contexts/MapsContext';
 import calculateDistance from '../../utils';
 import {ModalContext} from '../../contexts/ModalContext';
+import {PresenceContext} from '../../contexts/PresenceContext';
 // import Geolocation from '@react-native-community/geolocation';
 
-const HomeScreen = () => {
+const HomeScreen = ({route}) => {
+  const {dispatch: presenceDispatcher, state: presenceState} =
+    React.useContext(PresenceContext);
   const {dispatch: dispactherModal, state} = React.useContext(ModalContext);
   const [isModalLocation, setIsModalLocation] = React.useState(true);
   const [isModalRange, setIsModalRange] = React.useState(true);
@@ -38,6 +41,8 @@ const HomeScreen = () => {
   const {dispatch} = React.useContext(MapsContext);
   const [refreshing, setRefreshing] = React.useState(false);
   const [distanceFromLocation, setDistanceFromLocation] = React.useState(0);
+
+  console.log('getprops:', isModalSuccessPresence);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -140,6 +145,30 @@ const HomeScreen = () => {
   React.useEffect(() => {
     requestLocationPermission();
   }, []);
+
+  React.useEffect(() => {
+    if (route.params?.props?.isSuccessPresence) {
+      setIsModalSuccessPresence(route.params?.props.isSuccessPresence);
+      presenceDispatcher({
+        type: 'presence_success',
+        payload: route.params?.props.isSuccessPresence,
+      });
+      presenceDispatcher({
+        type: 'presence_in',
+        payload: route.params?.props.isSuccessPresence,
+      });
+    }
+    if (route.params?.props?.isFailPresence) {
+      setIsModalFailPresence(route.params?.props.isFailPresence);
+      presenceDispatcher({
+        type: 'presence_fail',
+        payload: route.params?.props.isFailPresence,
+      });
+    }
+  }, [
+    route.params?.props.isSuccessPresence,
+    route.params?.props.isFailPresence,
+  ]);
 
   return (
     <>

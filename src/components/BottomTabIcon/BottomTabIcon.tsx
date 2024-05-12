@@ -61,7 +61,6 @@ const AppImages = {
 const BottomTabIcon = ({title, focused}: any) => {
   const iconName = `${focused ? '' : 'in'}active${title}Icon`;
   const imgSrc = AppImages[iconName];
-  console.log('title:', title, imgSrc);
   return (
     <View style={styles.tabButton}>
       <View>

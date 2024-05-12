@@ -60,7 +60,7 @@ const LeavesScreen = () => {
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
           contentContainerStyle={{gap: 16}}
           renderItem={({item}) => (
-            <View style={styles.leave_card}>
+            <View key={item} style={styles.leave_card}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={{color: '#222831'}}>Tanggal</Text>
