@@ -21,16 +21,18 @@ const FillScreen1 = ({navigation}) => {
         <View style={{marginTop: 16, gap: 16}}>
           <Input
             name="Nama Lengkap"
-            placeholder="Email"
+            value={'Ivan Ardiansyah'}
+            // placeholder="Email"
             type="text"
             customStyle={false}
+            disabled={true}
             // onChangeText={onChangeEmail}
             // value={email}
             // customStyle={isEmailError}
           />
           <Input
             name="Tempat Lahir"
-            placeholder="Email"
+            placeholder="Masukkan Tempat Lahir anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -39,7 +41,7 @@ const FillScreen1 = ({navigation}) => {
           />
           <Input
             name="Tanggal Lahir"
-            placeholder="Email"
+            placeholder="Masukkan Tanggal Lahir anda"
             type="date"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -48,7 +50,7 @@ const FillScreen1 = ({navigation}) => {
           />
           <Input
             name="Nomor Telepon"
-            placeholder="Email"
+            placeholder="Masukkan Nomor Telepon anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -57,7 +59,7 @@ const FillScreen1 = ({navigation}) => {
           />
           <Input
             name="Jenis Kelamin"
-            placeholder="Email"
+            placeholder="Pilih Jenis Kelamin"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}

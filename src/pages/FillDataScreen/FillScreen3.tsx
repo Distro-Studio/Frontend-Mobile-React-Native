@@ -14,7 +14,7 @@ const FillScreen3 = ({navigation}) => {
         <View style={{marginTop: 16, gap: 16}}>
           <Input
             name="Ijazah Terakhir"
-            placeholder="Email"
+            placeholder="Masukan Ijazah Terakhir"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -23,7 +23,7 @@ const FillScreen3 = ({navigation}) => {
           />
           <Input
             name="Tahun Lulus"
-            placeholder="Email"
+            placeholder="Masukan Tahun Lulus"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}

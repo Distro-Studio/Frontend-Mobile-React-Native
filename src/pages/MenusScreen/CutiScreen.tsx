@@ -21,7 +21,7 @@ const LeavesScreen = () => {
             contentContainerStyle={{gap: 16}}
             columnWrapperStyle={{gap: 16}}
             renderItem={({item}) => (
-              <View style={styles.leave_box(item)}>
+              <View key={item} style={styles.leave_box(item)}>
                 <Text
                   style={{color: '#000000', fontWeight: '500', fontSize: 14}}>
                   {item}
@@ -43,6 +43,7 @@ const LeavesScreen = () => {
         <View style={styles.menu_container}>
           {menus.map(item => (
             <Pressable
+              key={item}
               style={[styles.menu_button(activeMenu, item)]}
               onPress={() => setActiveMenu(item)}>
               <Text

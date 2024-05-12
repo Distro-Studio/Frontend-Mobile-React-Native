@@ -181,7 +181,13 @@ const HomeScreen = ({route}) => {
               alignItems: 'center',
             }}>
             <Image source={IconSuccessPresence} />
-            <Text style={{marginTop: 16, fontSize: 16, fontWeight: 'bold'}}>
+            <Text
+              style={{
+                marginTop: 16,
+                fontSize: 16,
+                fontWeight: 'bold',
+                color: '#0C0E11',
+              }}>
               Absen Telah Berhasil
             </Text>
             <Text style={{marginTop: 16, color: '#777986'}}>
@@ -217,7 +223,13 @@ const HomeScreen = ({route}) => {
               alignItems: 'center',
             }}>
             <Image source={IconFailPresence} />
-            <Text style={{marginTop: 16, fontSize: 16, fontWeight: 'bold'}}>
+            <Text
+              style={{
+                marginTop: 16,
+                fontSize: 16,
+                fontWeight: 'bold',
+                color: '#0C0E11',
+              }}>
               Maaf Absensi Anda Tidak Berhasil
             </Text>
             <Text style={{marginTop: 16, color: '#777986'}}>

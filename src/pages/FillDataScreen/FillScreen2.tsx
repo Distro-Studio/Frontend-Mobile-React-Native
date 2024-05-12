@@ -14,7 +14,7 @@ const FillScreen2 = ({navigation}) => {
         <View style={{marginTop: 16, gap: 16}}>
           <Input
             name="Nomor Induk Kependudukan"
-            placeholder="Email"
+            placeholder="Masukan Nomor Induk Kependudukan Anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -23,7 +23,7 @@ const FillScreen2 = ({navigation}) => {
           />
           <Input
             name="Nomor Kartu Keluarga"
-            placeholder="Email"
+            placeholder="Masukan Nomor Kartu Keluarga Anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -32,7 +32,7 @@ const FillScreen2 = ({navigation}) => {
           />
           <Input
             name="Agama"
-            placeholder="Email"
+            placeholder="Pilih Agama"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -41,7 +41,7 @@ const FillScreen2 = ({navigation}) => {
           />
           <Input
             name="Golongan Darah"
-            placeholder="Email"
+            placeholder="Pilih Golongan Darah"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -50,7 +50,7 @@ const FillScreen2 = ({navigation}) => {
           />
           <Input
             name="Tinggi Badan"
-            placeholder="Email"
+            placeholder="Masukan Tinggi Badan Anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -59,7 +59,7 @@ const FillScreen2 = ({navigation}) => {
           />
           <Input
             name="Alamat"
-            placeholder="Email"
+            placeholder="Masukkan Alamat Anda"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}

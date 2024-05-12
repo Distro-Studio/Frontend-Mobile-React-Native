@@ -1,11 +1,24 @@
-import {View, Text} from 'react-native';
+import {View, Text, Pressable, Image} from 'react-native';
 import React from 'react';
+import {IconNotificationBlack} from '../../assets/images';
+import {CustomHeaderApp} from '../../components';
 
 const ProfileScreen = () => {
+  const headerIcon = () => {
+    return (
+      <Pressable>
+        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+      </Pressable>
+    );
+  };
   return (
-    <View>
-      <Text>ProfileScreen</Text>
-    </View>
+    <>
+      <CustomHeaderApp
+        backButton={true}
+        screenName={'Profil'}
+        rightIcon={headerIcon()}
+      />
+    </>
   );
 };
 

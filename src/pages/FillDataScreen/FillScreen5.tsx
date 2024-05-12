@@ -18,7 +18,7 @@ const FillScreen5 = ({navigation}) => {
         <View style={{marginTop: 16, gap: 16}}>
           <Input
             name="No. STR"
-            placeholder="Email"
+            placeholder="Masukan Nomor STR"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -27,7 +27,7 @@ const FillScreen5 = ({navigation}) => {
           />
           <Input
             name="Masa Berlaku STR"
-            placeholder="Email"
+            placeholder="Pilih Tanggal"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -36,7 +36,7 @@ const FillScreen5 = ({navigation}) => {
           />
           <Input
             name="No. SIP"
-            placeholder="Email"
+            placeholder="Masukan Nomor SIP"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -45,7 +45,7 @@ const FillScreen5 = ({navigation}) => {
           />
           <Input
             name="Masa Berlaku SIP"
-            placeholder="Email"
+            placeholder="Pilih Tanggal"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -54,7 +54,7 @@ const FillScreen5 = ({navigation}) => {
           />
           <Input
             name="BPJS Kesehatan"
-            placeholder="Email"
+            placeholder="Masukan BPJS Kesehatan"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}
@@ -63,7 +63,7 @@ const FillScreen5 = ({navigation}) => {
           />
           <Input
             name="BPJS Ketenagakerjaan"
-            placeholder="Email"
+            placeholder="Masukan BPJS Ketenagakerjaan"
             type="text"
             customStyle={false}
             // onChangeText={onChangeEmail}

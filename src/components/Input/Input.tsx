@@ -26,7 +26,7 @@ const Input = (props: any) => {
               paddingVertical: 14,
               height: 48,
               borderRadius: 12,
-              backgroundColor: '#F1F2F3',
+              backgroundColor: props.disabled ? '#F1F2F3' : '#FCFCFC',
               borderColor: '#ECECEC',
               borderWidth: 1,
               color: '#181818',
