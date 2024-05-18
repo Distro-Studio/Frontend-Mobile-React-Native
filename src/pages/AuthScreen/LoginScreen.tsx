@@ -13,16 +13,19 @@ import {AuthLayout} from '../../layouts';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import APIEndpoints from '../../services/endpoints';
+import {object, string} from 'yup';
+import {Formik} from 'formik';
+
+let loginSchema = object({
+  password: string().required('Password harus diisi!'),
+  email: string().email('Email tidak valid!').required('Email harus diisi!'),
+});
 
 const LoginScreen = ({navigation}: any) => {
-  const [email, onChangeEmail] = React.useState<string>('');
-  const [password, onChangePassword] = React.useState<string>('');
-  const [isError, setIsError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isEmailError, setIsEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [isPasswordError, setIsPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+
+  const formData = new FormData();
 
   async function storeLoggedIn(value: string) {
     try {
@@ -32,45 +35,25 @@ const LoginScreen = ({navigation}: any) => {
     }
   }
 
-  async function handleLogin() {
+  async function handleLogin(fields: {email: string; password: string}) {
     try {
-      if (email === '' && password === '') {
-        setIsEmailError(true);
-        setIsPasswordError(true);
-        setEmailErrorMessage('Email harus diisi!');
-        setPasswordErrorMessage('Password harus diisi!');
-        return;
-      }
+      // api login
+      formData.append('email', fields.email);
+      formData.append('password', fields.password);
 
-      if (email === '') {
-        setIsEmailError(true);
-        setEmailErrorMessage('Email harus diisi!');
-        return;
-      } else if (email !== 'ivan@gmail.com') {
-        setIsEmailError(true);
-        setEmailErrorMessage('Email tidak ditemukan!');
-        return;
-      } else {
-        setIsEmailError(false);
-        setEmailErrorMessage('');
-      }
-      if (password === '') {
-        setIsPasswordError(true);
-        setPasswordErrorMessage('Password harus diisi!');
-        return;
-      } else if (password !== 'ivan123') {
-        setIsPasswordError(true);
-        setPasswordErrorMessage('Password salah!');
-        return;
-      } else {
-        setIsPasswordError(false);
-        setPasswordErrorMessage('');
-      }
+      // const response = await APIEndpoints.authLogin(formData);
+      // if(response.status === 200){
+      //   navigation.navigate('FillScreen1');
+      //   storeLoggedIn('logged_in');
+      // }
 
-      if (email === 'ivan@gmail.com' && password === 'ivan123') {
+      setIsLoading(true);
+
+      setTimeout(() => {
         navigation.navigate('FillScreen1');
-        storeLoggedIn('logged_in');
-      }
+        // storeLoggedIn('logged_in');
+        setIsLoading(false);
+      }, 2000);
     } catch (e) {
       console.log(e);
     }
@@ -92,55 +75,54 @@ const LoginScreen = ({navigation}: any) => {
                 ? styles.webViewInstance
                 : styles.form_container
             }>
-            <Input
-              name="Email"
-              placeholder="Email"
-              type="email"
-              onChangeText={onChangeEmail}
-              value={email}
-              customStyle={isEmailError}
-            />
-            {isEmailError && (
-              <Text style={{color: 'red'}}>{emailErrorMessage}</Text>
-            )}
-            <Input
-              name="Kata Sandi"
-              placeholder="Kata Sandi"
-              type="password"
-              onChangeText={onChangePassword}
-              value={password}
-              customStyle={isPasswordError}
-            />
-            {isPasswordError && (
-              <Text style={{color: 'red'}}>{passwordErrorMessage}</Text>
-            )}
-            <Text
-              style={styles.forgot_password}
-              onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-              Lupa Password?
-            </Text>
-            {isError && (
-              <View style={styles.wrong_password}>
-                <Text style={{color: '#CA3D30'}}>
-                  Oops! Email atau kata sandimu salah
-                </Text>
-              </View>
-            )}
-            <Pressable style={styles.login_button} onPress={handleLogin}>
-              <Text style={styles.login_button_text}>Masuk</Text>
-            </Pressable>
-            {/* <View style={styles.account}>
-          <View style={styles.divider} />
-          <View style={styles.account_block}>
-            <Text>Don’t have an account?</Text>
-          </View>
-          <View style={styles.divider} />
-        </View>
-        <Pressable
-          style={styles.activate_button}
-          onPress={() => navigation.navigate('ActivationScreen')}>
-          <Text style={styles.activate_button_text}>Activate Now</Text>
-        </Pressable> */}
+            <Formik
+              initialValues={{email: '', password: ''}}
+              validationSchema={loginSchema}
+              onSubmit={values => handleLogin(values)}>
+              {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+                <>
+                  <Input
+                    name="Email"
+                    placeholder="Email"
+                    type="email"
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    value={values.email}
+                    error={errors.email}
+                  />
+                  {errors.email && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.email}
+                    </Text>
+                  )}
+                  <Input
+                    name="Kata Sandi"
+                    placeholder="Kata Sandi"
+                    type="password"
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    value={values.password}
+                    error={errors.password}
+                    secureTextEntry
+                  />
+                  {errors.password && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.password}
+                    </Text>
+                  )}
+                  <Text
+                    style={styles.forgot_password}
+                    onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+                    Lupa Password?
+                  </Text>
+                  <Pressable
+                    style={styles.login_button}
+                    onPress={() => handleSubmit()}>
+                    <Text style={styles.login_button_text}>Masuk</Text>
+                  </Pressable>
+                </>
+              )}
+            </Formik>
             <Text style={styles.app_ver}>App ver 1.0</Text>
           </View>
         </AuthLayout>

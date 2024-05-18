@@ -13,7 +13,6 @@ import {APP} from '../../utils/CONSTANT';
 const Input = (props: any) => {
   const {name, placeholder, type, ...rest} = props;
   const [isShowPassword, setIsShowPassword] = React.useState(false);
-
   return (
     <View style={styles.form_group}>
       <Text style={styles.label}>{name}</Text>
@@ -31,7 +30,7 @@ const Input = (props: any) => {
               borderWidth: 1,
               color: '#181818',
             },
-            props.customStyle !== false && styles.isError,
+            props.error && styles.isError,
           ]}
           underlineColorAndroid="transparent"
           placeholder={placeholder}

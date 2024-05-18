@@ -57,13 +57,13 @@ const AuthLayout = ({children, headerText, type}: any) => {
       width,
       height:
         type === 'NewPassword'
-          ? getResponsive(391, 'height')
-          : getResponsive(391, 'height'),
+          ? getResponsive(453, 'height')
+          : getResponsive(453, 'height'),
       backgroundColor: '#fffcfa',
       padding: 24,
     },
     child_container_height: {
-      // height: height - height * 0.59,
+      height: getResponsive(391, 'height'),
       backgroundColor: '#FFFFFF',
     },
     screen_header_image_container: {
