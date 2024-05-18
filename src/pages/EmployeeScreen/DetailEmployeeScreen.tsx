@@ -92,6 +92,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
         <Text style={styles.schedule_title}>Jadwal</Text>
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+          showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <View style={{marginVertical: 8}}>
               <ScheduleCard

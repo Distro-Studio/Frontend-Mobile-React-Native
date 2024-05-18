@@ -2,6 +2,7 @@ import {View, Text, Pressable, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {APP} from '../../utils/CONSTANT';
 import {IconActivityIn, IconActivityOut} from '../../assets/images';
+import {getResponsive} from '../../utils';
 
 const ScheduleCard = ({
   routeName,
@@ -35,7 +36,7 @@ const ScheduleCard = ({
           <Text style={{color: '#0C0E11'}}>
             Minggu 1 - {isHoliday ? 'Libur' : 'Shift Pagi'}
           </Text>
-          <Text style={styles.schedule_date(cardState)}>
+          <Text style={styles.schedule_date(cardState, isHoliday)}>
             01 Nov 2023, Monday
           </Text>
           {!isHoliday && (
@@ -104,11 +105,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FFFFFF',
   },
-  schedule_date: state => ({
+  schedule_date: (state, isHoliday) => ({
     fontSize: 16,
     fontWeight: '700',
     marginTop: 8,
-    color: state === 'inactive' ? '#777986' : '#222831',
+    color: isHoliday ? '#777986' : '#222831',
   }),
   schedule_times: {
     marginTop: 8,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
         ? APP.COLORS['primary-500']
         : '#FFFFFF',
     borderRadius: 12,
-    width: isSmall ? 280 : '100%',
+    width: isSmall ? getResponsive(280, 'width') : '100%',
   }),
 });
 

@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
 import {APP} from '../../utils/CONSTANT';
-import {capitalizeFirstLetter} from '../../utils';
+import {capitalizeFirstLetter, getResponsive} from '../../utils';
 
 const EmployeeCard = ({
   name,
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
     backgroundColor: state ? APP.COLORS['primary-500'] : '#FFFFFF',
     borderRadius: 12,
-    width: 300,
   }),
   employee_badge_kerja: {
     backgroundColor: '#37BA72',
@@ -127,14 +126,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  employee_card_container: route => ({
+  employee_card_container: routeName => ({
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // width: route === 'DetailEmployeeScreen' && 290,
+    width: routeName === 'DetailEmployeeScreen' && getResponsive(300, 'width'),
   }),
 });
 

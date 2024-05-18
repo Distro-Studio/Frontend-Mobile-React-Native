@@ -13,8 +13,10 @@ import {IconNotificationBlack} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard, ScheduleCard} from '../../components';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {dummyEmployee} from '../../utils/CONSTANT';
+import {useRoute} from '@react-navigation/native';
 
 const DetailScheduleScreen = ({navigation}) => {
+  const route = useRoute();
   const headerIcon = () => {
     return (
       <Pressable>
@@ -71,6 +73,7 @@ const DetailScheduleScreen = ({navigation}) => {
                 name={item.name}
                 role={item.role}
                 status={item.state}
+                routeName={route.name}
               />
             </View>
           )}
