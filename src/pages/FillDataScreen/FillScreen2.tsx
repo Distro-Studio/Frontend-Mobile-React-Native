@@ -133,6 +133,7 @@ const FillScreen2 = ({navigation}: any) => {
                     borderBottomRightRadius: 8,
                   }}
                   itemTextStyle={{color: '#454545'}}
+                  placeholderStyle={{fontSize: 13}}
                 />
                 {errors.agama && (
                   <Text style={{fontSize: 10, color: 'red'}}>
@@ -151,6 +152,7 @@ const FillScreen2 = ({navigation}: any) => {
                 <Text style={styles.label}>Golongan Darah</Text>
                 <Dropdown
                   style={[styles.dropdown(errors.golongan_darah)]}
+                  placeholderStyle={{fontSize: 13}}
                   data={[
                     {label: 'A', value: 'A'},
                     {label: 'B', value: 'B'},

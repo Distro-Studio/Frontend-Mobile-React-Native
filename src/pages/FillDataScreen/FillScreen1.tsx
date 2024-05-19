@@ -196,6 +196,7 @@ const FillScreen1 = ({navigation}: any) => {
                   <Text style={styles.label}>Jenis Kelamin</Text>
                   <Dropdown
                     style={[styles.dropdown(errors.jenis_kelamin)]}
+                    placeholderStyle={{fontSize: 13}}
                     data={[
                       {label: 'Laki-laki', value: 'Laki-laki'},
                       {label: 'Perempuan', value: 'Perempuan'},

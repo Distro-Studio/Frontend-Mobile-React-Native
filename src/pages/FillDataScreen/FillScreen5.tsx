@@ -1,9 +1,9 @@
-import {View, Text, ScrollView, Pressable} from 'react-native';
+import {View, Text, ScrollView, Pressable, Modal} from 'react-native';
 import React from 'react';
 import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
 import {useRoute} from '@react-navigation/native';
 import {getResponsive} from '../../utils';
-import {CustomButton, Input} from '../../components';
+import {CustomButton, CustomDatePicker, Input} from '../../components';
 import {object, string} from 'yup';
 import {Formik} from 'formik';
 import APIEndpoints from '../../services/endpoints';
@@ -21,6 +21,34 @@ const formData = new FormData();
 
 const FillScreen5 = ({navigation}: any) => {
   const route = useRoute();
+  const [isDatePickerSTRVisible, setDatePickerSTRVisibility] =
+    React.useState(false);
+  const [isDatePickerSIPVisible, setDatePickerSIPVisibility] =
+    React.useState(false);
+
+  const showDatePickerSTR = () => {
+    setDatePickerSTRVisibility(true);
+  };
+
+  const hideDatePickerSTR = () => {
+    setDatePickerSTRVisibility(false);
+  };
+
+  const handleConfirmSTR = () => {
+    hideDatePickerSTR();
+  };
+
+  const showDatePickerSIP = () => {
+    setDatePickerSIPVisibility(true);
+  };
+
+  const hideDatePickerSIP = () => {
+    setDatePickerSIPVisibility(false);
+  };
+
+  const handleConfirmSIP = () => {
+    hideDatePickerSIP();
+  };
 
   async function handleFillData(fields: any) {
     try {
@@ -56,7 +84,14 @@ const FillScreen5 = ({navigation}: any) => {
         }}
         validationSchema={fillData5Schema}
         onSubmit={e => handleFillData(e)}>
-        {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          setFieldValue,
+          values,
+          errors,
+        }) => (
           <>
             <ScrollView>
               <View>
@@ -80,15 +115,53 @@ const FillScreen5 = ({navigation}: any) => {
                     {errors.nomor_str}
                   </Text>
                 )}
-                <Input
-                  name="Masa Berlaku STR"
-                  placeholder="Pilih Tanggal"
-                  type="text"
-                  onChangeText={handleChange('masa_berlaku_str')}
-                  onBlur={handleBlur('masa_berlaku_str')}
-                  value={values.masa_berlaku_str}
-                  error={errors.masa_berlaku_str}
-                />
+                <Pressable onPress={showDatePickerSTR}>
+                  <Input
+                    name="Masa Berlaku STR"
+                    placeholder="Pilih Tanggal"
+                    editable={false}
+                    onBlur={handleBlur('masa_berlaku_str')}
+                    value={values.masa_berlaku_str}
+                    error={errors.masa_berlaku_str}
+                  />
+                </Pressable>
+                <Modal
+                  animationType="fade"
+                  transparent
+                  visible={isDatePickerSTRVisible}>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: 'rgba(0,0,0,.5)',
+                      padding: 20,
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        paddingVertical: 16,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                      }}
+                    />
+                    <CustomDatePicker
+                      modeCalendar="calendar"
+                      onSelectedChange={(date: any) => {
+                        handleConfirmSTR();
+                        setFieldValue('masa_berlaku_str', date);
+                      }}
+                      style={{
+                        borderBottomRightRadius: 10,
+                        borderBottomLeftRadius: 10,
+                      }}
+                    />
+                  </View>
+                </Modal>
                 {errors.masa_berlaku_str && (
                   <Text style={{fontSize: 10, color: 'red'}}>
                     {errors.masa_berlaku_str}
@@ -108,15 +181,53 @@ const FillScreen5 = ({navigation}: any) => {
                     {errors.nomor_sip}
                   </Text>
                 )}
-                <Input
-                  name="Masa Berlaku SIP"
-                  placeholder="Pilih Tanggal"
-                  type="text"
-                  onChangeText={handleChange('masa_berlaku_sip')}
-                  onBlur={handleBlur('masa_berlaku_sip')}
-                  value={values.masa_berlaku_sip}
-                  error={errors.masa_berlaku_sip}
-                />
+                <Pressable onPress={showDatePickerSIP}>
+                  <Input
+                    name="Masa Berlaku SIP"
+                    placeholder="Pilih Tanggal"
+                    editable={false}
+                    onBlur={handleBlur('masa_berlaku_sip')}
+                    value={values.masa_berlaku_sip}
+                    error={errors.masa_berlaku_sip}
+                  />
+                </Pressable>
+                <Modal
+                  animationType="fade"
+                  transparent
+                  visible={isDatePickerSIPVisible}>
+                  <View
+                    style={{
+                      flex: 1,
+                      justifyContent: 'center',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: 'rgba(0,0,0,.5)',
+                      padding: 20,
+                    }}>
+                    <View
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        paddingVertical: 16,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                      }}
+                    />
+                    <CustomDatePicker
+                      modeCalendar="calendar"
+                      onSelectedChange={(date: any) => {
+                        handleConfirmSIP();
+                        setFieldValue('masa_berlaku_sip', date);
+                      }}
+                      style={{
+                        borderBottomRightRadius: 10,
+                        borderBottomLeftRadius: 10,
+                      }}
+                    />
+                  </View>
+                </Modal>
                 {errors.masa_berlaku_sip && (
                   <Text style={{fontSize: 10, color: 'red'}}>
                     {errors.masa_berlaku_sip}
