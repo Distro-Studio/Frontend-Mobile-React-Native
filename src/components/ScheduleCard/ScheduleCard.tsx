@@ -14,6 +14,7 @@ const ScheduleCard = ({
   onSwap,
   id,
   onActive,
+  onPress,
 }) => {
   // cardState 3 -> active, inactive, default
   // inactive + isHoliday -> holiday
@@ -22,14 +23,7 @@ const ScheduleCard = ({
   return (
     <Pressable
       style={styles.schedule_card_state(cardState, isSmall)}
-      onPress={() => {
-        if (onActive) {
-          return onActive(id);
-        }
-        if (navigation !== null) {
-          return navigation?.navigate('DetailScheduleScreen');
-        }
-      }}>
+      onPress={onPress}>
       <View style={styles.schedule_card_container}>
         {/* info */}
         <View>

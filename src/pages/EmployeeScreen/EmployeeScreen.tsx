@@ -113,6 +113,7 @@ const EmployeeScreen = ({navigation}) => {
                 name={item.name}
                 role={item.role}
                 status={item.state}
+                onPress={() => navigation.navigate('DetailEmployeeScreen')}
               />
             </View>
           )}

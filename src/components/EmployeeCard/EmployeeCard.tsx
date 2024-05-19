@@ -13,19 +13,10 @@ const EmployeeCard = ({
   navigation,
   isShowBadge = true,
   routeName,
+  onPress,
 }) => {
   return (
-    <Pressable
-      style={styles.employee_card_active(active)}
-      onPress={() => {
-        if (onActive) {
-          onActive(id);
-          return;
-        }
-        if (navigation !== null) {
-          return navigation?.navigate('DetailEmployeeScreen');
-        }
-      }}>
+    <Pressable style={styles.employee_card_active(active)} onPress={onPress}>
       <View style={styles.employee_card_container(routeName)}>
         <View style={styles.employee_info}>
           <View style={styles.employee_img}>{/* <Text>img</Text> */}</View>
@@ -39,7 +30,7 @@ const EmployeeCard = ({
             </Text>
           </View>
         </View>
-        {isShowBadge && (
+        {status && isShowBadge && (
           <View
             style={[
               styles.employee_badge,

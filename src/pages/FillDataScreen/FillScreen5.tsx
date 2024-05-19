@@ -9,12 +9,12 @@ import {Formik} from 'formik';
 import APIEndpoints from '../../services/endpoints';
 
 const fillData5Schema = object({
-  nomor_str: string().required(),
-  masa_berlaku_str: string().required(),
-  nomor_sip: string().required(),
-  masa_berlaku_sip: string().required(),
-  bpjs_kesehatan: string().required(),
-  bpjs_ketenagakerjaan: string().required(),
+  nomor_str: string().required('No. STR harus diisi!'),
+  masa_berlaku_str: string().required('Masa berlaku STR harus diisi!'),
+  nomor_sip: string().required('No. SIP harus diisi!'),
+  masa_berlaku_sip: string().required('Masa berlaku SIP harus diisi!'),
+  bpjs_kesehatan: string().required('BPJS Kesehatan harus diisi!'),
+  bpjs_ketenagakerjaan: string().required('BPJS Ketenagakerjaan harus diisi!'),
 });
 
 const formData = new FormData();

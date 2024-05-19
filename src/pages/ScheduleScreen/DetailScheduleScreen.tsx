@@ -39,6 +39,7 @@ const DetailScheduleScreen = ({navigation}) => {
           isSmall={true}
           cardState={item === active ? 'active' : ''}
           onActive={getActiveCard}
+          onPress={() => getActiveCard(item)}
         />
       </View>
     );
@@ -74,6 +75,7 @@ const DetailScheduleScreen = ({navigation}) => {
                 role={item.role}
                 status={item.state}
                 routeName={route.name}
+                onPress={() => navigation.navigate('DetailEmployeeScreen')}
               />
             </View>
           )}

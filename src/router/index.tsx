@@ -36,6 +36,9 @@ import {
   FillScreen4,
   FillScreen5,
   FillScreen6,
+  GantiJadwalPilihKaryawan,
+  GantiJadwalPilihJadwalKaryawan,
+  GantiJadwalPilihJadwalUser,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -131,6 +134,21 @@ const Router = () => {
           name="GantiJadwalScreen"
           options={{headerTitleAlign: 'center', header: () => null}}
           component={GantiJadwalScreen}
+        />
+        <Stack.Screen
+          name="GantiJadwalPilihKaryawan"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={GantiJadwalPilihKaryawan}
+        />
+        <Stack.Screen
+          name="GantiJadwalPilihJadwalKaryawan"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={GantiJadwalPilihJadwalKaryawan}
+        />
+        <Stack.Screen
+          name="GantiJadwalPilihJadwalUser"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={GantiJadwalPilihJadwalUser}
         />
         <Stack.Screen
           name="IjinScreen"

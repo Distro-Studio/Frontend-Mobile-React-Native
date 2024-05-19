@@ -10,12 +10,12 @@ import APIEndpoints from '../../services/endpoints';
 import {Dropdown} from 'react-native-element-dropdown';
 
 const fillData2Schema = object({
-  nomor_induk_kependudukan: string().required(),
-  nomor_kartu_keluarga: string().required(),
-  agama: string().required(),
-  golongan_darah: string().required(),
-  tinggi_badan: string().required(),
-  alamat: string().required(),
+  nomor_induk_kependudukan: string().required('NIK harus diisi!'),
+  nomor_kartu_keluarga: string().required('NKK harus diisi!'),
+  agama: string().required('Agama harus diisi!'),
+  golongan_darah: string().required('Golongan darah harus diisi!'),
+  tinggi_badan: string().required('Tinggi badan harus diisi!'),
+  alamat: string().required('Alamat harus diisi!'),
 });
 
 const formData = new FormData();

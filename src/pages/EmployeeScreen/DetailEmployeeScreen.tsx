@@ -67,7 +67,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
           name={item.name}
           role={item.role}
           status={item.state}
-          onActive={getActiveCard}
+          onPress={() => getActiveCard(item.id)}
         />
       </View>
     );

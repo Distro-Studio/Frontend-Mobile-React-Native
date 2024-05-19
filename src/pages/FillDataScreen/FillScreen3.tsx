@@ -9,8 +9,8 @@ import {Formik} from 'formik';
 import APIEndpoints from '../../services/endpoints';
 
 const fillData3Schema = object({
-  ijazah_terakhir: string().required(),
-  tahun_lulus: string().required(),
+  ijazah_terakhir: string().required('Ijazah harus diisi!'),
+  tahun_lulus: string().required('Tahun lulus harus diisi!'),
 });
 
 const formData = new FormData();

@@ -125,6 +125,7 @@ const ScheduleScreen = ({navigation}) => {
           routeName={item.routeName}
           navigation={item.navigation}
           isHoliday={item.isHoliday}
+          onPress={() => navigation.navigate('DetailScheduleScreen')}
           // cardState={item.cardState}
         />
       </View>

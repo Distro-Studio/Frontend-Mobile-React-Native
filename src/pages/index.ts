@@ -29,6 +29,10 @@ export {default as LaporanScreen} from './MenusScreen/LaporanScreen';
 export {default as LemburScreen} from './MenusScreen/LemburScreen';
 export {default as SlipGajiScreen} from './MenusScreen/SlipGajiScreen';
 //
+export {default as GantiJadwalPilihKaryawan} from './MenusScreen/SubScreen/GantiJadwalPilihKaryawan';
+export {default as GantiJadwalPilihJadwalKaryawan} from './MenusScreen/SubScreen/GantiJadwalPilihJadwalKaryawan';
+export {default as GantiJadwalPilihJadwalUser} from './MenusScreen/SubScreen/GantiJadwalPilihJadwalUser';
+//
 export {default as FillScreen1} from './FillDataScreen/FillScreen1';
 export {default as FillScreen2} from './FillDataScreen/FillScreen2';
 export {default as FillScreen3} from './FillDataScreen/FillScreen3';

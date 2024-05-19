@@ -23,10 +23,10 @@ import APIEndpoints from '../../services/endpoints';
 import {Dropdown} from 'react-native-element-dropdown';
 
 const fillData1Schema = object({
-  tempat_lahir: string().required(),
-  tanggal_lahir: string().required(),
-  nomor_telepon: string().required(),
-  jenis_kelamin: string().required(),
+  tempat_lahir: string().required('Tempat lahir harus diisi!'),
+  tanggal_lahir: string().required('Tanggal lahir harus diisi!'),
+  nomor_telepon: string().required('Nomor telepon harus diisi!'),
+  jenis_kelamin: string().required('Jenis kelamin harus diisi!'),
 });
 
 const formData = new FormData();

@@ -1,19 +1,33 @@
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import React from 'react';
-import {CustomHeaderApp} from '../../components';
+import {Banner, CustomHeaderApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {FlatList} from 'react-native-gesture-handler';
+import {IconSearch} from '../../assets/images';
 
 const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
   const menus = ['Terbaru', 'Histori'];
   const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
+
+  const headerIcon = () => {
+    return (
+      <Pressable>
+        <Image source={IconSearch} style={{width: 20, height: 20}} />
+      </Pressable>
+    );
+  };
+
   return (
     <>
-      <CustomHeaderApp backButton={true} screenName={'Cuti'} />
+      <CustomHeaderApp
+        backButton={true}
+        screenName={'Cuti'}
+        rightIcon={headerIcon()}
+      />
       {/*  */}
       <View style={styles.container}>
-        <View>
+        <View style={{marginBottom: 24}}>
           <FlatList
             data={leaveBoxes}
             numColumns={2}
@@ -39,6 +53,12 @@ const LeavesScreen = () => {
             )}
           />
         </View>
+        <Banner
+          headerText={
+            'Perlukan Cuti? Ajukan Sekarang untuk Waktu Luang yang Nyaman!'
+          }
+          buttonText={'Ajukan Cuti'}
+        />
         {/*  */}
         <View style={styles.menu_container}>
           {menus.map(item => (
@@ -60,6 +80,7 @@ const LeavesScreen = () => {
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
           contentContainerStyle={{gap: 16}}
+          showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <View key={item} style={styles.leave_card}>
               <View
@@ -84,7 +105,7 @@ const LeavesScreen = () => {
               <Text
                 style={{
                   color: '#222831',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   fontSize: 14,
                   marginTop: 4,
                   marginBottom: 8,
@@ -98,7 +119,7 @@ const LeavesScreen = () => {
                   <Text
                     style={{
                       color: '#222831',
-                      fontWeight: '600',
+                      fontWeight: '700',
                       fontSize: 14,
                       marginTop: 4,
                       marginBottom: 8,
@@ -111,7 +132,7 @@ const LeavesScreen = () => {
                   <Text
                     style={{
                       color: '#222831',
-                      fontWeight: '600',
+                      fontWeight: '700',
                       fontSize: 14,
                       marginTop: 4,
                       marginBottom: 8,
