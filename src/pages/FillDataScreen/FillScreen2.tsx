@@ -111,6 +111,8 @@ const FillScreen2 = ({navigation}: any) => {
                 <Text style={styles.label}>Agama</Text>
                 <Dropdown
                   style={[styles.dropdown(errors.agama)]}
+                  placeholderStyle={{fontSize: 13, color: '#BABCBF'}}
+                  selectedTextStyle={{fontSize: 13, color: '#0C0E11'}}
                   data={[
                     {label: 'Buddha', value: 'Buddha'},
                     {label: 'Hindu', value: 'Hindu'},
@@ -133,7 +135,6 @@ const FillScreen2 = ({navigation}: any) => {
                     borderBottomRightRadius: 8,
                   }}
                   itemTextStyle={{color: '#454545'}}
-                  placeholderStyle={{fontSize: 13}}
                 />
                 {errors.agama && (
                   <Text style={{fontSize: 10, color: 'red'}}>
@@ -152,7 +153,8 @@ const FillScreen2 = ({navigation}: any) => {
                 <Text style={styles.label}>Golongan Darah</Text>
                 <Dropdown
                   style={[styles.dropdown(errors.golongan_darah)]}
-                  placeholderStyle={{fontSize: 13}}
+                  placeholderStyle={{fontSize: 13, color: '#BABCBF'}}
+                  selectedTextStyle={{fontSize: 13, color: '#0C0E11'}}
                   data={[
                     {label: 'A', value: 'A'},
                     {label: 'B', value: 'B'},
