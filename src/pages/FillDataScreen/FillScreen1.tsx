@@ -1,12 +1,26 @@
-import {View, Text, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+  StyleSheet,
+} from 'react-native';
 import React from 'react';
 import {useRoute} from '@react-navigation/native';
 import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
-import {CustomButton, Input} from '../../components';
+import {
+  CustomButton,
+  CustomDatePicker,
+  Input,
+  ModalApp,
+} from '../../components';
 import {getResponsive} from '../../utils';
 import {Formik} from 'formik';
 import {object, string} from 'yup';
 import APIEndpoints from '../../services/endpoints';
+import {Dropdown} from 'react-native-element-dropdown';
 
 const fillData1Schema = object({
   tempat_lahir: string().required(),
@@ -19,9 +33,24 @@ const formData = new FormData();
 
 const FillScreen1 = ({navigation}: any) => {
   const route = useRoute();
+  const [isDatePickerVisible, setDatePickerVisibility] = React.useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = () => {
+    hideDatePicker();
+  };
 
   async function handleFillData(fields: any) {
     try {
+      console.log('haloo');
+      console.log(fields);
       // formData.append('tempat_lahir', fields.tempat_lahir);
       // formData.append('tanggal_lahir', fields.tanggal_lahir);
       // formData.append('nomor_telepon', fields.nomor_telepon);
@@ -47,7 +76,14 @@ const FillScreen1 = ({navigation}: any) => {
         }}
         validationSchema={fillData1Schema}
         onSubmit={e => handleFillData(e)}>
-        {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          setFieldValue,
+          values,
+          errors,
+        }) => (
           <>
             <ScrollView>
               <View>
@@ -82,24 +118,62 @@ const FillScreen1 = ({navigation}: any) => {
                       {errors.tempat_lahir}
                     </Text>
                   )}
-                  <Input
-                    name="Tanggal Lahir"
-                    placeholder="Masukkan Tanggal Lahir anda"
-                    type="date"
-                    onChangeText={handleChange('tanggal_lahir')}
-                    onBlur={handleBlur('tanggal_lahir')}
-                    value={values.tanggal_lahir}
-                    error={errors.tanggal_lahir}
-                  />
+                  <Pressable onPress={showDatePicker}>
+                    <Input
+                      name="Tanggal Lahir"
+                      editable={false}
+                      placeholder="Masukkan Tanggal Lahir Anda"
+                      onBlur={handleBlur('tanggal_lahir')}
+                      value={values.tanggal_lahir}
+                      error={errors.tanggal_lahir}
+                    />
+                  </Pressable>
                   {errors.tanggal_lahir && (
                     <Text style={{fontSize: 10, color: 'red'}}>
                       {errors.tanggal_lahir}
                     </Text>
                   )}
+                  <Modal
+                    animationType="fade"
+                    transparent
+                    visible={isDatePickerVisible}>
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,.5)',
+                        padding: 20,
+                      }}>
+                      <View
+                        style={{
+                          backgroundColor: '#FFFFFF',
+                          paddingVertical: 16,
+                          borderTopLeftRadius: 10,
+                          borderTopRightRadius: 10,
+                        }}
+                      />
+                      <CustomDatePicker
+                        modeCalendar="calendar"
+                        onSelectedChange={(date: any) => {
+                          handleConfirm();
+                          setFieldValue('tanggal_lahir', date);
+                        }}
+                        style={{
+                          borderBottomRightRadius: 10,
+                          borderBottomLeftRadius: 10,
+                        }}
+                      />
+                    </View>
+                  </Modal>
                   <Input
                     name="Nomor Telepon"
                     placeholder="Masukkan Nomor Telepon anda"
-                    type="text"
+                    keyboardType="numeric"
                     onChangeText={handleChange('nomor_telepon')}
                     onBlur={handleBlur('nomor_telepon')}
                     value={values.nomor_telepon}
@@ -110,7 +184,7 @@ const FillScreen1 = ({navigation}: any) => {
                       {errors.nomor_telepon}
                     </Text>
                   )}
-                  <Input
+                  {/* <Input
                     name="Jenis Kelamin"
                     placeholder="Pilih Jenis Kelamin"
                     type="text"
@@ -118,6 +192,27 @@ const FillScreen1 = ({navigation}: any) => {
                     onBlur={handleBlur('jenis_kelamin')}
                     value={values.jenis_kelamin}
                     error={errors.jenis_kelamin}
+                  /> */}
+                  <Text style={styles.label}>Jenis Kelamin</Text>
+                  <Dropdown
+                    style={[styles.dropdown(errors.jenis_kelamin)]}
+                    data={[
+                      {label: 'Laki-laki', value: 'Laki-laki'},
+                      {label: 'Perempuan', value: 'Perempuan'},
+                    ]}
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={'Pilih Jenis Kelamin'}
+                    value={values.jenis_kelamin}
+                    onChange={item => {
+                      setFieldValue('jenis_kelamin', item.value);
+                    }}
+                    containerStyle={{
+                      borderBottomLeftRadius: 8,
+                      borderBottomRightRadius: 8,
+                    }}
+                    itemTextStyle={{color: '#454545'}}
                   />
                   {errors.jenis_kelamin && (
                     <Text style={{fontSize: 10, color: 'red'}}>
@@ -138,5 +233,23 @@ const FillScreen1 = ({navigation}: any) => {
     </FillDataScreenLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  dropdown: error => ({
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderRadius: 12,
+    backgroundColor: '#FCFCFC',
+    borderColor: error ? 'red' : '#ECECEC',
+    borderWidth: 1,
+    color: '#181818',
+  }),
+  label: {
+    color: '#222831',
+    fontWeight: '500',
+  },
+});
 
 export default FillScreen1;

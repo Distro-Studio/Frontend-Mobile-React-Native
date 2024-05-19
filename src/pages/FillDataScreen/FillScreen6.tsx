@@ -166,7 +166,7 @@ const FillScreen6 = ({navigation}) => {
         mt={getResponsive(40, 'height')}
         onPress={() => {
           navigation.navigate('MainApp');
-          storeLoggedIn('logged_in');
+          // storeLoggedIn('logged_in');
         }}
       />
     </FillDataScreenLayout>
