@@ -69,7 +69,7 @@ const FillScreen5 = ({navigation}: any) => {
                 <Input
                   name="No. STR"
                   placeholder="Masukan Nomor STR"
-                  type="text"
+                  keyboardType="numeric"
                   onChangeText={handleChange('nomor_str')}
                   onBlur={handleBlur('nomor_str')}
                   value={values.nomor_str}
@@ -97,7 +97,7 @@ const FillScreen5 = ({navigation}: any) => {
                 <Input
                   name="No. SIP"
                   placeholder="Masukan Nomor SIP"
-                  type="text"
+                  keyboardType="numeric"
                   onChangeText={handleChange('nomor_sip')}
                   onBlur={handleBlur('nomor_sip')}
                   value={values.nomor_sip}

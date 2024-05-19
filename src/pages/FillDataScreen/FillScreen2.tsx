@@ -1,4 +1,4 @@
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import React from 'react';
 import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
 import {CustomButton, Input} from '../../components';
@@ -7,6 +7,7 @@ import {getResponsive} from '../../utils';
 import {object, string} from 'yup';
 import {Formik} from 'formik';
 import APIEndpoints from '../../services/endpoints';
+import {Dropdown} from 'react-native-element-dropdown';
 
 const fillData2Schema = object({
   nomor_induk_kependudukan: string().required(),
@@ -59,14 +60,21 @@ const FillScreen2 = ({navigation}: any) => {
         }}
         validationSchema={fillData2Schema}
         onSubmit={e => handleFillData(e)}>
-        {({handleChange, handleBlur, handleSubmit, values, errors}) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          setFieldValue,
+          values,
+          errors,
+        }) => (
           <>
             <ScrollView>
               <View style={{marginTop: 16, gap: 16}}>
                 <Input
                   name="Nomor Induk Kependudukan"
                   placeholder="Masukan Nomor Induk Kependudukan Anda"
-                  type="text"
+                  keyboardType="numeric"
                   onChangeText={handleChange('nomor_induk_kependudukan')}
                   onBlur={handleBlur('nomor_induk_kependudukan')}
                   value={values.nomor_induk_kependudukan}
@@ -80,7 +88,7 @@ const FillScreen2 = ({navigation}: any) => {
                 <Input
                   name="Nomor Kartu Keluarga"
                   placeholder="Masukan Nomor Kartu Keluarga Anda"
-                  type="text"
+                  keyboardType="numeric"
                   onChangeText={handleChange('nomor_kartu_keluarga')}
                   onBlur={handleBlur('nomor_kartu_keluarga')}
                   value={values.nomor_kartu_keluarga}
@@ -91,7 +99,7 @@ const FillScreen2 = ({navigation}: any) => {
                     {errors.nomor_kartu_keluarga}
                   </Text>
                 )}
-                <Input
+                {/* <Input
                   name="Agama"
                   placeholder="Pilih Agama"
                   type="text"
@@ -99,13 +107,39 @@ const FillScreen2 = ({navigation}: any) => {
                   onBlur={handleBlur('agama')}
                   value={values.agama}
                   error={errors.agama}
+                /> */}
+                <Text style={styles.label}>Agama</Text>
+                <Dropdown
+                  style={[styles.dropdown(errors.agama)]}
+                  data={[
+                    {label: 'Buddha', value: 'Buddha'},
+                    {label: 'Hindu', value: 'Hindu'},
+                    {label: 'Islam', value: 'Islam'},
+                    {label: 'Katholik', value: 'Katholik'},
+                    {label: 'Konghucu', value: 'Konghucu'},
+                    {label: 'Kristen', value: 'Kristen'},
+                    {label: 'Lainnya', value: 'Lainnya'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder={'Pilih Agama'}
+                  value={values.agama}
+                  onChange={item => {
+                    setFieldValue('agama', item.value);
+                  }}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
                 />
                 {errors.agama && (
                   <Text style={{fontSize: 10, color: 'red'}}>
                     {errors.agama}
                   </Text>
                 )}
-                <Input
+                {/* <Input
                   name="Golongan Darah"
                   placeholder="Pilih Golongan Darah"
                   type="text"
@@ -113,6 +147,29 @@ const FillScreen2 = ({navigation}: any) => {
                   onBlur={handleBlur('golongan_darah')}
                   value={values.golongan_darah}
                   error={errors.golongan_darah}
+                /> */}
+                <Text style={styles.label}>Golongan Darah</Text>
+                <Dropdown
+                  style={[styles.dropdown(errors.golongan_darah)]}
+                  data={[
+                    {label: 'A', value: 'A'},
+                    {label: 'B', value: 'B'},
+                    {label: 'AB', value: 'AB'},
+                    {label: 'O', value: 'O'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder={'Pilih Golongan Darah'}
+                  value={values.golongan_darah}
+                  onChange={item => {
+                    setFieldValue('golongan_darah', item.value);
+                  }}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
                 />
                 {errors.golongan_darah && (
                   <Text style={{fontSize: 10, color: 'red'}}>
@@ -122,11 +179,12 @@ const FillScreen2 = ({navigation}: any) => {
                 <Input
                   name="Tinggi Badan"
                   placeholder="Masukan Tinggi Badan Anda"
-                  type="text"
+                  keyboardType="numeric"
                   onChangeText={handleChange('tinggi_badan')}
                   onBlur={handleBlur('tinggi_badan')}
                   value={values.tinggi_badan}
                   error={errors.tinggi_badan}
+                  maxLength={3}
                 />
                 {errors.tinggi_badan && (
                   <Text style={{fontSize: 10, color: 'red'}}>
@@ -160,5 +218,23 @@ const FillScreen2 = ({navigation}: any) => {
     </FillDataScreenLayout>
   );
 };
+
+const styles = StyleSheet.create({
+  dropdown: error => ({
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderRadius: 12,
+    backgroundColor: '#FCFCFC',
+    borderColor: error ? 'red' : '#ECECEC',
+    borderWidth: 1,
+    color: '#181818',
+  }),
+  label: {
+    color: '#222831',
+    fontWeight: '500',
+  },
+});
 
 export default FillScreen2;

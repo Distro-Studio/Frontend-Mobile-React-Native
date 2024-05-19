@@ -3,7 +3,7 @@ import {Modal, StyleSheet, View} from 'react-native';
 
 const ModalApp = ({children, isModal}: any) => {
   return (
-    <View style={[styles.centeredView]}>
+    <View style={[styles.centeredView, styles.modalViewContainer]}>
       <Modal animationType="fade" transparent visible={isModal}>
         <View style={[styles.centeredView, styles.fillBackround]} />
         <View style={styles.modalViewContainer}>

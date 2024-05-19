@@ -65,7 +65,8 @@ const FillScreen3 = ({navigation}: any) => {
                 <Input
                   name="Tahun Lulus"
                   placeholder="Masukan Tahun Lulus"
-                  type="text"
+                  keyboardType="numeric"
+                  maxLength={4}
                   onChangeText={handleChange('tahun_lulus')}
                   onBlur={handleBlur('tahun_lulus')}
                   value={values.tahun_lulus}
