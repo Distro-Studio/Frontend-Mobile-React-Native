@@ -20,8 +20,13 @@ import Geolocation from '@react-native-community/geolocation';
 import calculateDistance from '../../utils';
 import {ModalContext} from '../../contexts/ModalContext';
 import {PresenceContext} from '../../contexts/PresenceContext';
+import {useAppSelector} from '../../redux';
 
 const HeaderAttendance = () => {
+  const attendanceState = useAppSelector(
+    state => state.attendance.attendanceState,
+  );
+  console.log('attendance redux header', attendanceState);
   const {state: presenceState} = React.useContext(PresenceContext);
   const {state} = React.useContext(MapsContext);
   const {dispatch} = React.useContext(ModalContext);
@@ -87,22 +92,17 @@ const HeaderAttendance = () => {
     );
   }, []);
 
-  console.log(presenceState);
-
   return (
     <View style={styles.header_attendance_container}>
       <Text style={styles.header_attendance_time}>{time}</Text>
       <Text style={styles.header_attendance_date}>{date}</Text>
-      {presenceState.presence_in === false &&
-        presenceState.presence_success === false && (
-          <Pressable
-            style={styles.header_attendance}
-            onPress={handleNavigation}>
-            <Image source={IconAttendance} style={{marginBottom: 8}} />
-            <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
-          </Pressable>
-        )}
-      {presenceState.presence_in === true && (
+      {attendanceState.in === false && (
+        <Pressable style={styles.header_attendance} onPress={handleNavigation}>
+          <Image source={IconAttendance} style={{marginBottom: 8}} />
+          <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
+        </Pressable>
+      )}
+      {attendanceState.in === true && (
         <Pressable onPress={handleNavigation}>
           <LinearGradient
             start={{x: -1.6, y: 0.3}}

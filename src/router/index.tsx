@@ -180,11 +180,11 @@ const Router = () => {
       <Stack.Group
         screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
         <Stack.Screen name="FillScreen1" component={FillScreen1} />
-        <Stack.Screen name="FillScreen2" component={FillScreen2} />
-        <Stack.Screen name="FillScreen3" component={FillScreen3} />
-        <Stack.Screen name="FillScreen4" component={FillScreen4} />
-        <Stack.Screen name="FillScreen5" component={FillScreen5} />
-        <Stack.Screen name="FillScreen6" component={FillScreen6} />
+        {/* <Stack.Screen name="FillScreen2" component={FillScreen2} />
+        <Stack.Screen name="FillScreen3" component={FillScreen3} /> */}
+        <Stack.Screen name="FillScreen2" component={FillScreen4} />
+        <Stack.Screen name="FillScreen3" component={FillScreen5} />
+        <Stack.Screen name="FillScreen4" component={FillScreen6} />
       </Stack.Group>
       {/* non splash screen */}
       <Stack.Screen

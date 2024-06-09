@@ -58,3 +58,4 @@ export {default as IconSearch} from './icon-search.png';
 export {default as IconNotificationBlack} from './icon-notification-black.png';
 //
 export {default as RSKILogoSVG} from './rski-logo.svg';
+export {default as ChevronDown} from './chevron-down.png';

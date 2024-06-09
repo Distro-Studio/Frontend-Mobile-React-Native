@@ -53,7 +53,7 @@ const FillScreen5 = ({navigation}: any) => {
   async function handleFillData(fields: any) {
     try {
       console.log('haloo');
-      navigation.navigate('FillScreen6');
+      navigation.navigate('FillScreen4');
       // formData.append('nomor_str', fields.nomor_str);
       // formData.append('masa_berlaku_str', fields.masa_berlaku_str);
       // formData.append('nomor_sip', fields.nomor_sip);
@@ -93,7 +93,7 @@ const FillScreen5 = ({navigation}: any) => {
           errors,
         }) => (
           <>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <View>
                 <Text
                   style={{color: '#222831', fontSize: 20, fontWeight: '600'}}>

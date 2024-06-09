@@ -5,7 +5,7 @@ import {getResponsive} from '../utils';
 import {useNavigation} from '@react-navigation/native';
 
 const FillDataScreenLayout = ({children, routeName}) => {
-  const paginationBar = [1, 2, 3, 4, 5, 6];
+  const paginationBar = [1, 2, 3, 4];
   const navigation = useNavigation();
 
   return (

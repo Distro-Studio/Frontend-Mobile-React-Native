@@ -1,18 +1,23 @@
-import {View, Text, ScrollView, Pressable} from 'react-native';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useRoute} from '@react-navigation/native';
-import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
+import React from 'react';
+import {Pressable, ScrollView, Text, View} from 'react-native';
 import {CustomButton} from '../../components';
+import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
+import {useAppDispatch} from '../../redux';
 import {getResponsive} from '../../utils';
 import {APP} from '../../utils/CONSTANT';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setAttendanceState} from '../../redux/attendanceSlice';
+import {setAuthState} from '../../redux/authSlice';
 
 const FillScreen6 = ({navigation}) => {
   const route = useRoute();
+  const dispatch = useAppDispatch();
 
   async function storeLoggedIn(value: string) {
     try {
-      await AsyncStorage.setItem('logged_in', value);
+      dispatch(setAuthState(true));
+      // await AsyncStorage.setItem('logged_in', value);
     } catch (e) {
       // saving error
     }
@@ -20,7 +25,7 @@ const FillScreen6 = ({navigation}) => {
 
   return (
     <FillDataScreenLayout routeName={route.name}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <Text style={{color: '#222831', fontSize: 20, fontWeight: '600'}}>
             Upload Berkas
@@ -165,6 +170,7 @@ const FillScreen6 = ({navigation}) => {
         text="Simpan"
         mt={getResponsive(40, 'height')}
         onPress={() => {
+          console.log('halo');
           navigation.navigate('MainApp');
           storeLoggedIn('logged_in');
         }}

@@ -1,3 +1,4 @@
+import Geolocation from '@react-native-community/geolocation';
 import React from 'react';
 import {
   Alert,
@@ -11,28 +12,27 @@ import {
   Text,
   View,
 } from 'react-native';
+import {useCameraPermission} from 'react-native-vision-camera';
 import {
   IconClose,
   IconFailPresence,
-  IconModalLocation,
   IconModalRange,
   IconSuccessPresence,
 } from '../../assets/images';
 import {HomeActivity, HomeHeader, HomeMenus, ModalApp} from '../../components';
+import {MapsContext} from '../../contexts/MapsContext';
+import {ModalContext} from '../../contexts/ModalContext';
+import calculateDistance from '../../utils';
 import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
-import Geolocation from '@react-native-community/geolocation';
-import {MapsContext} from '../../contexts/MapsContext';
-import calculateDistance from '../../utils';
-import {ModalContext} from '../../contexts/ModalContext';
-import {PresenceContext} from '../../contexts/PresenceContext';
 // import Geolocation from '@react-native-community/geolocation';
 
 const HomeScreen = ({route}) => {
-  const {dispatch: presenceDispatcher, state: presenceState} =
-    React.useContext(PresenceContext);
+  // context
   const {dispatch: dispactherModal, state} = React.useContext(ModalContext);
-  const [isModalLocation, setIsModalLocation] = React.useState(true);
+  // state
+  const {hasPermission, requestPermission} = useCameraPermission();
+  // const [isModalLocation, setIsModalLocation] = React.useState(true);
   const [isModalRange, setIsModalRange] = React.useState(true);
   const [isModalSuccessPresence, setIsModalSuccessPresence] =
     React.useState(false);
@@ -41,8 +41,6 @@ const HomeScreen = ({route}) => {
   const {dispatch} = React.useContext(MapsContext);
   const [refreshing, setRefreshing] = React.useState(false);
   const [distanceFromLocation, setDistanceFromLocation] = React.useState(0);
-
-  console.log('getprops:', isModalSuccessPresence);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -88,10 +86,10 @@ const HomeScreen = ({route}) => {
         },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        setIsModalLocation(false);
+        // setIsModalLocation(false);
         console.log('You can use the location');
       } else {
-        setIsModalLocation(true);
+        // setIsModalLocation(true);
         console.log('location permission denied');
       }
     } catch (err) {
@@ -111,6 +109,7 @@ const HomeScreen = ({route}) => {
         long: position.coords.longitude,
         lat: position.coords.latitude,
       });
+      console.log(location);
       setUserLocation(location);
     },
     (error: any) => {
@@ -144,31 +143,20 @@ const HomeScreen = ({route}) => {
 
   React.useEffect(() => {
     requestLocationPermission();
+    if (hasPermission === false) {
+      requestPermission();
+    }
   }, []);
 
   React.useEffect(() => {
-    if (route.params?.props?.isSuccessPresence) {
-      setIsModalSuccessPresence(route.params?.props.isSuccessPresence);
-      presenceDispatcher({
-        type: 'presence_success',
-        payload: route.params?.props.isSuccessPresence,
-      });
-      presenceDispatcher({
-        type: 'presence_in',
-        payload: route.params?.props.isSuccessPresence,
-      });
+    if (route.params?.props) {
+      if (route.params?.props?.isSuccessAttendance) {
+        setIsModalSuccessPresence(route.params?.props.isSuccessAttendance);
+      } else {
+        setIsModalFailPresence(!route.params?.props.isSuccessAttendance);
+      }
     }
-    if (route.params?.props?.isFailPresence) {
-      setIsModalFailPresence(route.params?.props.isFailPresence);
-      presenceDispatcher({
-        type: 'presence_fail',
-        payload: route.params?.props.isFailPresence,
-      });
-    }
-  }, [
-    route.params?.props.isSuccessPresence,
-    route.params?.props.isFailPresence,
-  ]);
+  }, [route.params?.props, route.params?.props.isSuccessAttendance]);
 
   return (
     <>
@@ -256,7 +244,7 @@ berhasil dicatat. Silahkan lakukan
         </ModalApp>
       )}
 
-      {isModalLocation && (
+      {/* {isModalLocation && (
         <ModalApp isModal={isModalLocation}>
           <View
             style={{
@@ -296,7 +284,7 @@ berhasil dicatat. Silahkan lakukan
             </View>
           </View>
         </ModalApp>
-      )}
+      )} */}
 
       {isModalRange && distanceFromLocation > 10 && (
         <ModalApp isModal={isModalRange}>

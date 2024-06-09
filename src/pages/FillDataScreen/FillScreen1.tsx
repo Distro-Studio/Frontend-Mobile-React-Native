@@ -27,6 +27,14 @@ const fillData1Schema = object({
   tanggal_lahir: string().required('Tanggal lahir harus diisi!'),
   nomor_telepon: string().required('Nomor telepon harus diisi!'),
   jenis_kelamin: string().required('Jenis kelamin harus diisi!'),
+  nomor_induk_kependudukan: string().required('NIK harus diisi!'),
+  nomor_kartu_keluarga: string().required('NKK harus diisi!'),
+  agama: string().required('Agama harus diisi!'),
+  golongan_darah: string().required('Golongan darah harus diisi!'),
+  tinggi_badan: string().required('Tinggi badan harus diisi!'),
+  alamat: string().required('Alamat harus diisi!'),
+  ijazah_terakhir: string().required('Ijazah harus diisi!'),
+  tahun_lulus: string().required('Tahun lulus harus diisi!'),
 });
 
 const formData = new FormData();
@@ -73,6 +81,14 @@ const FillScreen1 = ({navigation}: any) => {
           tanggal_lahir: '',
           nomor_telepon: '',
           jenis_kelamin: '',
+          nomor_induk_kependudukan: '',
+          nomor_kartu_keluarga: '',
+          agama: '',
+          golongan_darah: '',
+          tinggi_badan: '',
+          alamat: '',
+          ijazah_terakhir: '',
+          tahun_lulus: '',
         }}
         validationSchema={fillData1Schema}
         onSubmit={e => handleFillData(e)}>
@@ -85,7 +101,7 @@ const FillScreen1 = ({navigation}: any) => {
           errors,
         }) => (
           <>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <View>
                 <Text
                   style={{color: '#222831', fontSize: 20, fontWeight: '600'}}>
@@ -184,15 +200,6 @@ const FillScreen1 = ({navigation}: any) => {
                       {errors.nomor_telepon}
                     </Text>
                   )}
-                  {/* <Input
-                    name="Jenis Kelamin"
-                    placeholder="Pilih Jenis Kelamin"
-                    type="text"
-                    onChangeText={handleChange('jenis_kelamin')}
-                    onBlur={handleBlur('jenis_kelamin')}
-                    value={values.jenis_kelamin}
-                    error={errors.jenis_kelamin}
-                  /> */}
                   <Text style={styles.label}>Jenis Kelamin</Text>
                   <Dropdown
                     style={[styles.dropdown(errors.jenis_kelamin)]}
@@ -219,6 +226,155 @@ const FillScreen1 = ({navigation}: any) => {
                   {errors.jenis_kelamin && (
                     <Text style={{fontSize: 10, color: 'red'}}>
                       {errors.jenis_kelamin}
+                    </Text>
+                  )}
+                  <Input
+                    name="Nomor Induk Kependudukan"
+                    placeholder="Masukan Nomor Induk Kependudukan Anda"
+                    keyboardType="numeric"
+                    onChangeText={handleChange('nomor_induk_kependudukan')}
+                    onBlur={handleBlur('nomor_induk_kependudukan')}
+                    value={values.nomor_induk_kependudukan}
+                    error={errors.nomor_induk_kependudukan}
+                  />
+                  {errors.nomor_induk_kependudukan && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.nomor_induk_kependudukan}
+                    </Text>
+                  )}
+                  <Input
+                    name="Nomor Kartu Keluarga"
+                    placeholder="Masukan Nomor Kartu Keluarga Anda"
+                    keyboardType="numeric"
+                    onChangeText={handleChange('nomor_kartu_keluarga')}
+                    onBlur={handleBlur('nomor_kartu_keluarga')}
+                    value={values.nomor_kartu_keluarga}
+                    error={errors.nomor_kartu_keluarga}
+                  />
+                  {errors.nomor_kartu_keluarga && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.nomor_kartu_keluarga}
+                    </Text>
+                  )}
+                  <Text style={styles.label}>Agama</Text>
+                  <Dropdown
+                    style={[styles.dropdown(errors.agama)]}
+                    placeholderStyle={{fontSize: 13, color: '#BABCBF'}}
+                    selectedTextStyle={{fontSize: 13, color: '#0C0E11'}}
+                    data={[
+                      {label: 'Buddha', value: 'Buddha'},
+                      {label: 'Hindu', value: 'Hindu'},
+                      {label: 'Islam', value: 'Islam'},
+                      {label: 'Katholik', value: 'Katholik'},
+                      {label: 'Konghucu', value: 'Konghucu'},
+                      {label: 'Kristen', value: 'Kristen'},
+                      {label: 'Lainnya', value: 'Lainnya'},
+                    ]}
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={'Pilih Agama'}
+                    value={values.agama}
+                    onChange={item => {
+                      setFieldValue('agama', item.value);
+                    }}
+                    containerStyle={{
+                      borderBottomLeftRadius: 8,
+                      borderBottomRightRadius: 8,
+                    }}
+                    itemTextStyle={{color: '#454545'}}
+                  />
+                  {errors.agama && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.agama}
+                    </Text>
+                  )}
+                  <Text style={styles.label}>Golongan Darah</Text>
+                  <Dropdown
+                    style={[styles.dropdown(errors.golongan_darah)]}
+                    placeholderStyle={{fontSize: 13, color: '#BABCBF'}}
+                    selectedTextStyle={{fontSize: 13, color: '#0C0E11'}}
+                    data={[
+                      {label: 'A', value: 'A'},
+                      {label: 'B', value: 'B'},
+                      {label: 'AB', value: 'AB'},
+                      {label: 'O', value: 'O'},
+                    ]}
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={'Pilih Golongan Darah'}
+                    value={values.golongan_darah}
+                    onChange={item => {
+                      setFieldValue('golongan_darah', item.value);
+                    }}
+                    containerStyle={{
+                      borderBottomLeftRadius: 8,
+                      borderBottomRightRadius: 8,
+                    }}
+                    itemTextStyle={{color: '#454545'}}
+                  />
+                  {errors.golongan_darah && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.golongan_darah}
+                    </Text>
+                  )}
+                  <Input
+                    name="Tinggi Badan"
+                    placeholder="Masukan Tinggi Badan Anda"
+                    keyboardType="numeric"
+                    onChangeText={handleChange('tinggi_badan')}
+                    onBlur={handleBlur('tinggi_badan')}
+                    value={values.tinggi_badan}
+                    error={errors.tinggi_badan}
+                    maxLength={3}
+                  />
+                  {errors.tinggi_badan && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.tinggi_badan}
+                    </Text>
+                  )}
+                  <Input
+                    name="Alamat"
+                    placeholder="Masukkan Alamat Anda"
+                    type="text"
+                    onChangeText={handleChange('alamat')}
+                    onBlur={handleBlur('alamat')}
+                    value={values.alamat}
+                    error={errors.alamat}
+                  />
+                  {errors.alamat && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.alamat}
+                    </Text>
+                  )}
+                  <Input
+                    name="Ijazah Terakhir"
+                    placeholder="Masukan Ijazah Terakhir"
+                    type="text"
+                    onChangeText={handleChange('ijazah_terakhir')}
+                    onBlur={handleBlur('ijazah_terakhir')}
+                    value={values.ijazah_terakhir}
+                    error={errors.ijazah_terakhir}
+                  />
+                  {errors.ijazah_terakhir && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.ijazah_terakhir}
+                    </Text>
+                  )}
+                  <Input
+                    name="Tahun Lulus"
+                    placeholder="Masukan Tahun Lulus"
+                    keyboardType="numeric"
+                    maxLength={4}
+                    onChangeText={handleChange('tahun_lulus')}
+                    onBlur={handleBlur('tahun_lulus')}
+                    value={values.tahun_lulus}
+                    error={errors.tahun_lulus}
+                  />
+                  {errors.tahun_lulus && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.tahun_lulus}
                     </Text>
                   )}
                 </>
