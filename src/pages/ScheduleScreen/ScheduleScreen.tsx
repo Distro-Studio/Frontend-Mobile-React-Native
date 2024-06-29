@@ -1,48 +1,16 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import {IconNotificationBlack} from '../../assets/images';
+import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {CalendarIcon, IconSearch} from '../../assets/images';
 import {CustomHeaderApp, ScheduleCard} from '../../components';
-import {Dropdown} from 'react-native-element-dropdown';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
-  const [valueMonth, setValueMonth] = React.useState(null);
-  const [isFocusMonth, setIsFocusMonth] = React.useState(false);
-  const [valueWeeks, setValueWeeks] = React.useState(null);
-  const [isFocusWeeks, setIsFocusWeeks] = React.useState(false);
-  const dataMonth = [
-    {label: 'Januari', value: 'Januari'},
-    {label: 'Februari', value: 'Februari'},
-    {label: 'Maret', value: 'Maret'},
-    {label: 'April', value: 'April'},
-    {label: 'Mei', value: 'Mei'},
-    {label: 'Juni', value: 'Juni'},
-    {label: 'Juli', value: 'Juli'},
-    {label: 'Agustus', value: 'Agustus'},
-    {label: 'September', value: 'September'},
-    {label: 'Oktober', value: 'Oktober'},
-    {label: 'November', value: 'November'},
-    {label: 'Desember', value: 'Desember'},
-  ];
-  const dataWeeks = [
-    {label: 'Minggu 1', value: 'Minggu 1'},
-    {label: 'Minggu 2', value: 'Minggu 2'},
-    {label: 'Minggu 3', value: 'Minggu 3'},
-    {label: 'Minggu 4', value: 'Minggu 4'},
-  ];
+
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+        <Image source={IconSearch} style={{width: 20, height: 20}} />
       </Pressable>
     );
   };
@@ -138,50 +106,8 @@ const ScheduleScreen = ({navigation}) => {
         rightIcon={headerIcon()}
         screenName={'Jadwal'}>
         <View style={styles.header_dropdown_menu}>
-          <Dropdown
-            style={[styles.dropdown]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            data={dataMonth}
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocusMonth ? 'Select item' : '...'}
-            value={dataMonth[0]}
-            onFocus={() => setIsFocusMonth(true)}
-            onBlur={() => setIsFocusMonth(false)}
-            onChange={item => {
-              setValueMonth(item.value);
-              setIsFocusMonth(false);
-            }}
-            containerStyle={{
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-            }}
-            itemTextStyle={{color: '#454545'}}
-          />
-          <Dropdown
-            style={[styles.dropdown]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            data={dataWeeks}
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocusWeeks ? 'Select item' : '...'}
-            value={dataWeeks[0]}
-            onFocus={() => setIsFocusWeeks(true)}
-            onBlur={() => setIsFocusWeeks(false)}
-            onChange={item => {
-              setValueWeeks(item.value);
-              setIsFocusWeeks(false);
-            }}
-            containerStyle={{
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-            }}
-            itemTextStyle={{color: '#454545'}}
-          />
+          <Text style={{color: 'black'}}>28 Dec 22 - 10 Jan 23</Text>
+          <Image source={CalendarIcon} style={{width: 20, height: 20}} />
         </View>
       </CustomHeaderApp>
       <View style={styles.container_top}>
@@ -204,40 +130,6 @@ const ScheduleScreen = ({navigation}) => {
           data={data}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
-          // renderItem={() => (
-          //   <>
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'active'}
-          //       navigation={navigation}
-          //     />
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'active'}
-          //       navigation={navigation}
-          //     />
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'active'}
-          //       navigation={navigation}
-          //     />
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'active'}
-          //       navigation={navigation}
-          //     />
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'active'}
-          //       navigation={navigation}
-          //     />
-          //     <ScheduleCard
-          //       routeName={route.name}
-          //       cardState={'inactive'}
-          //       isHoliday={true}
-          //     />
-          //   </>
-          // )}
         />
       </View>
     </>

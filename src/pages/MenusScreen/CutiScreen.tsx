@@ -4,11 +4,23 @@ import {Banner, CustomHeaderApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {FlatList} from 'react-native-gesture-handler';
 import {IconSearch} from '../../assets/images';
+import {Dropdown} from 'react-native-element-dropdown';
+import FAB from '../../components/FAB';
 
 const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
   const menus = ['Terbaru', 'Histori'];
   const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
+
+  const dataCuti = [
+    {label: 'Tahunan', value: 'Tahunan'},
+    {label: 'Melahirkan', value: 'Melahirkan'},
+    {label: 'Sakit', value: 'Sakit'},
+  ];
+  const dataFilter = [
+    {label: 'Terbaru', value: 'Terbaru'},
+    {label: 'Terlama', value: 'Terlama'},
+  ];
 
   const headerIcon = () => {
     return (
@@ -23,11 +35,68 @@ const LeavesScreen = () => {
       <CustomHeaderApp
         backButton={true}
         screenName={'Cuti'}
-        rightIcon={headerIcon()}
-      />
-      {/*  */}
+        rightIcon={headerIcon()}>
+        <View style={styles.header_dropdown_menu}>
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataCuti}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Jenis Cuti"
+            // placeholder={!isFocusMonth ? 'Select item' : '...'}
+            // value={dataMonth[0]}
+            // onFocus={() => setIsFocusMonth(true)}
+            // onBlur={() => setIsFocusMonth(false)}
+            // onChange={item => {
+            //   setValueMonth(item.value);
+            //   setIsFocusMonth(false);
+            // }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+            itemTextStyle={{color: '#454545'}}
+          />
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataFilter}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Urutkan"
+            // placeholder={!isFocusWeeks ? 'Select item' : '...'}
+            // value={dataWeeks[0]}
+            // onFocus={() => setIsFocusWeeks(true)}
+            // onBlur={() => setIsFocusWeeks(false)}
+            // onChange={item => {
+            //   setValueWeeks(item.value);
+            //   setIsFocusWeeks(false);
+            // }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+            itemTextStyle={{color: '#454545'}}
+          />
+        </View>
+      </CustomHeaderApp>
       <View style={styles.container}>
-        <View style={{marginBottom: 24}}>
+        <FAB />
+        <View
+          style={{
+            height: 235,
+            backgroundColor: '#FFFFFF',
+            marginBottom: 24,
+            borderRadius: 16,
+          }}>
+          <Text style={{color: 'black'}}>Pie Chart</Text>
+        </View>
+        {/* <View style={{marginBottom: 24}}>
           <FlatList
             data={leaveBoxes}
             numColumns={2}
@@ -59,7 +128,6 @@ const LeavesScreen = () => {
           }
           buttonText={'Ajukan Cuti'}
         />
-        {/*  */}
         <View style={styles.menu_container}>
           {menus.map(item => (
             <Pressable
@@ -75,7 +143,7 @@ const LeavesScreen = () => {
               </Text>
             </Pressable>
           ))}
-        </View>
+        </View> */}
         {/*  */}
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
@@ -150,6 +218,28 @@ const LeavesScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  header_dropdown_menu: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+  },
+  placeholderStyle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#0C0E11',
+  },
+  selectedTextStyle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#0C0E11',
+  },
+  dropdown: {
+    flex: 1,
+    height: 40,
+    borderWidth: 0,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
   container: {
     paddingHorizontal: 24,
     flex: 1,

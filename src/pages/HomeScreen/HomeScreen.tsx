@@ -337,10 +337,7 @@ dengan izin.`}
         </ModalApp>
       )}
 
-      <View
-        style={
-          Platform.OS === 'web' ? styles.webView : styles.screen_container
-        }>
+      <View style={styles.screen_container}>
         <ScrollView
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -357,7 +354,6 @@ dengan izin.`}
 };
 
 const styles = StyleSheet.create({
-  webView,
   screen_container: {
     flex: 1,
     backgroundColor: APP.COLORS['primary-500'],

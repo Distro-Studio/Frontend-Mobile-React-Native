@@ -39,8 +39,10 @@ import {
   GantiJadwalPilihKaryawan,
   GantiJadwalPilihJadwalKaryawan,
   GantiJadwalPilihJadwalUser,
+  EventScreen,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppSelector} from '../redux';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,24 +73,26 @@ const MainApp = () => {
 };
 
 const Router = () => {
-  const [stateLoggedIn, setStateLoggedIn] = React.useState(null);
-  async function getLoggedIn() {
-    try {
-      const value = await AsyncStorage.getItem('logged_in');
-      setStateLoggedIn(value);
-    } catch (e) {
-      // saving error
-    }
-  }
-  React.useEffect(() => {
-    getLoggedIn();
-  }, []);
+  const authState = useAppSelector(state => state.auth.authState);
+  console.log('router: ', authState);
+  // // const [stateLoggedIn, setStateLoggedIn] = React.useState(null);
+  // async function getLoggedIn() {
+  //   try {
+  //     const value = await AsyncStorage.getItem('logged_in');
+  //     setStateLoggedIn(value);
+  //   } catch (e) {
+  //     // saving error
+  //   }
+  // }
+  // React.useEffect(() => {
+  //   getLoggedIn();
+  // }, []);
   return (
     <Stack.Navigator initialRouteName="SplashIndex">
       {/* Splash */}
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
-        {stateLoggedIn === null && (
+        {authState === null && (
           <>
             <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
           </>
@@ -96,7 +100,7 @@ const Router = () => {
       </Stack.Group>
       <Stack.Group
         screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
-        {stateLoggedIn === null && (
+        {authState === null && (
           <>
             <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
             <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
@@ -150,10 +154,15 @@ const Router = () => {
           options={{headerTitleAlign: 'center', header: () => null}}
           component={GantiJadwalPilihJadwalUser}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="IjinScreen"
           options={{headerTitleAlign: 'center', header: () => null}}
           component={IjinScreen}
+        /> */}
+        <Stack.Screen
+          name="EventScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={EventScreen}
         />
         <Stack.Screen
           name="KoperasiScreen"

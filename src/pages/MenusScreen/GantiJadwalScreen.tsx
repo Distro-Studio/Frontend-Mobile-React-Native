@@ -3,10 +3,21 @@ import React from 'react';
 import {Banner, CustomHeaderApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {IconSearch} from '../../assets/images';
+import {Dropdown} from 'react-native-element-dropdown';
+import FAB from '../../components/FAB';
 
 const GantiJadwalScreen = ({navigation}) => {
   const [activeMenu, setActiveMenu] = React.useState('Upcoming');
   const menus = ['Upcoming', 'Past', 'Requested'];
+  const dataTukar = [
+    {label: 'Menunggu', value: 'Menunggu'},
+    {label: 'Disetujui', value: 'Disetujui'},
+    {label: 'Ditolak', value: 'Ditolak'},
+  ];
+  const dataFilter = [
+    {label: 'Terbaru', value: 'Terbaru'},
+    {label: 'Terlama', value: 'Terlama'},
+  ];
 
   const headerIcon = () => {
     return (
@@ -21,10 +32,75 @@ const GantiJadwalScreen = ({navigation}) => {
       <CustomHeaderApp
         backButton={true}
         screenName={'Tukar Jadwal'}
-        rightIcon={headerIcon()}
-      />
+        rightIcon={headerIcon()}>
+        <View style={styles.header_dropdown_menu}>
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataTukar}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Semua Proses"
+            // placeholder={!isFocusMonth ? 'Select item' : '...'}
+            // value={dataMonth[0]}
+            // onFocus={() => setIsFocusMonth(true)}
+            // onBlur={() => setIsFocusMonth(false)}
+            // onChange={item => {
+            //   setValueMonth(item.value);
+            //   setIsFocusMonth(false);
+            // }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+            itemTextStyle={{color: '#454545'}}
+          />
+          <Dropdown
+            style={[styles.dropdown]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={dataFilter}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Urutkan"
+            // placeholder={!isFocusWeeks ? 'Select item' : '...'}
+            // value={dataWeeks[0]}
+            // onFocus={() => setIsFocusWeeks(true)}
+            // onBlur={() => setIsFocusWeeks(false)}
+            // onChange={item => {
+            //   setValueWeeks(item.value);
+            //   setIsFocusWeeks(false);
+            // }}
+            containerStyle={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+            }}
+            itemTextStyle={{color: '#454545'}}
+          />
+        </View>
+      </CustomHeaderApp>
       <View style={styles.container}>
-        <Banner
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 20,
+            right: 20,
+            zIndex: 6,
+            width: 48,
+            height: 48,
+            borderRadius: 8,
+            backgroundColor: APP.COLORS['primary-400'],
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{color: 'black'}}>FAB</Text>
+        </View>
+        <Text style={{color: 'black'}}>asd</Text>
+        {/* <Banner
           headerText={'Fleksibilitas di Tanganmu! Tukar Jadwal dengan Mudah!'}
           buttonText={'Tukar Sekarang'}
           onPress={() => navigation.navigate('GantiJadwalPilihKaryawan')}
@@ -44,7 +120,7 @@ const GantiJadwalScreen = ({navigation}) => {
               </Text>
             </Pressable>
           ))}
-        </View>
+        </View> */}
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8]}
           contentContainerStyle={{gap: 16}}
@@ -118,6 +194,28 @@ const GantiJadwalScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  header_dropdown_menu: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+  },
+  placeholderStyle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#0C0E11',
+  },
+  selectedTextStyle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#0C0E11',
+  },
+  dropdown: {
+    flex: 1,
+    height: 40,
+    borderWidth: 0,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
   container: {
     paddingHorizontal: 24,
   },

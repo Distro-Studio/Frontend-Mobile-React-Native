@@ -36,10 +36,16 @@ const HomeMenus = () => {
     },
     {
       id: 4,
-      name: 'Ijin',
+      name: 'Event & Diklat',
       iconSource: IconIjin,
-      route: 'IjinScreen',
+      route: 'EventScreen',
     },
+    // {
+    //   id: 4,
+    //   name: 'Ijin',
+    //   iconSource: IconIjin,
+    //   route: 'IjinScreen',
+    // },
     {
       id: 5,
       name: 'Slip Gajiku',

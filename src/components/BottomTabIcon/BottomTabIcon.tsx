@@ -1,18 +1,18 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import {APP} from '../../utils/CONSTANT';
+import {StyleSheet, Text, View} from 'react-native';
 import {
-  IconEmployeeActive,
+  IconActivity,
+  IconActivityActive,
   IconEmployee,
+  IconEmployeeActive,
   IconHome,
   IconHomeActive,
-  IconSchedule,
-  IconScheduleActive,
-  IconActivity,
   IconProfile,
   IconProfileActive,
-  IconActivityActive,
+  IconSchedule,
+  IconScheduleActive,
 } from '../../assets/icons';
+import {APP} from '../../utils/CONSTANT';
 // import {IconActivity, IconEmployee, IconProfile} from '../../assets/images';
 
 const AppImages = {

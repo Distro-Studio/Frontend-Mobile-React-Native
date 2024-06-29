@@ -1,6 +1,6 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
 import React from 'react';
-import {IconActivityIn, IconActivityOut} from '../../assets/images';
+import {StyleSheet, Text, View} from 'react-native';
+import ActivityCard from '../ActivityCard';
 
 const HomeActivity = () => {
   const data = [
@@ -20,24 +20,9 @@ const HomeActivity = () => {
   return (
     <View style={styles.activity_container}>
       <Text style={styles.activity_text_title}>Your Activity</Text>
-      {data.map(item => (
-        <View key={item.id} style={styles.activity_card}>
-          <View style={styles.activity_status}>
-            <Image
-              source={item.type === 'in' ? IconActivityIn : IconActivityOut}
-            />
-            <View>
-              <Text style={{color: '#222831', fontSize: 16, fontWeight: '600'}}>
-                {item.type === 'in' ? 'Masuk' : 'Keluar'}
-              </Text>
-              <Text style={{color: '#BABCBF', fontSize: 14, fontWeight: '400'}}>
-                {item.date}
-              </Text>
-            </View>
-          </View>
-          <Text style={{fontSize: 16, fontWeight: '600', color: '#222831'}}>
-            {item.time}
-          </Text>
+      {data.map((item, index) => (
+        <View key={index}>
+          <ActivityCard item={item} />
         </View>
       ))}
     </View>

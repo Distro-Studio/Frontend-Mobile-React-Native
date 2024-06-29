@@ -13,7 +13,7 @@ async function postData(variable1: any, variable2: any) {
 }
 
 async function authLogin(formData) {
-  const response = await API.post('/login', formData);
+  const response = await API.post('/api/login', formData);
   return response;
 }
 

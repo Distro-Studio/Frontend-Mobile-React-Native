@@ -39,3 +39,5 @@ export {default as FillScreen3} from './FillDataScreen/FillScreen3';
 export {default as FillScreen4} from './FillDataScreen/FillScreen4';
 export {default as FillScreen5} from './FillDataScreen/FillScreen5';
 export {default as FillScreen6} from './FillDataScreen/FillScreen6';
+//
+export {default as EventScreen} from './EventScreen/EventScreen';
