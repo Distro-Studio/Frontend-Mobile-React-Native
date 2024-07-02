@@ -92,21 +92,19 @@ const Router = () => {
       {/* Splash */}
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashIndex" component={SplashScreenIndex} />
-        {authState === null && (
-          <>
-            <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
-          </>
-        )}
+        <Stack.Screen name="SplashInfo1" component={SplashScreenInfo1} />
+        {/* {Object.keys(authState).length < 0 && (
+        )} */}
       </Stack.Group>
       <Stack.Group
         screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
-        {authState === null && (
-          <>
-            <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
-            <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          </>
-        )}
+        <>
+          <Stack.Screen name="SplashInfo2" component={SplashScreenInfo2} />
+          <Stack.Screen name="SplashInfo3" component={SplashScreenInfo3} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        </>
+        {/* {Object.keys(authState).length < 0 && (
+        )} */}
         <Stack.Screen
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}
@@ -117,6 +115,16 @@ const Router = () => {
         />
         <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="ActivationScreen" component={ActivationScreen} />
+      </Stack.Group>
+      {/* fill data screen */}
+      <Stack.Group
+        screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
+        <Stack.Screen name="FillScreen1" component={FillScreen1} />
+        {/* <Stack.Screen name="FillScreen2" component={FillScreen2} />
+        <Stack.Screen name="FillScreen3" component={FillScreen3} /> */}
+        <Stack.Screen name="FillScreen2" component={FillScreen4} />
+        <Stack.Screen name="FillScreen3" component={FillScreen5} />
+        <Stack.Screen name="FillScreen4" component={FillScreen6} />
       </Stack.Group>
       {/* menus screen */}
       <Stack.Group
@@ -185,16 +193,7 @@ const Router = () => {
           component={SlipGajiScreen}
         />
       </Stack.Group>
-      {/* fill data screen */}
-      <Stack.Group
-        screenOptions={{headerShown: false, animation: 'slide_from_right'}}>
-        <Stack.Screen name="FillScreen1" component={FillScreen1} />
-        {/* <Stack.Screen name="FillScreen2" component={FillScreen2} />
-        <Stack.Screen name="FillScreen3" component={FillScreen3} /> */}
-        <Stack.Screen name="FillScreen2" component={FillScreen4} />
-        <Stack.Screen name="FillScreen3" component={FillScreen5} />
-        <Stack.Screen name="FillScreen4" component={FillScreen6} />
-      </Stack.Group>
+
       {/* non splash screen */}
       <Stack.Screen
         name="MainApp"

@@ -40,24 +40,23 @@ const LoginScreen = ({navigation}: any) => {
 
   async function handleLogin(fields: {email: string; password: string}) {
     try {
-      console.log(process.env.VITE_BASE_URL);
       // api login
       setIsLoading(true);
-      formData.append('email', fields.email);
-      formData.append('password', fields.password);
-
-      const response = await APIEndpoints.authLogin(formData);
-      if (response.status === 200) {
-        navigation.navigate('FillScreen1');
-        console.log(response);
-        // dispatch(setAuthState(response.data))
-        // storeLoggedIn('logged_in');
-      }
       setTimeout(() => {
         navigation.navigate('FillScreen1');
         // storeLoggedIn('logged_in');
         setIsLoading(false);
       }, 2000);
+      // formData.append('email', fields.email);
+      // formData.append('password', fields.password);
+
+      // const response = await APIEndpoints.authLogin(formData);
+      // if (response.status === 200) {
+      //   navigation.navigate('FillScreen1');
+      //   console.log(response);
+      //   // dispatch(setAuthState(response.data))
+      //   // storeLoggedIn('logged_in');
+      // }
     } catch (e) {
       console.log(e);
       setIsLoading(false);

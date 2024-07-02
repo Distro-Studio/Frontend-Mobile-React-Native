@@ -16,7 +16,7 @@ const FillScreen6 = ({navigation}) => {
 
   async function storeLoggedIn(value: string) {
     try {
-      dispatch(setAuthState(true));
+      dispatch(setAuthState({logged_in: true}));
       // await AsyncStorage.setItem('logged_in', value);
     } catch (e) {
       // saving error

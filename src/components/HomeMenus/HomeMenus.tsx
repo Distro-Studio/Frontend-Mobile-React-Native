@@ -3,6 +3,7 @@ import React from 'react';
 import {
   IconCuti,
   IconDokumen,
+  IconEventDiklat,
   IconIjin,
   IconKoperasi,
   IconLaporan,
@@ -37,7 +38,7 @@ const HomeMenus = () => {
     {
       id: 4,
       name: 'Event & Diklat',
-      iconSource: IconIjin,
+      iconSource: IconEventDiklat,
       route: 'EventScreen',
     },
     // {

@@ -3,18 +3,20 @@ import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import {SplashLogo} from '../../assets/images';
 import {webView} from '../../utils/WebView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppSelector} from '../../redux';
 
 const Splash = ({navigation}: any) => {
-  async function getLoggedIn() {
+  const authState = useAppSelector(state => state.auth.authState);
+  console.log('splash: ', authState);
+  async function getLoggedIn(state) {
     try {
-      const value = await AsyncStorage.getItem('logged_in');
-      if (value !== null) {
+      if (Object.keys(state).length > 0) {
         setTimeout(() => {
           navigation.replace('MainApp');
         }, 3000);
       } else {
         setTimeout(() => {
-          navigation.replace('SplashInfo1');
+          navigation.push('SplashInfo1');
         });
       }
     } catch (e) {
@@ -22,8 +24,8 @@ const Splash = ({navigation}: any) => {
     }
   }
   React.useEffect(() => {
-    getLoggedIn();
-  }, []);
+    getLoggedIn(authState);
+  }, [authState]);
 
   return (
     <View style={Platform.OS === 'web' ? styles.webView : styles.container}>
