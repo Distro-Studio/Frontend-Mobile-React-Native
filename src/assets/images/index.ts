@@ -63,3 +63,4 @@ export {default as ChevronDown} from './chevron-down.png';
 export {default as CalendarIcon} from './calendar-icon.png';
 //
 export {default as IconEventDiklat} from './IconEventDiklat.png';
+export {default as EventImage} from './event-image.png';
