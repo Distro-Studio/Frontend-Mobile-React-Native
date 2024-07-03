@@ -7,6 +7,7 @@ import {IconSearch} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
 import SearchIcon from '../../assets/icons/search-icon.svg';
+import PlusIcon from '../../assets/icons/plus-icon.svg';
 
 const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
@@ -87,8 +88,8 @@ const LeavesScreen = () => {
           />
         </View>
       </CustomHeaderApp>
+      <FAB />
       <View style={styles.container}>
-        <FAB />
         <View
           style={{
             height: 235,

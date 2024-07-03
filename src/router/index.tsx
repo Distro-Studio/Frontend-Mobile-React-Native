@@ -40,6 +40,7 @@ import {
   GantiJadwalPilihJadwalKaryawan,
   GantiJadwalPilihJadwalUser,
   EventScreen,
+  GantiJadwalDetailScreen,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppSelector} from '../redux';
@@ -161,6 +162,11 @@ const Router = () => {
           name="GantiJadwalPilihJadwalUser"
           options={{headerTitleAlign: 'center', header: () => null}}
           component={GantiJadwalPilihJadwalUser}
+        />
+        <Stack.Screen
+          name="GantiJadwalDetailScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={GantiJadwalDetailScreen}
         />
         {/* <Stack.Screen
           name="IjinScreen"

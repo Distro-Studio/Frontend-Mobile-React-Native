@@ -1,6 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {APP} from '../utils/CONSTANT';
+import PlusIcon from '../assets/icons/plus-icon.svg';
 
 const FAB = () => {
   return (
@@ -18,7 +19,7 @@ const FAB = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={{color: 'white'}}>FAB</Text>
+      <PlusIcon />
     </View>
   );
 };

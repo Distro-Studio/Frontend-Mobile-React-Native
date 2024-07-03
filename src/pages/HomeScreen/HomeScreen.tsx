@@ -27,7 +27,7 @@ import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
 // import Geolocation from '@react-native-community/geolocation';
 
-const HomeScreen = ({route}) => {
+const HomeScreen = ({navigation, route}) => {
   // context
   const {dispatch: dispactherModal, state} = React.useContext(ModalContext);
   // state
@@ -325,6 +325,7 @@ dengan izin.`}
                     type: 'hide_modal_out_range',
                     payload: false,
                   });
+                  navigation.navigate('CutiScreen');
                 }}
                 style={[styles.button_modal, styles.button_modal_accept]}>
                 <Text

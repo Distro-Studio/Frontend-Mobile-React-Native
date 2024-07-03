@@ -6,6 +6,7 @@ import {IconSearch} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
 import SearchIcon from '../../assets/icons/search-icon.svg';
+import PlusIcon from '../../assets/icons/plus-icon.svg';
 
 const GantiJadwalScreen = ({navigation}) => {
   const [activeMenu, setActiveMenu] = React.useState('Upcoming');
@@ -84,24 +85,8 @@ const GantiJadwalScreen = ({navigation}) => {
           />
         </View>
       </CustomHeaderApp>
+      <FAB />
       <View style={styles.container}>
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 20,
-            right: 20,
-            zIndex: 6,
-            width: 48,
-            height: 48,
-            borderRadius: 8,
-            backgroundColor: APP.COLORS['primary-400'],
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text style={{color: 'black'}}>FAB</Text>
-        </View>
-        <Text style={{color: 'black'}}>asd</Text>
         {/* <Banner
           headerText={'Fleksibilitas di Tanganmu! Tukar Jadwal dengan Mudah!'}
           buttonText={'Tukar Sekarang'}
@@ -128,7 +113,10 @@ const GantiJadwalScreen = ({navigation}) => {
           contentContainerStyle={{gap: 16}}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
-            <View key={item} style={styles.leave_card}>
+            <Pressable
+              key={item}
+              style={styles.leave_card}
+              onPress={() => navigation.navigate('GantiJadwalDetailScreen')}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={{color: '#222831'}}>Tanggal</Text>
@@ -187,7 +175,7 @@ const GantiJadwalScreen = ({navigation}) => {
                   </Text>
                 </View>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       </View>

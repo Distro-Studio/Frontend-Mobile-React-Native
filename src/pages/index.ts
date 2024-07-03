@@ -32,6 +32,8 @@ export {default as SlipGajiScreen} from './MenusScreen/SlipGajiScreen';
 export {default as GantiJadwalPilihKaryawan} from './MenusScreen/SubScreen/GantiJadwalPilihKaryawan';
 export {default as GantiJadwalPilihJadwalKaryawan} from './MenusScreen/SubScreen/GantiJadwalPilihJadwalKaryawan';
 export {default as GantiJadwalPilihJadwalUser} from './MenusScreen/SubScreen/GantiJadwalPilihJadwalUser';
+export {default as GantiJadwalDetailScreen} from './MenusScreen/SubScreen/GantiJadwalDetailScreen';
+
 //
 export {default as FillScreen1} from './FillDataScreen/FillScreen1';
 export {default as FillScreen2} from './FillDataScreen/FillScreen2';
