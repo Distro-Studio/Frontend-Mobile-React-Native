@@ -5,6 +5,7 @@ import {IconNotificationBlack} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import {FlatList} from 'react-native-gesture-handler';
 import ActivityCard from '../../components/ActivityCard';
+import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
 
 const ActivityScreen = () => {
   const data = [
@@ -42,7 +43,8 @@ const ActivityScreen = () => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+        <NotifyBlack />
+        {/* <Image source={IconNotificationBlack} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

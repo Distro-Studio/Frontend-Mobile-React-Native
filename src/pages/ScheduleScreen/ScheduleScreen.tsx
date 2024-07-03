@@ -1,8 +1,9 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {CalendarIcon, IconSearch} from '../../assets/images';
 import {CustomHeaderApp, ScheduleCard} from '../../components';
+import CalendarIcon from '../../assets/icons/calendar-icon.svg';
+import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
@@ -10,7 +11,8 @@ const ScheduleScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };
@@ -107,7 +109,8 @@ const ScheduleScreen = ({navigation}) => {
         screenName={'Jadwal'}>
         <View style={styles.header_dropdown_menu}>
           <Text style={{color: 'black'}}>28 Dec 22 - 10 Jan 23</Text>
-          <Image source={CalendarIcon} style={{width: 20, height: 20}} />
+          <CalendarIcon />
+          {/* <Image source={CalendarIcon} style={{width: 20, height: 20}} /> */}
         </View>
       </CustomHeaderApp>
       <View style={styles.container_top}>

@@ -21,6 +21,9 @@ import calculateDistance from '../../utils';
 import {ModalContext} from '../../contexts/ModalContext';
 import {PresenceContext} from '../../contexts/PresenceContext';
 import {useAppSelector} from '../../redux';
+import AttendanceIcon from '../../assets/icons/attendance-icon.svg';
+import AttendanceIconExit from '../../assets/icons/attendance-icon-exit.svg';
+import LocationIcon from '../../assets/icons/location-icon.svg';
 
 const HeaderAttendance = () => {
   const attendanceState = useAppSelector(
@@ -98,8 +101,11 @@ const HeaderAttendance = () => {
       <Text style={styles.header_attendance_date}>{date}</Text>
       {attendanceState.in === false && (
         <Pressable style={styles.header_attendance} onPress={handleNavigation}>
-          <Image source={IconAttendance} style={{marginBottom: 8}} />
-          <Text style={{color: '#0C0E11', fontWeight: '700'}}>Masuk</Text>
+          <AttendanceIcon />
+          {/* <Image source={IconAttendance} style={{marginBottom: 8}} /> */}
+          <Text style={{color: '#0C0E11', fontWeight: '700', marginTop: 8}}>
+            Masuk
+          </Text>
         </Pressable>
       )}
       {attendanceState.in === true && (
@@ -110,14 +116,18 @@ const HeaderAttendance = () => {
             locations={[0.1, 0.4]}
             colors={['#6C47FF', '#FC4C3C']}
             style={styles.header_attendance}>
-            <Image source={IconAttendanceExit} style={{marginBottom: 8}} />
-            <Text style={{color: '#FFFFFF', fontWeight: '700'}}>Keluar</Text>
+            <AttendanceIconExit />
+            {/* <Image source={IconAttendanceExit} style={{marginBottom: 8}} /> */}
+            <Text style={{color: '#FFFFFF', fontWeight: '700', marginTop: 8}}>
+              Keluar
+            </Text>
           </LinearGradient>
         </Pressable>
       )}
 
       <View style={styles.header_location_container}>
-        <Image source={IconLocation} />
+        <LocationIcon />
+        {/* <Image source={IconLocation} /> */}
         <Text style={{color: '#F5F5F5'}}>
           {state.coords.lat === 0 && state.coords.long === 0
             ? 'Sedang Mengambil Lokasi Anda'

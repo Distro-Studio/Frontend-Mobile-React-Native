@@ -6,12 +6,14 @@ import {APP} from '../../utils/CONSTANT';
 import CalendarIcon from '../../assets/icons/calendar-icon.svg';
 import {getResponsive} from '../../utils';
 import {FlatList} from 'react-native-gesture-handler';
+import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const EventScreen = () => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

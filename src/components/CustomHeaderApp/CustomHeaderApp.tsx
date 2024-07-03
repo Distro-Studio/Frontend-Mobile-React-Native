@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {ChevronLeft} from '../../assets/images';
+// import {ChevronLeft} from '../../assets/images';
+import ChevronLeft from '../../assets/icons/chevron-left-icon.svg';
 
 const CustomHeaderApp = ({
   backButton,
@@ -16,7 +17,8 @@ const CustomHeaderApp = ({
         <View style={{width: 20, height: 20}}>
           {backButton && (
             <Pressable onPress={() => navigation.goBack()}>
-              <Image source={ChevronLeft} style={{width: 20, height: 20}} />
+              <ChevronLeft />
+              {/* <Image source={ChevronLeft} style={{width: 20, height: 20}} /> */}
             </Pressable>
           )}
         </View>

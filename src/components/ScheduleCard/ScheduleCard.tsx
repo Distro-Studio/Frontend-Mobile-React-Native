@@ -3,6 +3,8 @@ import React from 'react';
 import {APP} from '../../utils/CONSTANT';
 import {IconActivityIn, IconActivityOut} from '../../assets/images';
 import {getResponsive} from '../../utils';
+import InIcon from '../../assets/icons/in-icon.svg';
+import OutIcon from '../../assets/icons/out-icon.svg';
 
 const ScheduleCard = ({
   routeName,
@@ -36,11 +38,35 @@ const ScheduleCard = ({
           {!isHoliday && (
             <View style={styles.schedule_times}>
               <View style={styles.schedule_time}>
-                <Image source={IconActivityIn} style={styles.schedule_icon} />
+                <View
+                  style={[
+                    styles.schedule_icon,
+                    {
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#E7F6F6',
+                      borderRadius: 50,
+                    },
+                  ]}>
+                  <InIcon width={11} height={11} />
+                </View>
                 <Text style={{fontSize: 16, color: '#0C0E11'}}>07.30</Text>
               </View>
               <View style={styles.schedule_time}>
-                <Image source={IconActivityOut} style={styles.schedule_icon} />
+                <View
+                  style={[
+                    styles.schedule_icon,
+                    {
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#FFEDEC',
+                      borderRadius: 50,
+                    },
+                  ]}>
+                  <OutIcon width={11} height={11} />
+                </View>
                 <Text style={{fontSize: 16, color: '#0C0E11'}}>16.30</Text>
               </View>
             </View>

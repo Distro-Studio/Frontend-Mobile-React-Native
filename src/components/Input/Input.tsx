@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {IconEye} from '../../assets/images';
 import {APP} from '../../utils/CONSTANT';
+import EyeIcon from '../../assets/icons/eye-icon.svg';
 
 const Input = (props: any) => {
   const {name, placeholder, type, ...rest} = props;
@@ -49,7 +50,8 @@ const Input = (props: any) => {
               top: '40%',
               marginRight: 16,
             }}>
-            <Image source={IconEye} />
+            <EyeIcon />
+            {/* <Image source={IconEye} /> */}
           </Pressable>
         )}
       </View>

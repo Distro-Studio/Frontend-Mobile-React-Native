@@ -1,6 +1,7 @@
 import {View, Text, Image, StyleSheet} from 'react-native';
 import React from 'react';
 import {HeaderUserProfile, IconNotification} from '../../assets/images';
+import NotifyWhite from '../../assets/icons/activity-icon-white.svg';
 
 const Header = () => {
   return (
@@ -14,7 +15,8 @@ const Header = () => {
           <Text style={styles.header_profile_info_role}>Product Designer</Text>
         </View>
       </View>
-      <Image source={IconNotification} style={{width: 24, height: 24}} />
+      <NotifyWhite />
+      {/* <Image source={IconNotification} style={{width: 24, height: 24}} /> */}
     </View>
   );
 };

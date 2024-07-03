@@ -17,6 +17,7 @@ import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {FlatList} from 'react-native-gesture-handler';
 import {getResponsive} from '../../utils';
 import {dummyEmployee} from '../../utils/CONSTANT';
+import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
 
 const {height} = Dimensions.get('window');
 
@@ -45,7 +46,8 @@ const DetailEmployeeScreen = ({navigation}: any) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+        <NotifyBlack />
+        {/* <Image source={IconNotificationBlack} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

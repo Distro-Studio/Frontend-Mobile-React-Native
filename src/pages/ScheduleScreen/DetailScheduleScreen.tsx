@@ -14,13 +14,15 @@ import {CustomHeaderApp, EmployeeCard, ScheduleCard} from '../../components';
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {dummyEmployee} from '../../utils/CONSTANT';
 import {useRoute} from '@react-navigation/native';
+import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
 
 const DetailScheduleScreen = ({navigation}) => {
   const route = useRoute();
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+        <NotifyBlack />
+        {/* <Image source={IconNotificationBlack} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

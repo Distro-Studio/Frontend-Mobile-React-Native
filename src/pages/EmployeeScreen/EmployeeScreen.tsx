@@ -1,9 +1,10 @@
 import React from 'react';
 import {FlatList, Image, Pressable, StyleSheet, View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
-import {IconSearch} from '../../assets/images';
+// import {IconSearch} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard} from '../../components';
 import {dummyEmployee} from '../../utils/CONSTANT';
+import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const EmployeeScreen = ({navigation}: any) => {
   const [valueWeeks, setValueWeeks] = React.useState<string | null>(null);
@@ -17,7 +18,8 @@ const EmployeeScreen = ({navigation}: any) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

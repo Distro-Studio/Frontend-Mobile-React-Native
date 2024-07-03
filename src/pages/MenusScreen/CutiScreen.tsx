@@ -6,6 +6,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import {IconSearch} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
+import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
@@ -25,7 +26,8 @@ const LeavesScreen = () => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

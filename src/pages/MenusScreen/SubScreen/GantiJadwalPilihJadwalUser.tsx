@@ -2,12 +2,14 @@ import {View, Text, Pressable, Image, StyleSheet, FlatList} from 'react-native';
 import React from 'react';
 import {CustomHeaderApp, ScheduleCard} from '../../../components';
 import {IconSearch} from '../../../assets/images';
+import SearchIcon from '../../../assets/icons/search-icon.svg';
 
 const GantiJadwalPilihJadwalUser = () => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

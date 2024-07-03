@@ -5,6 +5,7 @@ import {APP} from '../../utils/CONSTANT';
 import {IconSearch} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
+import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const GantiJadwalScreen = ({navigation}) => {
   const [activeMenu, setActiveMenu] = React.useState('Upcoming');
@@ -22,7 +23,8 @@ const GantiJadwalScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

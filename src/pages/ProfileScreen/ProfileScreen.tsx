@@ -9,12 +9,14 @@ import BrowserIcon from '../../assets/icons/browser-icon.svg';
 import TermIcon from '../../assets/icons/term-icon.svg';
 import HelpIcon from '../../assets/icons/help-icon.svg';
 import ContactIcon from '../../assets/icons/contact-icon.svg';
+import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
 
 const ProfileScreen = () => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconNotificationBlack} style={{width: 20, height: 20}} />
+        <NotifyBlack />
+        {/* <Image source={IconNotificationBlack} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };

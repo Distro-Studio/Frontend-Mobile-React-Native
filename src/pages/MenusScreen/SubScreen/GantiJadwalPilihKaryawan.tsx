@@ -3,12 +3,14 @@ import React from 'react';
 import {CustomHeaderApp, EmployeeCard} from '../../../components';
 import {IconSearch} from '../../../assets/images';
 import {dummyEmployee} from '../../../utils/CONSTANT';
+import SearchIcon from '../../../assets/icons/search-icon.svg';
 
 const GantiJadwalPilihKaryawan = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
-        <Image source={IconSearch} style={{width: 20, height: 20}} />
+        <SearchIcon />
+        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };
