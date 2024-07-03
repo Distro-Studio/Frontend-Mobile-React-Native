@@ -10,3 +10,4 @@ export {default as ScheduleCard} from './ScheduleCard/ScheduleCard';
 export {default as CustomButton} from './CustomButton/CustomButton';
 export {default as CustomDatePicker} from './CustomDatePicker/CustomDatePicker';
 export {default as Banner} from './Banner/Banner';
+export {default as SlipGajiCard} from './SlipGajiCard';

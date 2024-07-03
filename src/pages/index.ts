@@ -40,4 +40,4 @@ export {default as FillScreen4} from './FillDataScreen/FillScreen4';
 export {default as FillScreen5} from './FillDataScreen/FillScreen5';
 export {default as FillScreen6} from './FillDataScreen/FillScreen6';
 //
-export {default as EventScreen} from './EventScreen/EventScreen';
+export {default as EventScreen} from './MenusScreen/EventScreen';

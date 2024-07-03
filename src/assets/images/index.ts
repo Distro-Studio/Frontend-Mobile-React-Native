@@ -64,3 +64,4 @@ export {default as CalendarIcon} from './calendar-icon.png';
 //
 export {default as IconEventDiklat} from './IconEventDiklat.png';
 export {default as EventImage} from './event-image.png';
+export {default as SlipGajiImage} from './slip-gaji-image.png';
