@@ -10,6 +10,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View,
 } from 'react-native';
 import {useCameraPermission} from 'react-native-vision-camera';
@@ -27,7 +28,7 @@ import {APP} from '../../utils/CONSTANT';
 import {webView} from '../../utils/WebView';
 // import Geolocation from '@react-native-community/geolocation';
 
-const HomeScreen = ({navigation, route}) => {
+const HomeScreen = ({navigation, route}: any) => {
   // context
   const {dispatch: dispactherModal, state} = React.useContext(ModalContext);
   // state
@@ -41,6 +42,7 @@ const HomeScreen = ({navigation, route}) => {
   const {dispatch} = React.useContext(MapsContext);
   const [refreshing, setRefreshing] = React.useState(false);
   const [distanceFromLocation, setDistanceFromLocation] = React.useState(0);
+  const [isModalDifferent, setIsModalDifferent] = React.useState(true);
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -285,6 +287,69 @@ berhasil dicatat. Silahkan lakukan
           </View>
         </ModalApp>
       )} */}
+
+      {isModalDifferent && (
+        <ModalApp isModal={isModalDifferent}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Pressable
+              onPress={() => {
+                setIsModalDifferent(false);
+                // dispactherModal({type: 'hide_modal_out_range', payload: false});
+              }}
+              style={{marginLeft: 'auto', marginBottom: 16}}>
+              <Image source={IconClose} />
+            </Pressable>
+            <Image source={IconModalRange} style={{marginBottom: 16}} />
+            <Text style={{fontWeight: 'bold', fontSize: 16}}>
+              Wah, ada yang berbeda!
+            </Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: '#777986',
+                marginVertical: 8,
+                textAlign: 'center',
+              }}>
+              {`Sepertinya foto Anda berbeda dengan saat
+masuk. Untuk melanjutkan, silakan berikan 
+alasan Anda di bawah ini.`}
+            </Text>
+
+            <TextInput
+              multiline={true}
+              numberOfLines={2}
+              style={{
+                backgroundColor: '#FCFCFC',
+                borderColor: '#EBEBED',
+                borderWidth: 1,
+                width: '100%',
+                padding: 8,
+                borderRadius: 12,
+                // color: '#BABCBF',
+              }}
+              placeholder="Masukkan alasanmu"
+              // onChangeText={(text) => this.setState({text})}
+              // value={this.state.text}
+            />
+
+            <View style={styles.button_modal_container}>
+              <Pressable
+                onPress={() => {}}
+                style={[styles.button_modal, styles.button_modal_accept]}>
+                <Text
+                  style={[styles.button_modal_text, styles.modal_text_accept]}>
+                  Kirim
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </ModalApp>
+      )}
 
       {isModalRange && distanceFromLocation > 10 && (
         <ModalApp isModal={isModalRange}>
