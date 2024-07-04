@@ -54,7 +54,7 @@ const ActivityScreen = () => {
   return (
     <>
       <CustomHeaderApp
-        backButton={true}
+        backButton={false}
         screenName={'Aktivitas'}
         rightIcon={headerIcon()}>
         <View style={styles.header_dropdown_menu}>

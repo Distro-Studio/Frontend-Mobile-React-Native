@@ -1,4 +1,12 @@
-import {View, Text, StyleSheet, Pressable, FlatList, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  FlatList,
+  Image,
+  TextInput,
+} from 'react-native';
 import React from 'react';
 import {Banner, CustomHeaderApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
@@ -11,6 +19,8 @@ import PlusIcon from '../../assets/icons/plus-icon.svg';
 const GantiJadwalScreen = ({navigation}) => {
   const [activeMenu, setActiveMenu] = React.useState('Upcoming');
   const menus = ['Upcoming', 'Past', 'Requested'];
+  const [isSearch, setIsSearch] = React.useState(false);
+
   const dataTukar = [
     {label: 'Menunggu', value: 'Menunggu'},
     {label: 'Disetujui', value: 'Disetujui'},
@@ -23,19 +33,48 @@ const GantiJadwalScreen = ({navigation}) => {
 
   const headerIcon = () => {
     return (
-      <Pressable>
+      <Pressable onPress={() => setIsSearch(true)}>
         <SearchIcon />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };
 
+  const SearchForm = React.useCallback(() => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          borderColor: '#E3E3E3',
+          borderWidth: 1,
+          borderRadius: 8,
+          paddingVertical: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 10,
+          gap: 4,
+        }}>
+        <SearchIcon style={{width: 20, height: 20}} />
+        <TextInput
+          placeholder="Search"
+          style={{
+            width: '100%',
+            paddingVertical: 6,
+          }}
+        />
+      </View>
+    );
+  }, []);
+
   return (
     <>
       <CustomHeaderApp
-        backButton={true}
-        screenName={'Tukar Jadwal'}
-        rightIcon={headerIcon()}>
+        backButton={!isSearch ? true : false}
+        rightIcon={headerIcon()}
+        isSearch={isSearch}
+        searchForm={SearchForm()}
+        setIsSearch={setIsSearch}
+        screenName={'Tukar Jadwal'}>
         <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}

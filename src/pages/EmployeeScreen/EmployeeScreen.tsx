@@ -1,5 +1,12 @@
 import React from 'react';
-import {FlatList, Image, Pressable, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 // import {IconSearch} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard} from '../../components';
@@ -9,6 +16,7 @@ import SearchIcon from '../../assets/icons/search-icon.svg';
 const EmployeeScreen = ({navigation}: any) => {
   const [valueWeeks, setValueWeeks] = React.useState<string | null>(null);
   const [isFocusWeeks, setIsFocusWeeks] = React.useState(false);
+  const [isSearch, setIsSearch] = React.useState(false);
 
   const dataStatus = [
     {label: 'Kerja', value: 'Kerja'},
@@ -17,17 +25,45 @@ const EmployeeScreen = ({navigation}: any) => {
   ];
   const headerIcon = () => {
     return (
-      <Pressable>
+      <Pressable onPress={() => setIsSearch(true)}>
         <SearchIcon />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };
+  const SearchForm = React.useCallback(() => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          borderColor: '#E3E3E3',
+          borderWidth: 1,
+          borderRadius: 8,
+          paddingVertical: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 10,
+          gap: 4,
+        }}>
+        <SearchIcon style={{width: 20, height: 20}} />
+        <TextInput
+          placeholder="Search"
+          style={{
+            width: '100%',
+            paddingVertical: 6,
+          }}
+        />
+      </View>
+    );
+  }, []);
   return (
     <>
       <CustomHeaderApp
-        backButton={false}
+        backButton={isSearch ? true : false}
         rightIcon={headerIcon()}
+        isSearch={isSearch}
+        searchForm={SearchForm()}
+        setIsSearch={setIsSearch}
         screenName={'Karyawan'}>
         <View style={styles.header_dropdown_menu}>
           <Dropdown

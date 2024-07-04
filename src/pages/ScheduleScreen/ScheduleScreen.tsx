@@ -1,16 +1,50 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {CustomHeaderApp, ScheduleCard} from '../../components';
 import CalendarIcon from '../../assets/icons/calendar-icon.svg';
 import SearchIcon from '../../assets/icons/search-icon.svg';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
+  const [isSearch, setIsSearch] = React.useState(false);
+  const SearchForm = React.useCallback(() => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          borderColor: '#E3E3E3',
+          borderWidth: 1,
+          borderRadius: 8,
+          paddingVertical: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 10,
+          gap: 4,
+        }}>
+        <SearchIcon style={{width: 20, height: 20}} />
+        <TextInput
+          placeholder="Search"
+          style={{
+            width: '100%',
+            paddingVertical: 6,
+          }}
+        />
+      </View>
+    );
+  }, []);
 
   const headerIcon = () => {
     return (
-      <Pressable>
+      <Pressable onPress={() => setIsSearch(true)}>
         <SearchIcon />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
@@ -104,8 +138,11 @@ const ScheduleScreen = ({navigation}) => {
   return (
     <>
       <CustomHeaderApp
-        backButton={false}
+        backButton={isSearch ? true : false}
         rightIcon={headerIcon()}
+        isSearch={isSearch}
+        searchForm={SearchForm()}
+        setIsSearch={setIsSearch}
         screenName={'Jadwal'}>
         <View style={styles.header_dropdown_menu}>
           <Text style={{color: 'black'}}>28 Dec 22 - 10 Jan 23</Text>

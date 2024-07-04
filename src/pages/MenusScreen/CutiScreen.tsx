@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  TextInput,
+} from 'react-native';
 import React from 'react';
 import {Banner, CustomHeaderApp} from '../../components';
 import {APP} from '../../utils/CONSTANT';
@@ -13,6 +20,7 @@ const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
   const menus = ['Terbaru', 'Histori'];
   const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
+  const [isSearch, setIsSearch] = React.useState(false);
 
   const dataCuti = [
     {label: 'Tahunan', value: 'Tahunan'},
@@ -26,19 +34,48 @@ const LeavesScreen = () => {
 
   const headerIcon = () => {
     return (
-      <Pressable>
+      <Pressable onPress={() => setIsSearch(true)}>
         <SearchIcon />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
   };
 
+  const SearchForm = React.useCallback(() => {
+    return (
+      <View
+        style={{
+          flex: 1,
+          borderColor: '#E3E3E3',
+          borderWidth: 1,
+          borderRadius: 8,
+          paddingVertical: 0,
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: 10,
+          gap: 4,
+        }}>
+        <SearchIcon style={{width: 20, height: 20}} />
+        <TextInput
+          placeholder="Search"
+          style={{
+            width: '100%',
+            paddingVertical: 6,
+          }}
+        />
+      </View>
+    );
+  }, []);
+
   return (
     <>
       <CustomHeaderApp
-        backButton={true}
-        screenName={'Cuti'}
-        rightIcon={headerIcon()}>
+        backButton={!isSearch ? true : false}
+        rightIcon={headerIcon()}
+        isSearch={isSearch}
+        searchForm={SearchForm()}
+        setIsSearch={setIsSearch}
+        screenName={'Cuti'}>
         <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}

@@ -9,23 +9,38 @@ const CustomHeaderApp = ({
   children,
   rightIcon,
   screenName,
+  isSearch,
+  searchForm,
+  setIsSearch,
 }: any) => {
   const navigation = useNavigation();
+  console.log(rightIcon);
   return (
     <View style={styles.container}>
       <View style={styles.container_header_top(children)}>
         <View style={{width: 20, height: 20}}>
-          {backButton && (
+          {backButton && !isSearch && (
             <Pressable onPress={() => navigation.goBack()}>
               <ChevronLeft />
               {/* <Image source={ChevronLeft} style={{width: 20, height: 20}} /> */}
             </Pressable>
           )}
+          {isSearch && (
+            <Pressable onPress={() => setIsSearch(false)}>
+              <ChevronLeft />
+              {/* <Image source={ChevronLeft} style={{width: 20, height: 20}} /> */}
+            </Pressable>
+          )}
         </View>
-        <View style={{flex: 1}}>
-          <Text style={styles.headerText}>{screenName}</Text>
-        </View>
-        <View style={{width: 20, height: 20}}>{rightIcon}</View>
+        {!isSearch && (
+          <>
+            <View style={{flex: 1}}>
+              <Text style={styles.headerText}>{screenName}</Text>
+            </View>
+            <View style={{width: 20, height: 20}}>{rightIcon}</View>
+          </>
+        )}
+        {isSearch && searchForm}
       </View>
       {children}
     </View>
