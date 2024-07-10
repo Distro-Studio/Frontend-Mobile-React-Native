@@ -23,7 +23,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.6.7",
     "formik": "^2.4.6",
-    "lucide-react": "^0.390.0",
+    "lucide-react-native": "^0.402.0",
     "metro-react-native-babel-preset": "^0.77.0",
     "react": "18.2.0",
     "react-native": "0.73.4",

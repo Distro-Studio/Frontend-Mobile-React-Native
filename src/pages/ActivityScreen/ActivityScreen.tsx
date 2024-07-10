@@ -56,8 +56,9 @@ const ActivityScreen = () => {
       <CustomHeaderApp
         backButton={false}
         screenName={'Aktivitas'}
-        rightIcon={headerIcon()}>
-        <View style={styles.header_dropdown_menu}>
+        // rightIcon={headerIcon()}
+      >
+        {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
             placeholderStyle={styles.placeholderStyle}
@@ -104,7 +105,7 @@ const ActivityScreen = () => {
             }}
             itemTextStyle={{color: '#454545'}}
           />
-        </View>
+        </View> */}
       </CustomHeaderApp>
       <View style={styles.container}>
         <View style={{marginBottom: 16}}>

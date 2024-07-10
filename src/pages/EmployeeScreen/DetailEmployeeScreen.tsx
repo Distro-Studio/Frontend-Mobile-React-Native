@@ -16,8 +16,11 @@ import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSh
 import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 import {FlatList} from 'react-native-gesture-handler';
 import {getResponsive} from '../../utils';
-import {dummyEmployee} from '../../utils/CONSTANT';
+import {APP, dummyEmployee} from '../../utils/CONSTANT';
 import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
+import {ArrowDown, ArrowRightLeft, ArrowUp, User, X} from 'lucide-react-native';
+import InIcon from '../../assets/icons/in-icon.svg';
+import OutIcon from '../../assets/icons/out-icon.svg';
 
 const {height} = Dimensions.get('window');
 
@@ -28,13 +31,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
   const [isStatusSuccess, setIsStatusSuccess] = React.useState(false); // for showing if status success or fail
   const [data, setData] = React.useState(dummyEmployee);
   const [activeEmployee, setACtiveEmployee] = React.useState(1);
-  const snapPoints = React.useMemo(
-    () =>
-      isStatus
-        ? [28, getResponsive(310, 'height')]
-        : [getResponsive(150, 'height'), 28],
-    [isStatus],
-  );
+  const snapPoints = React.useMemo(() => [750], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
 
@@ -110,22 +107,6 @@ const DetailEmployeeScreen = ({navigation}: any) => {
             </View>
           )}
         />
-        {/* <View style={[styles.schedule_container]}> */}
-
-        {/* <View style={styles.schedule_cards_container}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(item => (
-              <ScheduleCard
-                key={item}
-                routeName={route.name}
-                cardState={'active'}
-                onSwap={() => {
-                  setState(!state);
-                  setIsStatus(false);
-                }}
-              />
-            ))}
-          </View> */}
-        {/* </View> */}
       </View>
       {state && (
         <CustomButtonSheet
@@ -138,14 +119,375 @@ const DetailEmployeeScreen = ({navigation}: any) => {
           onPress={() => {
             setIsStatus(true);
             setIsStatusSuccess(true);
-          }}
-        />
+          }}>
+          <View style={{paddingVertical: 8}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: 16,
+                paddingHorizontal: 24,
+              }}>
+              <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                Tukar Jadwal
+              </Text>
+              <Pressable onPress={() => setState(false)}>
+                <X style={{color: '#000000'}} />
+              </Pressable>
+            </View>
+            <View style={{paddingHorizontal: 24}}>
+              <Text style={{fontWeight: '700', marginBottom: 8}}>
+                Jadwal Ditukar
+              </Text>
+              <View
+                style={{
+                  paddingLeft: 4,
+                }}>
+                <View
+                  style={{
+                    borderWidth: 1,
+                    // padding: 16,
+                    backgroundColor: '#FFFFFF',
+                    borderColor: '#e3e3e3',
+                    borderRadius: 8,
+                    flexDirection: 'row',
+                    // justifyContent: 'space-between',
+                    // alignItems: 'center',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#ececec',
+                      // height: '100%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      paddingHorizontal: 4,
+                      width: 80,
+                    }}>
+                    <Text
+                      style={{
+                        fontWeight: '700',
+                        marginTop: 8,
+                        textAlign: 'center',
+                      }}>
+                      Jadwal Ditukar
+                    </Text>
+                    <ArrowDown
+                      style={{color: APP.COLORS['primary-500']}}
+                      size={32}
+                    />
+                  </View>
+                  <View style={{padding: 16}}>
+                    <Text>Pagi - Minggu 1</Text>
+                    <Text
+                      style={{
+                        fontWeight: '700',
+                        marginVertical: 8,
+                        fontSize: 16,
+                      }}>
+                      1 Januari 2024
+                    </Text>
+                    <View style={styles.schedule_times}>
+                      <View style={styles.schedule_time}>
+                        <View
+                          style={[
+                            styles.schedule_icon,
+                            {
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#E7F6F6',
+                              borderRadius: 50,
+                            },
+                          ]}>
+                          <InIcon width={11} height={11} />
+                        </View>
+                        <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                          07.30
+                        </Text>
+                      </View>
+                      <View style={styles.schedule_time}>
+                        <View
+                          style={[
+                            styles.schedule_icon,
+                            {
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#FFEDEC',
+                              borderRadius: 50,
+                            },
+                          ]}>
+                          <OutIcon width={11} height={11} />
+                        </View>
+                        <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                          16.30
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            {/*  */}
+            <View
+              style={{
+                marginVertical: 16,
+                paddingVertical: 16,
+                borderTopWidth: 4,
+                borderBottomWidth: 4,
+                borderColor: '#f1f2f3',
+              }}>
+              <View style={{paddingHorizontal: 24}}>
+                <Text style={{fontWeight: '700', marginBottom: 8}}>
+                  Pilih Jadwal Anda Untuk Ditukar
+                </Text>
+                <View
+                  style={{
+                    paddingLeft: 4,
+                    backgroundColor: APP.COLORS['primary-500'],
+                    borderRadius: 8,
+                  }}>
+                  <View
+                    style={{
+                      borderWidth: 1,
+                      // padding: 16,
+                      backgroundColor: '#FFFFFF',
+                      borderColor: '#e3e3e3',
+                      borderRadius: 8,
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      // alignItems: 'center',
+                    }}>
+                    <View style={{padding: 16}}>
+                      <Text>Pagi - Minggu 1</Text>
+                      <Text
+                        style={{
+                          fontWeight: '700',
+                          marginVertical: 8,
+                          fontSize: 16,
+                        }}>
+                        1 Januari 2024
+                      </Text>
+                      <View style={styles.schedule_times}>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#E7F6F6',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <InIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            07.30
+                          </Text>
+                        </View>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#FFEDEC',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <OutIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            16.30
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        backgroundColor: '#ececec',
+                        // height: '100%',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingHorizontal: 4,
+                        width: 80,
+                      }}>
+                      <ArrowUp
+                        style={{color: APP.COLORS['primary-500']}}
+                        size={32}
+                      />
+                      <Text
+                        style={{
+                          fontWeight: '700',
+                          marginTop: 8,
+                          textAlign: 'center',
+                        }}>
+                        Jadwal Anda
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <Text style={{marginTop: 16, textAlign: 'center'}}>
+                  Geser untuk pilih jadwal anda
+                </Text>
+              </View>
+            </View>
+            {/*  */}
+            <View style={{paddingHorizontal: 24}}>
+              <View style={{flexDirection: 'row', gap: 4, marginBottom: 8}}>
+                <Text style={{fontWeight: '700'}}>Penukaran Jadwal</Text>
+                <Text style={{color: '#d5d5d9'}}>(jadwal anda di kanan)</Text>
+              </View>
+              {/*  */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View>
+                  <Text>Pagi</Text>
+                  <Text>1 Januari 2024</Text>
+                  <View style={styles.schedule_times}>
+                    <View style={styles.schedule_time}>
+                      <View
+                        style={[
+                          styles.schedule_icon,
+                          {
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#E7F6F6',
+                            borderRadius: 50,
+                          },
+                        ]}>
+                        <InIcon width={11} height={11} />
+                      </View>
+                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                        07.30
+                      </Text>
+                    </View>
+                    <View style={styles.schedule_time}>
+                      <View
+                        style={[
+                          styles.schedule_icon,
+                          {
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#FFEDEC',
+                            borderRadius: 50,
+                          },
+                        ]}>
+                        <OutIcon width={11} height={11} />
+                      </View>
+                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                        16.30
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <ArrowRightLeft color={'black'} />
+                <View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}>
+                    <Text>Pagi</Text>
+                    <User color={APP.COLORS['primary-500']} size={16} />
+                  </View>
+                  <Text>1 Januari 2024</Text>
+                  <View style={styles.schedule_times}>
+                    <View style={styles.schedule_time}>
+                      <View
+                        style={[
+                          styles.schedule_icon,
+                          {
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#E7F6F6',
+                            borderRadius: 50,
+                          },
+                        ]}>
+                        <InIcon width={11} height={11} />
+                      </View>
+                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                        07.30
+                      </Text>
+                    </View>
+                    <View style={styles.schedule_time}>
+                      <View
+                        style={[
+                          styles.schedule_icon,
+                          {
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#FFEDEC',
+                            borderRadius: 50,
+                          },
+                        ]}>
+                        <OutIcon width={11} height={11} />
+                      </View>
+                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                        16.30
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              {/*  */}
+            </View>
+          </View>
+          <Pressable
+            style={{
+              position: 'absolute',
+              bottom: 10,
+              left: 0,
+              right: 0,
+              marginHorizontal: 24,
+              backgroundColor: APP.COLORS['primary-500'],
+              flex: 1,
+              padding: 12,
+              borderRadius: 8,
+            }}>
+            <Text
+              style={{
+                textAlign: 'center',
+                color: '#FFFFFF',
+                fontWeight: '700',
+              }}>
+              Konfirmasi
+            </Text>
+          </Pressable>
+        </CustomButtonSheet>
       )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  schedule_times: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  schedule_icon: {
+    width: 20,
+    height: 20,
+  },
+  schedule_time: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
   schedule_cards_container: {
     gap: 16,
   },

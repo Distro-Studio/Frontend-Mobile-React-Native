@@ -5,6 +5,7 @@ import {IconActivityIn, IconActivityOut} from '../../assets/images';
 import {getResponsive} from '../../utils';
 import InIcon from '../../assets/icons/in-icon.svg';
 import OutIcon from '../../assets/icons/out-icon.svg';
+import {ArrowDownUp} from 'lucide-react-native';
 
 const ScheduleCard = ({
   routeName,
@@ -29,10 +30,10 @@ const ScheduleCard = ({
       <View style={styles.schedule_card_container}>
         {/* info */}
         <View>
-          <Text style={{color: '#0C0E11'}}>
-            Minggu 1 - {isHoliday ? 'Libur' : 'Shift Pagi'}
+          <Text style={{color: '#0C0E11', opacity: 0.4}}>
+            {isHoliday ? 'Libur' : 'Pagi'} - Minggu 1
           </Text>
-          <Text style={styles.schedule_date(cardState, isHoliday)}>
+          <Text style={[styles.schedule_date(cardState, isHoliday), {}]}>
             01 Nov 2023, Monday
           </Text>
           {!isHoliday && (
@@ -51,7 +52,7 @@ const ScheduleCard = ({
                   ]}>
                   <InIcon width={11} height={11} />
                 </View>
-                <Text style={{fontSize: 16, color: '#0C0E11'}}>07.30</Text>
+                <Text style={{fontSize: 13, color: '#0C0E11'}}>07.30</Text>
               </View>
               <View style={styles.schedule_time}>
                 <View
@@ -67,7 +68,7 @@ const ScheduleCard = ({
                   ]}>
                   <OutIcon width={11} height={11} />
                 </View>
-                <Text style={{fontSize: 16, color: '#0C0E11'}}>16.30</Text>
+                <Text style={{fontSize: 13, color: '#0C0E11'}}>16.30</Text>
               </View>
             </View>
           )}
@@ -98,11 +99,19 @@ const ScheduleCard = ({
             <Pressable
               onPress={onSwap}
               style={{
-                padding: 12,
+                paddingVertical: 6,
+                paddingHorizontal: 10,
                 borderWidth: 2,
                 borderRadius: 8,
                 borderColor: APP.COLORS['primary-500'],
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 4,
               }}>
+              <ArrowDownUp
+                style={{color: APP.COLORS['primary-500']}}
+                size={16}
+              />
               <Text style={{color: APP.COLORS['primary-500']}}>Tukar</Text>
             </Pressable>
           )}
@@ -126,8 +135,8 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
   },
   schedule_date: (state, isHoliday) => ({
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 14,
+    fontWeight: '600',
     marginTop: 8,
     color: isHoliday ? '#777986' : '#222831',
   }),

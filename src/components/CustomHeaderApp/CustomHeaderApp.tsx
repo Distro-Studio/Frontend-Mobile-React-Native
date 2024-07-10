@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
     paddingTop: 16,
-    paddingBottom: 14,
+    paddingBottom: 16,
     marginBottom: 24,
     backgroundColor: '#FFFFFF',
     shadowColor: '#000',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: children === undefined ? 0 : 16,
+    marginBottom: children === undefined ? 0 : 8,
   }),
   headerText: {
     fontSize: 16,

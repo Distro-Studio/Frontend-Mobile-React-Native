@@ -26,7 +26,7 @@ const EmployeeScreen = ({navigation}: any) => {
   const headerIcon = () => {
     return (
       <Pressable onPress={() => setIsSearch(true)}>
-        <SearchIcon />
+        <SearchIcon width={18} height={18} />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
@@ -65,7 +65,7 @@ const EmployeeScreen = ({navigation}: any) => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Karyawan'}>
-        <View style={styles.header_dropdown_menu}>
+        {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
             placeholderStyle={styles.placeholderStyle}
@@ -89,7 +89,7 @@ const EmployeeScreen = ({navigation}: any) => {
             }}
             itemTextStyle={{color: '#454545'}}
           />
-        </View>
+        </View> */}
       </CustomHeaderApp>
 
       <View style={styles.container}>

@@ -45,10 +45,12 @@ const ProfileScreen = () => {
                 justifyContent: 'space-between',
               }}>
               <View style={{}}>
-                <Text style={{fontSize: 14, fontWeight: '700'}}>
+                <Text style={{fontSize: 14, fontWeight: '500'}}>
                   Annette Black
                 </Text>
-                <Text style={{fontSize: 12}}>Project Manager</Text>
+                <Text style={{fontSize: 12, opacity: 0.4}}>
+                  Project Manager
+                </Text>
               </View>
               <View style={{}}>
                 <PencilIcon />

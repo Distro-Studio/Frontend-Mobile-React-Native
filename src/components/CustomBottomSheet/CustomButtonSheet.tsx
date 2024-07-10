@@ -14,6 +14,7 @@ const CustomButtonSheet = ({
   sheetRef,
   handleSheetChanges,
   snapPoints,
+  children,
   isStatus,
   isStatusSuccess,
   onClose,
@@ -26,7 +27,8 @@ const CustomButtonSheet = ({
       onChange={handleSheetChanges}
       snapPoints={snapPoints}>
       <BottomSheetView style={styles.sheetContainer}>
-        <>
+        {children}
+        {/* <>
           {isStatus && (
             <View style={{paddingHorizontal: 24}}>
               <Image
@@ -194,7 +196,7 @@ const CustomButtonSheet = ({
               )}
             </View>
           )}
-        </>
+        </> */}
       </BottomSheetView>
     </BottomSheet>
   );

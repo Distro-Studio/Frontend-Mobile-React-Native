@@ -139,12 +139,12 @@ const ScheduleScreen = ({navigation}) => {
     <>
       <CustomHeaderApp
         backButton={isSearch ? true : false}
-        rightIcon={headerIcon()}
+        // rightIcon={headerIcon()}
         isSearch={isSearch}
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Jadwal'}>
-        <View style={styles.header_dropdown_menu}>
+        <View style={[styles.header_dropdown_menu]}>
           <Text style={{color: 'black'}}>28 Dec 22 - 10 Jan 23</Text>
           <CalendarIcon />
           {/* <Image source={CalendarIcon} style={{width: 20, height: 20}} /> */}
@@ -156,11 +156,11 @@ const ScheduleScreen = ({navigation}) => {
             backgroundColor: '#287DFC26',
             padding: 16,
             borderRadius: 8,
-            marginBottom: 16,
+            marginBottom: 8,
           }}>
           <Text style={{lineHeight: 20, color: '#222831'}}>
-            Just a reminder: HRD updates your work schedule every Week. Keep an
-            eye out for the latest changes!!!
+            Sekadar pengingat: HRD memperbarui jadwal kerja Anda setiap Minggu.
+            Selalu perhatikan perubahan terbaru!!!
           </Text>
         </View>
       </View>

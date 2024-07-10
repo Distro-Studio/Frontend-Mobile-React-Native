@@ -101,11 +101,14 @@ const styles = StyleSheet.create({
     color: '#F5F5F5',
   },
   employee_name: {
-    fontWeight: '700',
+    fontWeight: '600',
     color: '#0C0E11',
+    fontSize: 14,
   },
   employee_role: {
     color: '#5F616B',
+    fontSize: 12,
+    opacity: 0.4,
   },
   employee_img: {
     width: 40,
