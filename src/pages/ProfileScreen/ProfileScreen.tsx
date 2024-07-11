@@ -45,10 +45,10 @@ const ProfileScreen = () => {
                 justifyContent: 'space-between',
               }}>
               <View style={{}}>
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Annette Black
                 </Text>
-                <Text style={{fontSize: 12, opacity: 0.4}}>
+                <Text style={{fontSize: 12, opacity: 0.4, color: 'black'}}>
                   Project Manager
                 </Text>
               </View>
@@ -77,13 +77,13 @@ const ProfileScreen = () => {
             <View style={{gap: 8, marginTop: 8}}>
               <View style={styles.card_container}>
                 <CertificateIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Penghargaan
                 </Text>
               </View>
               <View style={styles.card_container}>
                 <EmployeeIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Data Keluarga
                 </Text>
               </View>
@@ -94,21 +94,25 @@ const ProfileScreen = () => {
             <View style={{gap: 8, marginTop: 8}}>
               <View style={styles.card_container}>
                 <BrowserIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>Bahasa</Text>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
+                  Bahasa
+                </Text>
               </View>
               <View style={styles.card_container}>
                 <TermIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Term & COnditions
                 </Text>
               </View>
               <View style={styles.card_container}>
                 <HelpIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>Bantuan</Text>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
+                  Bantuan
+                </Text>
               </View>
               <View style={styles.card_container}>
                 <ContactIcon width={20} height={20} />
-                <Text style={{fontSize: 14, fontWeight: '500'}}>
+                <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Kontak Kami
                 </Text>
               </View>

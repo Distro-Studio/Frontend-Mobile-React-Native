@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
   app_ver: {
     textAlign: 'center',
-    marginTop: 24,
+    // marginTop: 24,
     fontSize: 14,
     color: '#777986',
   },

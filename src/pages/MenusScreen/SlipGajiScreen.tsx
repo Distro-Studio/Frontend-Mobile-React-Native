@@ -149,7 +149,7 @@ const SlipGajiScreen = () => {
         <Pressable
           style={{
             flex: 1,
-            backgroundColor: '#10A9A50',
+            backgroundColor: '#10A9A5',
             paddingVertical: 10,
             flexDirection: 'row',
             justifyContent: 'center',
@@ -161,11 +161,11 @@ const SlipGajiScreen = () => {
           <Text style={{color: '#FFFFFF'}}>Unduh Slip Gaji</Text>
         </Pressable>
         <View style={{marginTop: 24}}>
-          <Text>
+          <Text style={{color: 'black'}}>
             *Ini adalah slip gaji yang berasal dari komputer dan tidak
             memerlukan tanda tangan basah.
           </Text>
-          <Text>
+          <Text style={{color: 'black'}}>
             Isi kuesioner ini bersifat rahasia kecuali jika diperlukan untuk
             tujuan pajak, hukum, atau pemerintah. Pelanggaran terhadap kewajiban
             kerahasiaan ini akan dikenakan sanksi, termasuk tindakan disipliner.

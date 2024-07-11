@@ -26,8 +26,8 @@ const SlipGajiCard = () => {
             justifyContent: 'space-between',
             marginVertical: 8,
           }}>
-          <Text>Gaji Pokok</Text>
-          <Text>Rp5.000.000</Text>
+          <Text style={{color: 'black'}}>Gaji Pokok</Text>
+          <Text style={{color: 'black'}}>Rp5.000.000</Text>
         </View>
         <View
           style={{
@@ -35,8 +35,8 @@ const SlipGajiCard = () => {
             justifyContent: 'space-between',
             marginVertical: 8,
           }}>
-          <Text>Tunjangan</Text>
-          <Text>Rp5.000.000</Text>
+          <Text style={{color: 'black'}}>Tunjangan</Text>
+          <Text style={{color: 'black'}}>Rp5.000.000</Text>
         </View>
         <View
           style={{
@@ -47,8 +47,8 @@ const SlipGajiCard = () => {
             borderBottomColor: '#EBEBED',
             borderBottomWidth: 1,
           }}>
-          <Text>Tunjangan Jabatan</Text>
-          <Text>Rp5.000.000</Text>
+          <Text style={{color: 'black'}}>Tunjangan Jabatan</Text>
+          <Text style={{color: 'black'}}>Rp5.000.000</Text>
         </View>
         <View>
           <Text style={{fontSize: 16}}>Total Penghasilan</Text>

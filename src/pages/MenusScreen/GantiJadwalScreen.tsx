@@ -70,12 +70,15 @@ const GantiJadwalScreen = ({navigation}) => {
     <>
       <CustomHeaderApp
         backButton={!isSearch ? true : false}
-        rightIcon={headerIcon()}
+        // rightIcon={headerIcon()}
         isSearch={isSearch}
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
-        screenName={'Tukar Jadwal'}>
-        <View style={styles.header_dropdown_menu}>
+        screenName={'Pengajuan Tukar Jadwal'}>
+        <Text style={{color: 'black', fontWeight: '600'}}>
+          Filter Tukar Jadwal
+        </Text>
+        {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
             placeholderStyle={styles.placeholderStyle}
@@ -122,7 +125,7 @@ const GantiJadwalScreen = ({navigation}) => {
             }}
             itemTextStyle={{color: '#454545'}}
           />
-        </View>
+        </View> */}
       </CustomHeaderApp>
       <FAB />
       <View style={styles.container}>
@@ -158,7 +161,21 @@ const GantiJadwalScreen = ({navigation}) => {
               onPress={() => navigation.navigate('GantiJadwalDetailScreen')}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={{color: '#222831'}}>Tanggal</Text>
+                <View>
+                  <Text style={{color: '#222831', opacity: 0.4, fontSize: 12}}>
+                    Jenis Penukaran
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#222831',
+                      fontWeight: '700',
+                      fontSize: 14,
+                      marginTop: 4,
+                      marginBottom: 8,
+                    }}>
+                    Tukar Shift
+                  </Text>
+                </View>
                 <Text
                   style={{
                     color:
@@ -178,6 +195,15 @@ const GantiJadwalScreen = ({navigation}) => {
               <Text
                 style={{
                   color: '#222831',
+                  opacity: 0.4,
+                  fontSize: 12,
+                  marginTop: 4,
+                }}>
+                Tanggal Pengajuan
+              </Text>
+              <Text
+                style={{
+                  color: '#222831',
                   fontWeight: '700',
                   fontSize: 14,
                   marginTop: 4,
@@ -188,7 +214,9 @@ const GantiJadwalScreen = ({navigation}) => {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <View style={{flex: 1}}>
-                  <Text style={{color: '#222831'}}>Nama</Text>
+                  <Text style={{color: '#222831', opacity: 0.4, fontSize: 12}}>
+                    Karyawan Ditukar
+                  </Text>
                   <Text
                     style={{
                       color: '#222831',
@@ -201,7 +229,9 @@ const GantiJadwalScreen = ({navigation}) => {
                   </Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <Text style={{color: '#222831'}}>Disetujui Oleh</Text>
+                  <Text style={{color: '#222831', opacity: 0.4, fontSize: 12}}>
+                    Disetujui Oleh
+                  </Text>
                   <Text
                     style={{
                       color: '#222831',

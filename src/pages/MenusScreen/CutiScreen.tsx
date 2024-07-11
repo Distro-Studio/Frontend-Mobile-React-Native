@@ -80,17 +80,15 @@ const LeavesScreen = () => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Cuti'}>
-        <Text>Filter Cuti</Text>
+        <Text style={{color: 'black', fontWeight: '600'}}>Filter Cuti</Text>
       </CustomHeaderApp>
       <FAB />
       <ScrollView style={styles.container}>
-        <Text style={{fontWeight: '700'}}>Statistik Cuti</Text>
+        <Text style={{fontWeight: '700', color: 'black'}}>Statistik Cuti</Text>
         <View style={{marginTop: 8, marginBottom: 16}}>
           <View
             style={{
               flexDirection: 'row',
-              gap: 7,
-              flexWrap: 'wrap',
               justifyContent: 'space-between',
             }}>
             <View
@@ -98,15 +96,21 @@ const LeavesScreen = () => {
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <BarChart2 color={'rgb(227, 68, 54)'} fill={'rgb(227, 68, 54)'} />
-              <Text style={{marginVertical: 2, fontSize: 14}}>
+              <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
                 Cuti Tahunan
               </Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 4{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   /12
                 </Text>
               </Text>
@@ -116,37 +120,60 @@ const LeavesScreen = () => {
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <BarChart2
                 color={'rgb(62, 209, 128)'}
                 fill={'rgb(62, 209, 128)'}
               />
-              <Text style={{marginVertical: 2, fontSize: 14}} numberOfLines={1}>
+              <Text
+                numberOfLines={1}
+                style={{marginTop: 10, fontSize: 14, color: 'black'}}>
                 Cuti di Luar Tanggungan
               </Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 5{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   /30 hari
                 </Text>
               </Text>
             </View>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 12,
+            }}>
             <View
               style={{
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <BarChart2
                 color={'rgb(36, 113, 227)'}
                 fill={'rgb(36, 113, 227)'}
               />
-              <Text style={{marginVertical: 2, fontSize: 14}}>Cuti Besar</Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
+                Cuti Besar
+              </Text>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 7{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   /12 hari
                 </Text>
               </Text>
@@ -156,34 +183,55 @@ const LeavesScreen = () => {
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <BarChart2
                 color={'rgb(255, 206, 103)'}
                 fill={'rgb(255, 206, 103)'}
               />
-              <Text style={{marginVertical: 2, fontSize: 14}}>
+              <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
                 Cuti Kelahiran
               </Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 0{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   /90 hari
                 </Text>
               </Text>
             </View>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 12,
+            }}>
             <View
               style={{
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <LineChart color={'rgb(168, 92, 207)'} />
-              <Text style={{marginVertical: 2, fontSize: 14}}>Cuti Sakit</Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
+                Cuti Sakit
+              </Text>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 2{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   kali
                 </Text>
               </Text>
@@ -193,35 +241,50 @@ const LeavesScreen = () => {
                 backgroundColor: '#FFFFFF',
                 padding: 12,
                 borderRadius: 12,
-                width: '49%',
+                width: '48%',
               }}>
               <LineChart color={'rgb(79, 176, 198)'} />
-              <Text style={{marginVertical: 2, fontSize: 14}}>Cuti Nikah</Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
+              <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
+                Cuti Nikah
+              </Text>
+              <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
                 0{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    opacity: 0.4,
+                    color: 'black',
+                  }}>
                   kali
                 </Text>
               </Text>
             </View>
-            <View
-              style={{
-                backgroundColor: '#FFFFFF',
-                padding: 12,
-                borderRadius: 12,
-                flex: 1,
-              }}>
-              <LineChart color={'rgb(255, 132, 124)'} />
-              <Text style={{marginVertical: 2, fontSize: 14}}>
-                Cuti Kematian
+          </View>
+          <View
+            style={{
+              backgroundColor: '#FFFFFF',
+              padding: 12,
+              borderRadius: 12,
+              flex: 1,
+              marginTop: 12,
+            }}>
+            <LineChart color={'rgb(255, 132, 124)'} />
+            <Text style={{marginTop: 10, fontSize: 14, color: 'black'}}>
+              Cuti Kematian
+            </Text>
+            <Text style={{fontSize: 24, fontWeight: '700', color: 'black'}}>
+              1{' '}
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '400',
+                  opacity: 0.4,
+                  color: 'black',
+                }}>
+                kali
               </Text>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
-                1{' '}
-                <Text style={{fontSize: 12, fontWeight: '400', opacity: 0.4}}>
-                  kali
-                </Text>
-              </Text>
-            </View>
+            </Text>
           </View>
         </View>
         {/*  */}
@@ -237,7 +300,21 @@ const LeavesScreen = () => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                 }}>
-                <Text style={{color: '#222831'}}>Tanggal</Text>
+                <View>
+                  <Text style={{color: 'black', opacity: 0.4, fontSize: 12}}>
+                    Kategori Cuti
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#222831',
+                      fontWeight: '600',
+                      fontSize: 14,
+                      marginTop: 4,
+                      marginBottom: 8,
+                    }}>
+                    Pribadi
+                  </Text>
+                </View>
                 <Text
                   style={{
                     color:
@@ -257,7 +334,16 @@ const LeavesScreen = () => {
               <Text
                 style={{
                   color: '#222831',
-                  fontWeight: '700',
+                  opacity: 0.4,
+                  fontSize: 12,
+                  marginTop: 4,
+                }}>
+                Tanggal
+              </Text>
+              <Text
+                style={{
+                  color: '#222831',
+                  fontWeight: '600',
                   fontSize: 14,
                   marginTop: 4,
                   marginBottom: 8,
@@ -270,7 +356,9 @@ const LeavesScreen = () => {
                   justifyContent: 'space-between',
                 }}>
                 <View style={{flex: 1}}>
-                  <Text style={{color: '#222831'}}>Total Cuti</Text>
+                  <Text style={{color: '#222831', opacity: 0.4, fontSize: 12}}>
+                    Total Cuti
+                  </Text>
                   <Text
                     style={{
                       color: '#222831',
@@ -283,7 +371,9 @@ const LeavesScreen = () => {
                   </Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <Text style={{color: '#222831'}}>Disetujui Oleh</Text>
+                  <Text style={{color: '#222831', opacity: 0.4, fontSize: 12}}>
+                    Disetujui Oleh
+                  </Text>
                   <Text
                     style={{
                       color: '#222831',

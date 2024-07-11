@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: children === undefined ? 0 : 8,
+    marginBottom: children === undefined ? 0 : 16,
   }),
   headerText: {
     fontSize: 16,

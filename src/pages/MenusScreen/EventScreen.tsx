@@ -67,6 +67,7 @@ const EventScreen = () => {
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={{gap: 16}}
           renderItem={() => (
             <View style={styles.eventCard}>
               <View>
@@ -93,7 +94,9 @@ const EventScreen = () => {
                     style={{fontSize: 12, color: APP.COLORS['primary-500']}}>
                     Diklat
                   </Text>
-                  <Text>1 hours ago</Text>
+                  <Text style={{color: 'black', opacity: 0.4, fontSize: 12}}>
+                    1 hours ago
+                  </Text>
                 </View>
                 <Text
                   style={{
@@ -106,8 +109,10 @@ const EventScreen = () => {
                 </Text>
                 <View
                   style={{flexDirection: 'row', gap: 8, alignItems: 'center'}}>
-                  <CalendarIcon />
-                  <Text>Senin, 20 Juli 2024</Text>
+                  <CalendarIcon size={12} />
+                  <Text style={{color: 'black', opacity: 0.4}}>
+                    Senin, 20 Juli 2024
+                  </Text>
                 </View>
               </View>
             </View>
@@ -123,14 +128,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     overflow: 'hidden',
     borderRadius: 16,
-    width: getResponsive(342, 'width'),
-    marginVertical: 12,
+    // width: getResponsive(342, 'width'),
+    // marginVertical: 12,
   },
   container: {
     paddingHorizontal: 24,
-    gap: 16,
-    paddingBottom: 70,
-    alignItems: 'center',
+    // gap: 16,
+    // paddingBottom: 70,
+    // alignItems: 'center',
   },
 });
 
