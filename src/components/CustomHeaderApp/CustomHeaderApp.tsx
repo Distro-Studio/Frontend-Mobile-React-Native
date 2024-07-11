@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
+import {ChevronLeft} from 'lucide-react-native';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 // import {ChevronLeft} from '../../assets/images';
-import ChevronLeft from '../../assets/icons/chevron-left-icon.svg';
+// import ChevronLeft from '../../assets/icons/chevron-left-icon.svg';
 
 const CustomHeaderApp = ({
   backButton,
@@ -18,16 +19,16 @@ const CustomHeaderApp = ({
   return (
     <View style={styles.container}>
       <View style={styles.container_header_top(children)}>
-        <View style={{width: 20, height: 20}}>
+        <View>
           {backButton && !isSearch && (
             <Pressable onPress={() => navigation.goBack()}>
-              <ChevronLeft />
+              <ChevronLeft color={'black'} size={24} />
               {/* <Image source={ChevronLeft} style={{width: 20, height: 20}} /> */}
             </Pressable>
           )}
           {isSearch && (
             <Pressable onPress={() => setIsSearch(false)}>
-              <ChevronLeft />
+              <ChevronLeft color={'black'} size={24} />
               {/* <Image source={ChevronLeft} style={{width: 20, height: 20}} /> */}
             </Pressable>
           )}

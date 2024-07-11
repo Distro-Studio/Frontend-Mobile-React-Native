@@ -18,43 +18,43 @@ import {APP} from '../../utils/CONSTANT';
 const AppImages = {
   activeBerandaIcon: {
     source: IconHomeActive,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   activeJadwalIcon: {
     source: IconScheduleActive,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   activeKaryawanIcon: {
     source: IconEmployeeActive,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   activeAktivitasIcon: {
     source: IconActivityActive,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   activeProfilIcon: {
     source: IconProfileActive,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   inactiveBerandaIcon: {
     source: IconHome,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   inactiveJadwalIcon: {
     source: IconSchedule,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   inactiveKaryawanIcon: {
     source: IconEmployee,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   inactiveAktivitasIcon: {
     source: IconActivity,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
   inactiveProfilIcon: {
     source: IconProfile,
-    style: {width: 24, height: 24},
+    style: {width: 20, height: 20},
   },
 };
 
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
   tabTitle: (active: any) => ({
     color: active ? APP.COLORS['primary-500'] : '#454545',
+    fontSize: 10,
   }),
 });
 

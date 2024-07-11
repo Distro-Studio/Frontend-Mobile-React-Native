@@ -6,8 +6,21 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {FlatList} from 'react-native-gesture-handler';
 import ActivityCard from '../../components/ActivityCard';
 import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
+import {getResponsive} from '../../utils';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import {Settings2} from 'lucide-react-native';
 
 const ActivityScreen = () => {
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
   const data = [
     {
       id: 1,
@@ -58,6 +71,15 @@ const ActivityScreen = () => {
         screenName={'Aktivitas'}
         // rightIcon={headerIcon()}
       >
+        <Pressable
+          style={[styles.header_dropdown_menu]}
+          onPress={() => setIsDrawer(!isDrawer)}>
+          <Text style={{color: 'black', fontWeight: '600'}}>
+            Filter Aktivitas
+          </Text>
+          <Settings2 color={'black'} size={16} />
+          {/* <Image source={CalendarIcon} style={{width: 20, height: 20}} /> */}
+        </Pressable>
         {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
@@ -121,6 +143,14 @@ const ActivityScreen = () => {
           <FlatList data={data} renderItem={renderItem} />
         </View>
       </View>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          snapPoints={snapPoints}>
+          <Text style={{color: 'black'}}>Drawer Activity</Text>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };
@@ -129,6 +159,7 @@ const styles = StyleSheet.create({
   header_dropdown_menu: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: 16,
   },
   placeholderStyle: {

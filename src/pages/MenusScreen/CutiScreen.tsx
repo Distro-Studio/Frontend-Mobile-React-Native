@@ -18,13 +18,24 @@ import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
 import SearchIcon from '../../assets/icons/search-icon.svg';
 import PlusIcon from '../../assets/icons/plus-icon.svg';
-import {BarChart2, LineChart} from 'lucide-react-native';
+import {BarChart2, LineChart, Settings2} from 'lucide-react-native';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import {getResponsive} from '../../utils';
 
 const LeavesScreen = () => {
   const [activeMenu, setActiveMenu] = React.useState('Terbaru');
   const menus = ['Terbaru', 'Histori'];
   const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
   const [isSearch, setIsSearch] = React.useState(false);
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   const dataCuti = [
     {label: 'Tahunan', value: 'Tahunan'},
@@ -80,9 +91,16 @@ const LeavesScreen = () => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Cuti'}>
-        <Text style={{color: 'black', fontWeight: '600'}}>Filter Cuti</Text>
+        <Pressable
+          style={[styles.header_dropdown_menu]}
+          onPress={() => setIsDrawer(!isDrawer)}>
+          <Text style={{color: 'black', fontWeight: '600'}}>
+            Filter Karyawan
+          </Text>
+          <Settings2 color={'black'} size={16} />
+        </Pressable>
       </CustomHeaderApp>
-      <FAB />
+      {!isDrawer && <FAB />}
       <ScrollView style={styles.container}>
         <Text style={{fontWeight: '700', color: 'black'}}>Statistik Cuti</Text>
         <View style={{marginTop: 8, marginBottom: 16}}>
@@ -390,6 +408,14 @@ const LeavesScreen = () => {
           )}
         />
       </ScrollView>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          snapPoints={snapPoints}>
+          <Text style={{color: 'black'}}>Drawer Cuti</Text>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };
@@ -398,6 +424,7 @@ const styles = StyleSheet.create({
   header_dropdown_menu: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: 16,
   },
   placeholderStyle: {

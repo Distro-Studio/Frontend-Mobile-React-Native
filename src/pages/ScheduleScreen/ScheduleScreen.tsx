@@ -12,10 +12,23 @@ import {
 import {CustomHeaderApp, ScheduleCard} from '../../components';
 import CalendarIcon from '../../assets/icons/calendar-icon.svg';
 import SearchIcon from '../../assets/icons/search-icon.svg';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import {getResponsive} from '../../utils';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import {Calendar} from 'lucide-react-native';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
   const [isSearch, setIsSearch] = React.useState(false);
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
   const SearchForm = React.useCallback(() => {
     return (
       <View
@@ -144,13 +157,21 @@ const ScheduleScreen = ({navigation}) => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Jadwal'}>
-        <View style={[styles.header_dropdown_menu]}>
-          <Text style={{color: 'black'}}>28 Dec 22 - 10 Jan 23</Text>
-          <CalendarIcon />
+        <Pressable
+          style={[styles.header_dropdown_menu]}
+          onPress={() => setIsDrawer(!isDrawer)}>
+          <Text style={{color: 'black', fontWeight: '600'}}>
+            28 Dec 22 - 10 Jan 23
+          </Text>
+          <Calendar size={16} color={'black'} />
           {/* <Image source={CalendarIcon} style={{width: 20, height: 20}} /> */}
-        </View>
+        </Pressable>
       </CustomHeaderApp>
-      <View style={styles.container_top}>
+      {/* <View style={styles.container_top}>
+
+      </View> */}
+
+      <View style={styles.container}>
         <View
           style={{
             backgroundColor: '#287DFC26',
@@ -163,15 +184,20 @@ const ScheduleScreen = ({navigation}) => {
             Selalu perhatikan perubahan terbaru!!!
           </Text>
         </View>
-      </View>
-
-      <View style={styles.container}>
         <FlatList
           data={data}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
         />
       </View>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          snapPoints={snapPoints}>
+          <Text style={{color: 'black'}}>Drawer Schedule</Text>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };
@@ -208,6 +234,7 @@ const styles = StyleSheet.create({
   header_dropdown_menu: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: 16,
   },
 });

@@ -15,11 +15,23 @@ import {Dropdown} from 'react-native-element-dropdown';
 import FAB from '../../components/FAB';
 import SearchIcon from '../../assets/icons/search-icon.svg';
 import PlusIcon from '../../assets/icons/plus-icon.svg';
+import {getResponsive} from '../../utils';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import {Settings2} from 'lucide-react-native';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
 
 const GantiJadwalScreen = ({navigation}) => {
   const [activeMenu, setActiveMenu] = React.useState('Upcoming');
   const menus = ['Upcoming', 'Past', 'Requested'];
   const [isSearch, setIsSearch] = React.useState(false);
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   const dataTukar = [
     {label: 'Menunggu', value: 'Menunggu'},
@@ -75,9 +87,14 @@ const GantiJadwalScreen = ({navigation}) => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Pengajuan Tukar Jadwal'}>
-        <Text style={{color: 'black', fontWeight: '600'}}>
-          Filter Tukar Jadwal
-        </Text>
+        <Pressable
+          style={[styles.header_dropdown_menu]}
+          onPress={() => setIsDrawer(!isDrawer)}>
+          <Text style={{color: 'black', fontWeight: '600'}}>
+            Filter Tukar Jadwal
+          </Text>
+          <Settings2 color={'black'} size={16} />
+        </Pressable>
         {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
@@ -127,7 +144,7 @@ const GantiJadwalScreen = ({navigation}) => {
           />
         </View> */}
       </CustomHeaderApp>
-      <FAB />
+      {!isDrawer && <FAB />}
       <View style={styles.container}>
         {/* <Banner
           headerText={'Fleksibilitas di Tanganmu! Tukar Jadwal dengan Mudah!'}
@@ -248,6 +265,14 @@ const GantiJadwalScreen = ({navigation}) => {
           )}
         />
       </View>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          snapPoints={snapPoints}>
+          <Text style={{color: 'black'}}>Drawer Swap</Text>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };
@@ -256,6 +281,7 @@ const styles = StyleSheet.create({
   header_dropdown_menu: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     gap: 16,
   },
   placeholderStyle: {

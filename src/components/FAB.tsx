@@ -10,7 +10,7 @@ const FAB = () => {
         position: 'absolute',
         bottom: 20,
         right: 20,
-        zIndex: 6,
+        zIndex: 1,
         width: 48,
         height: 48,
         borderRadius: 8,

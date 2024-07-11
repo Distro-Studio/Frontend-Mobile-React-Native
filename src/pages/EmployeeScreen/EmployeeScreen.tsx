@@ -4,6 +4,7 @@ import {
   Image,
   Pressable,
   StyleSheet,
+  Text,
   TextInput,
   View,
 } from 'react-native';
@@ -12,11 +13,23 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {CustomHeaderApp, EmployeeCard} from '../../components';
 import {dummyEmployee} from '../../utils/CONSTANT';
 import SearchIcon from '../../assets/icons/search-icon.svg';
+import {getResponsive} from '../../utils';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import {CalendarIcon, Search, Settings2} from 'lucide-react-native';
 
 const EmployeeScreen = ({navigation}: any) => {
   const [valueWeeks, setValueWeeks] = React.useState<string | null>(null);
   const [isFocusWeeks, setIsFocusWeeks] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   const dataStatus = [
     {label: 'Kerja', value: 'Kerja'},
@@ -26,7 +39,7 @@ const EmployeeScreen = ({navigation}: any) => {
   const headerIcon = () => {
     return (
       <Pressable onPress={() => setIsSearch(true)}>
-        <SearchIcon width={18} height={18} />
+        <Search size={20} color={'black'} />
         {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
       </Pressable>
     );
@@ -45,12 +58,13 @@ const EmployeeScreen = ({navigation}: any) => {
           paddingHorizontal: 10,
           gap: 4,
         }}>
-        <SearchIcon style={{width: 20, height: 20}} />
+        <Search size={20} color={'black'} />
         <TextInput
           placeholder="Search"
           style={{
             width: '100%',
-            paddingVertical: 6,
+            paddingVertical: 2,
+            color: 'black',
           }}
         />
       </View>
@@ -65,6 +79,14 @@ const EmployeeScreen = ({navigation}: any) => {
         searchForm={SearchForm()}
         setIsSearch={setIsSearch}
         screenName={'Karyawan'}>
+        <Pressable
+          style={[styles.header_dropdown_menu]}
+          onPress={() => setIsDrawer(!isDrawer)}>
+          <Text style={{color: 'black', fontWeight: '600'}}>
+            Filter Karyawan
+          </Text>
+          <Settings2 color={'black'} size={16} />
+        </Pressable>
         {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
@@ -110,6 +132,14 @@ const EmployeeScreen = ({navigation}: any) => {
           )}
         />
       </View>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          snapPoints={snapPoints}>
+          <Text style={{color: 'black'}}>Drawer Employee</Text>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };
@@ -140,7 +170,9 @@ const styles = StyleSheet.create({
   },
   header_dropdown_menu: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 16,
   },
 });
 

@@ -37,15 +37,15 @@ const ActivityCard = ({item}) => {
         )}
         {/* <Image source={item.type === 'in' ? IconActivityIn : IconActivityOut} /> */}
         <View>
-          <Text style={{color: '#222831', fontSize: 16, fontWeight: '600'}}>
+          <Text style={{color: '#222831', fontSize: 14, fontWeight: '600'}}>
             {item.type === 'in' ? 'Masuk' : 'Keluar'}
           </Text>
-          <Text style={{color: '#BABCBF', fontSize: 14, fontWeight: '400'}}>
+          <Text style={{color: '#BABCBF', fontSize: 12, fontWeight: '400'}}>
             {item.date}
           </Text>
         </View>
       </View>
-      <Text style={{fontSize: 16, fontWeight: '600', color: '#222831'}}>
+      <Text style={{fontSize: 14, fontWeight: '600', color: '#222831'}}>
         {item.time}
       </Text>
     </View>
