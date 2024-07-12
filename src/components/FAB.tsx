@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import React from 'react';
 import {APP} from '../utils/CONSTANT';
 import PlusIcon from '../assets/icons/plus-icon.svg';
 
-const FAB = () => {
+const FAB = ({onPressFunc}) => {
   return (
-    <View
+    <Pressable
+      onPress={onPressFunc}
       style={{
         position: 'absolute',
         bottom: 20,
@@ -20,7 +21,7 @@ const FAB = () => {
         alignItems: 'center',
       }}>
       <PlusIcon />
-    </View>
+    </Pressable>
   );
 };
 

@@ -7,13 +7,24 @@ import {
   Pressable,
 } from 'react-native';
 import React from 'react';
-import {CustomHeaderApp, SlipGajiCard} from '../../components';
+import {CustomHeaderApp, Input, SlipGajiCard} from '../../components';
 import {getResponsive} from '../../utils';
 import {Dropdown} from 'react-native-element-dropdown';
 import {SlipGajiImage} from '../../assets/images';
 import DownloadIcon from '../../assets/icons/download-icon.svg';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import {APP} from '../../utils/CONSTANT';
 
 const SlipGajiScreen = () => {
+  const [isDrawer, setIsDrawer] = React.useState(false);
+  const snapPoints = React.useMemo(() => [220], []);
+  // ref
+  const bottomSheetRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChanges = React.useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
   const dataMonth = [
     {label: 'Januari', value: 'Januari'},
     {label: 'Februari', value: 'Februari'},
@@ -28,6 +39,11 @@ const SlipGajiScreen = () => {
     {label: 'November', value: 'November'},
     {label: 'Desember', value: 'Desember'},
   ];
+
+  React.useEffect(() => {
+    setIsDrawer(true);
+  }, []);
+
   return (
     <>
       <CustomHeaderApp backButton={true} screenName={'Slip Gaji'}>
@@ -172,6 +188,55 @@ const SlipGajiScreen = () => {
           </Text>
         </View>
       </ScrollView>
+      {isDrawer && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetRef}
+          handleSheetChanges={handleSheetChanges}
+          screen={'SlipGaji'}
+          snapPoints={snapPoints}>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <View>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  marginBottom: 16,
+                }}>
+                Konfirmasi Pemilik Akun
+              </Text>
+              <Input
+                name="Password"
+                placeholder="Kata Sandi"
+                type="password"
+                secureTextEntry
+              />
+            </View>
+            <View style={{marginTop: 24}}>
+              <Pressable
+                style={{
+                  backgroundColor: APP.COLORS['primary-500'],
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 8,
+                }}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: '#FFFFFF',
+                    fontWeight: '700',
+                  }}>
+                  Verifikasi
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </CustomButtonSheet>
+      )}
     </>
   );
 };

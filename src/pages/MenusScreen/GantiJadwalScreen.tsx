@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import React from 'react';
-import {Banner, CustomHeaderApp} from '../../components';
+import {Banner, CustomHeaderApp, Input} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {IconSearch} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
@@ -17,7 +17,7 @@ import SearchIcon from '../../assets/icons/search-icon.svg';
 import PlusIcon from '../../assets/icons/plus-icon.svg';
 import {getResponsive} from '../../utils';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import {Settings2} from 'lucide-react-native';
+import {ArrowDown, ArrowUp, Settings2} from 'lucide-react-native';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
 
 const GantiJadwalScreen = ({navigation}) => {
@@ -25,12 +25,13 @@ const GantiJadwalScreen = ({navigation}) => {
   const menus = ['Upcoming', 'Past', 'Requested'];
   const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
+  const [goSwap, setGoSwap] = React.useState(false);
   const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks
   const handleSheetChanges = React.useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    setIsDrawer(index === -1 ? false : true);
   }, []);
 
   const dataTukar = [
@@ -95,6 +96,38 @@ const GantiJadwalScreen = ({navigation}) => {
           </Text>
           <Settings2 color={'black'} size={16} />
         </Pressable>
+        <View
+          style={{
+            marginTop: 16,
+            flexDirection: 'row',
+            gap: 8,
+            // justifyContent: 'space-evenly',
+          }}>
+          <View
+            style={{
+              width: '50%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              padding: 8,
+              borderRadius: 8,
+            }}>
+            <ArrowUp color={'black'} size={16} />
+            <Text style={{color: 'black'}}>Pengajuan</Text>
+          </View>
+          <View
+            style={{
+              width: '50%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              padding: 8,
+              borderRadius: 8,
+            }}>
+            <ArrowDown color={'black'} size={16} />
+            <Text style={{color: 'black'}}>Permintaan</Text>
+          </View>
+        </View>
         {/* <View style={styles.header_dropdown_menu}>
           <Dropdown
             style={[styles.dropdown]}
@@ -144,7 +177,14 @@ const GantiJadwalScreen = ({navigation}) => {
           />
         </View> */}
       </CustomHeaderApp>
-      {!isDrawer && <FAB />}
+      {!isDrawer && (
+        <FAB
+          onPressFunc={() => {
+            setIsDrawer(true);
+            setGoSwap(true);
+          }}
+        />
+      )}
       <View style={styles.container}>
         {/* <Banner
           headerText={'Fleksibilitas di Tanganmu! Tukar Jadwal dengan Mudah!'}
@@ -270,7 +310,194 @@ const GantiJadwalScreen = ({navigation}) => {
           sheetRef={bottomSheetRef}
           handleSheetChanges={handleSheetChanges}
           snapPoints={snapPoints}>
-          <Text style={{color: 'black'}}>Drawer Swap</Text>
+          {!goSwap && (
+            <View
+              style={{
+                paddingHorizontal: 24,
+                paddingVertical: 8,
+              }}>
+              <View>
+                <Text
+                  style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                  Filter Aktivitas
+                </Text>
+                <Pressable style={{marginTop: 16}}>
+                  <Input
+                    name="Rentang Tanggal"
+                    placeholder="Pilih Tanggal"
+                    editable={false}
+                  />
+                </Pressable>
+                <Text
+                  style={{
+                    color: '#222831',
+                    fontWeight: '500',
+                    marginVertical: 16,
+                  }}>
+                  Jenis Penukaran
+                </Text>
+                <Dropdown
+                  style={[styles.dropdown]}
+                  placeholderStyle={styles.placeholderStyle}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={[
+                    {label: 'Tukar Shift', value: 'Tukar Shift'},
+                    {label: 'Tukar Libur', value: 'Tukar Libur'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Pilih Jenis Penukaran"
+                  // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                  // value={dataMonth[0]}
+                  // onFocus={() => setIsFocusMonth(true)}
+                  // onBlur={() => setIsFocusMonth(false)}
+                  onChange={() => {}}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
+                />
+                <Text
+                  style={{
+                    color: '#222831',
+                    fontWeight: '500',
+                    marginVertical: 16,
+                  }}>
+                  Status Penukaran
+                </Text>
+                <Dropdown
+                  style={[styles.dropdown]}
+                  placeholderStyle={styles.placeholderStyle}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={[
+                    {label: 'Menunggu', value: 'Menunggu'},
+                    {label: 'Disetujui', value: 'Disetujui'},
+                    {label: 'Tidak Disetujui', value: 'Tidak Disetujui'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Pilih Status Penukaran"
+                  // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                  // value={dataMonth[0]}
+                  // onFocus={() => setIsFocusMonth(true)}
+                  // onBlur={() => setIsFocusMonth(false)}
+                  onChange={() => {}}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
+                />
+              </View>
+              <View style={{marginTop: 24}}>
+                <Pressable
+                  style={{
+                    backgroundColor: APP.COLORS['primary-500'],
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: 8,
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      color: '#FFFFFF',
+                      fontWeight: '700',
+                    }}>
+                    Konfirmasi
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          )}
+          {goSwap && (
+            <View
+              style={{
+                paddingHorizontal: 24,
+                paddingVertical: 8,
+              }}>
+              <View>
+                <Text
+                  style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                  Ajukan Tukar Jadwal
+                </Text>
+              </View>
+              <View
+                style={{
+                  marginTop: 16,
+                  backgroundColor: '#bee3f8',
+                  padding: 8,
+                  borderRadius: 8,
+                }}>
+                <Text style={{fontWeight: 'bold', color: 'black'}}>
+                  Peraturan Tukar Jadwal
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  <Text style={{fontWeight: 'bold'}}>
+                    Tukar jadwal shift
+                  </Text>{' '}
+                  hanya boleh dilakukan pada tanggal masuk yang sama.
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  <Text style={{fontWeight: 'bold'}}>Tukar libur</Text> boleh di
+                  tanggal yang berbeda dengan saling menukar jadwal shift pada
+                  tanggal libur yang ditukar, jadi terdapat 2 jadwal.
+                </Text>
+                <Text
+                  style={{fontWeight: 'bold', color: 'black', marginTop: 8}}>
+                  Langkah-langkah tukar jadwal
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  Pilih Karyawan dari menu karyawan.
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  Pilih Karyawan yang ingin ditukar, lalu klik Tukar.
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  Pilih jadwal Anda yang valid untuk ditukar. Jika tidak valid,
+                  maka Anda tidak akan bisa melakukan penukaran jadwal.
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  Konfirmasi penukaran jadwal.
+                </Text>
+                <Text style={{color: 'black', marginTop: 4}}>
+                  {'\u2022 '}
+                  Pengajuan ini harus disetujui terlebih dahulu oleh karyawan
+                  yang bersangkutan, kemudian oleh kepala ruang. Setelah itu,
+                  status pengajuan akan berubah menjadi Disetujui.
+                </Text>
+              </View>
+              <View style={{marginTop: 24}}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('Karyawan');
+                  }}
+                  style={{
+                    backgroundColor: APP.COLORS['primary-500'],
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: 8,
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      color: '#FFFFFF',
+                      fontWeight: '700',
+                    }}>
+                    Lanjutkan
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          )}
         </CustomButtonSheet>
       )}
     </>
@@ -286,8 +513,8 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#0C0E11',
+    fontWeight: '400',
+    color: '#C5C5C5',
   },
   selectedTextStyle: {
     fontSize: 14,
@@ -297,9 +524,10 @@ const styles = StyleSheet.create({
   dropdown: {
     flex: 1,
     height: 40,
-    borderWidth: 0,
+    borderWidth: 1,
     borderRadius: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    borderColor: '#ECECEC',
   },
   container: {
     paddingHorizontal: 24,

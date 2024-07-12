@@ -1,6 +1,6 @@
 import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
 import React from 'react';
-import {CustomHeaderApp} from '../../components';
+import {CustomHeaderApp, Input} from '../../components';
 import {IconNotificationBlack} from '../../assets/images';
 import {Dropdown} from 'react-native-element-dropdown';
 import {FlatList} from 'react-native-gesture-handler';
@@ -10,6 +10,7 @@ import {getResponsive} from '../../utils';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
 import {Settings2} from 'lucide-react-native';
+import {APP} from '../../utils/CONSTANT';
 
 const ActivityScreen = () => {
   const [isDrawer, setIsDrawer] = React.useState(false);
@@ -148,7 +149,73 @@ const ActivityScreen = () => {
           sheetRef={bottomSheetRef}
           handleSheetChanges={handleSheetChanges}
           snapPoints={snapPoints}>
-          <Text style={{color: 'black'}}>Drawer Activity</Text>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <View>
+              <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                Filter Aktivitas
+              </Text>
+              <Pressable style={{marginVertical: 16}}>
+                <Input
+                  name="Rentang Tanggal"
+                  placeholder="Pilih Tanggal"
+                  editable={false}
+                />
+              </Pressable>
+              <Text
+                style={{
+                  color: '#222831',
+                  fontWeight: '500',
+                  marginVertical: 16,
+                }}>
+                Jenis Aktivitas
+              </Text>
+              <Dropdown
+                style={[styles.dropdown]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={[
+                  {label: 'Masuk', value: 'Masuk'},
+                  {label: 'Keluar', value: 'Keluar'},
+                ]}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Pilih Jenis Aktivitas"
+                // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                // value={dataMonth[0]}
+                // onFocus={() => setIsFocusMonth(true)}
+                // onBlur={() => setIsFocusMonth(false)}
+                onChange={() => {}}
+                containerStyle={{
+                  borderBottomLeftRadius: 8,
+                  borderBottomRightRadius: 8,
+                }}
+                itemTextStyle={{color: '#454545'}}
+              />
+            </View>
+            <View style={{marginTop: 24}}>
+              <Pressable
+                style={{
+                  backgroundColor: APP.COLORS['primary-500'],
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 8,
+                }}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: '#FFFFFF',
+                    fontWeight: '700',
+                  }}>
+                  Konfirmasi
+                </Text>
+              </Pressable>
+            </View>
+          </View>
         </CustomButtonSheet>
       )}
     </>
@@ -164,20 +231,21 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#0C0E11',
+    fontWeight: '400',
+    color: '#C5C5C5',
   },
   selectedTextStyle: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#0C0E11',
+    color: '#181818',
   },
   dropdown: {
     flex: 1,
     height: 40,
-    borderWidth: 0,
+    borderWidth: 1,
+    borderColor: '#ECECEC',
     borderRadius: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
   },
   container: {
     paddingHorizontal: 24,

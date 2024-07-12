@@ -174,7 +174,7 @@ const ScheduleScreen = ({navigation}) => {
       <View style={styles.container}>
         <View
           style={{
-            backgroundColor: '#287DFC26',
+            backgroundColor: '#bee3f8',
             padding: 16,
             borderRadius: 8,
             marginBottom: 8,
@@ -195,7 +195,17 @@ const ScheduleScreen = ({navigation}) => {
           sheetRef={bottomSheetRef}
           handleSheetChanges={handleSheetChanges}
           snapPoints={snapPoints}>
-          <Text style={{color: 'black'}}>Drawer Schedule</Text>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <View>
+              <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                Drawer Schedule
+              </Text>
+            </View>
+          </View>
         </CustomButtonSheet>
       )}
     </>

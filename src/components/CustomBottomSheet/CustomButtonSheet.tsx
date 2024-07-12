@@ -1,6 +1,10 @@
 import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetScrollView,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
 
 import {
   IconClose,
@@ -10,23 +14,41 @@ import {
 import CustomButton from '../CustomButton/CustomButton';
 import {APP} from '../../utils/CONSTANT';
 import CustomDatePicker from '../CustomDatePicker/CustomDatePicker';
+import {BlurView} from '@react-native-community/blur';
 const CustomButtonSheet = ({
   sheetRef,
   handleSheetChanges,
   snapPoints,
   children,
+  screen,
   isStatus,
   isStatusSuccess,
   onClose,
   onPress,
   showCalendar,
 }: any) => {
+  const renderBackdrop = React.useCallback(
+    props => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+        opacity={0.6}
+        enableTouchThrough={false}
+        pressBehavior={screen === 'SlipGaji' ? 'none' : 'close'}
+      />
+    ),
+    [],
+  );
   return (
     <BottomSheet
       ref={sheetRef}
       onChange={handleSheetChanges}
+      enablePanDownToClose={screen === 'SlipGaji' ? false : true}
+      enableDynamicSizing={screen === 'SlipGaji' ? false : true}
+      backdropComponent={renderBackdrop}
       snapPoints={snapPoints}>
-      <BottomSheetView style={styles.sheetContainer}>
+      <BottomSheetScrollView style={styles.sheetContainer}>
         {children}
         {/* <>
           {isStatus && (
@@ -197,7 +219,7 @@ const CustomButtonSheet = ({
             </View>
           )}
         </> */}
-      </BottomSheetView>
+      </BottomSheetScrollView>
     </BottomSheet>
   );
 };

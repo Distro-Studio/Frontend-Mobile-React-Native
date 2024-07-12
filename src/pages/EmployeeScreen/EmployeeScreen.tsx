@@ -11,7 +11,7 @@ import {
 import {Dropdown} from 'react-native-element-dropdown';
 // import {IconSearch} from '../../assets/images';
 import {CustomHeaderApp, EmployeeCard} from '../../components';
-import {dummyEmployee} from '../../utils/CONSTANT';
+import {APP, dummyEmployee} from '../../utils/CONSTANT';
 import SearchIcon from '../../assets/icons/search-icon.svg';
 import {getResponsive} from '../../utils';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
@@ -137,7 +137,99 @@ const EmployeeScreen = ({navigation}: any) => {
           sheetRef={bottomSheetRef}
           handleSheetChanges={handleSheetChanges}
           snapPoints={snapPoints}>
-          <Text style={{color: 'black'}}>Drawer Employee</Text>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <View>
+              <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                Filter Karyawan
+              </Text>
+              <Text
+                style={{
+                  color: '#222831',
+                  fontWeight: '500',
+                  marginVertical: 16,
+                }}>
+                Status Kerja
+              </Text>
+              <Dropdown
+                style={[styles.dropdown]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={[
+                  {label: 'Kerja', value: 'Kerja'},
+                  {label: 'Cuti', value: 'Cuti'},
+                  {label: 'Izin', value: 'Izin'},
+                  {label: 'Libur', value: 'Libur'},
+                ]}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Pilih Status Kerja"
+                // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                // value={dataMonth[0]}
+                // onFocus={() => setIsFocusMonth(true)}
+                // onBlur={() => setIsFocusMonth(false)}
+                onChange={() => {}}
+                containerStyle={{
+                  borderBottomLeftRadius: 8,
+                  borderBottomRightRadius: 8,
+                }}
+                itemTextStyle={{color: '#454545'}}
+              />
+              <Text
+                style={{
+                  color: '#222831',
+                  fontWeight: '500',
+                  marginVertical: 16,
+                }}>
+                Jenis Karyawan
+              </Text>
+              <Dropdown
+                style={[styles.dropdown]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={[
+                  {label: 'Shift', value: 'Shift'},
+                  {label: 'Non Shift', value: 'Non Shift'},
+                ]}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Pilih Jenis Karyawan"
+                // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                // value={dataMonth[0]}
+                // onFocus={() => setIsFocusMonth(true)}
+                // onBlur={() => setIsFocusMonth(false)}
+                onChange={() => {}}
+                containerStyle={{
+                  borderBottomLeftRadius: 8,
+                  borderBottomRightRadius: 8,
+                }}
+                itemTextStyle={{color: '#454545'}}
+              />
+            </View>
+            <View style={{marginTop: 24}}>
+              <Pressable
+                style={{
+                  backgroundColor: APP.COLORS['primary-500'],
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 8,
+                }}>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: '#FFFFFF',
+                    fontWeight: '700',
+                  }}>
+                  Konfirmasi
+                </Text>
+              </Pressable>
+            </View>
+          </View>
         </CustomButtonSheet>
       )}
     </>
@@ -147,8 +239,8 @@ const EmployeeScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#0C0E11',
+    fontWeight: '400',
+    color: '#C5C5C5',
   },
   selectedTextStyle: {
     fontSize: 14,
@@ -157,10 +249,11 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     flex: 1,
-    height: 50,
-    borderWidth: 0,
+    height: 40,
+    borderWidth: 1,
     borderRadius: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    borderColor: '#ECECEC',
   },
   container: {
     paddingHorizontal: 24,

@@ -1,4 +1,7 @@
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, {
+  BottomSheetFlatList,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
 import {
@@ -132,7 +135,11 @@ const DetailEmployeeScreen = ({navigation}: any) => {
               <Text style={{fontSize: 16, fontWeight: 'bold', color: 'black'}}>
                 Tukar Jadwal
               </Text>
-              <Pressable onPress={() => setState(false)}>
+              <Pressable
+                onPress={() => {
+                  setState(false);
+                  bottomSheetRef.current?.close();
+                }}>
                 <X style={{color: '#000000'}} />
               </Pressable>
             </View>
@@ -240,7 +247,11 @@ const DetailEmployeeScreen = ({navigation}: any) => {
               }}>
               <View style={{paddingHorizontal: 24}}>
                 <Text
-                  style={{fontWeight: '700', marginBottom: 8, color: 'black'}}>
+                  style={{
+                    fontWeight: '700',
+                    marginBottom: 8,
+                    color: 'black',
+                  }}>
                   Pilih Jadwal Anda Untuk Ditukar
                 </Text>
                 <FlatList
@@ -365,134 +376,138 @@ const DetailEmployeeScreen = ({navigation}: any) => {
                 <Text style={{color: '#d5d5d9'}}>(jadwal anda di kanan)</Text>
               </View>
               {/*  */}
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}>
-                <View>
-                  <Text style={{opacity: 0.4, color: 'black'}}>Pagi</Text>
-                  <Text
-                    style={{
-                      color: 'black',
-                      marginVertical: 8,
-                      fontWeight: '600',
-                    }}>
-                    1 Januari 2024
-                  </Text>
-                  <View style={styles.schedule_times}>
-                    <View style={styles.schedule_time}>
-                      <View
-                        style={[
-                          styles.schedule_icon,
-                          {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#E7F6F6',
-                            borderRadius: 50,
-                          },
-                        ]}>
-                        <InIcon width={11} height={11} />
-                      </View>
-                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
-                        07.30
-                      </Text>
-                    </View>
-                    <View style={styles.schedule_time}>
-                      <View
-                        style={[
-                          styles.schedule_icon,
-                          {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#FFEDEC',
-                            borderRadius: 50,
-                          },
-                        ]}>
-                        <OutIcon width={11} height={11} />
-                      </View>
-                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
-                        16.30
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <ArrowRightLeft color={'black'} />
-                <View>
+              <BottomSheetFlatList
+                data={[1, 2, 3]}
+                scrollEnabled={false}
+                contentContainerStyle={{gap: 8}}
+                renderItem={() => (
                   <View
                     style={{
                       flexDirection: 'row',
-                      alignItems: 'center',
                       justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}>
-                    <Text style={{opacity: 0.4, color: 'black'}}>Pagi</Text>
-                    <User color={APP.COLORS['primary-500']} size={16} />
-                  </View>
-                  <Text
-                    style={{
-                      color: 'black',
-                      marginVertical: 8,
-                      fontWeight: '600',
-                    }}>
-                    1 Januari 2024
-                  </Text>
-                  <View style={styles.schedule_times}>
-                    <View style={styles.schedule_time}>
-                      <View
-                        style={[
-                          styles.schedule_icon,
-                          {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#E7F6F6',
-                            borderRadius: 50,
-                          },
-                        ]}>
-                        <InIcon width={11} height={11} />
-                      </View>
-                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
-                        07.30
+                    <View>
+                      <Text style={{opacity: 0.4, color: 'black'}}>Pagi</Text>
+                      <Text
+                        style={{
+                          color: 'black',
+                          marginVertical: 8,
+                          fontWeight: '600',
+                        }}>
+                        1 Januari 2024
                       </Text>
-                    </View>
-                    <View style={styles.schedule_time}>
-                      <View
-                        style={[
-                          styles.schedule_icon,
-                          {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: '#FFEDEC',
-                            borderRadius: 50,
-                          },
-                        ]}>
-                        <OutIcon width={11} height={11} />
+                      <View style={styles.schedule_times}>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#E7F6F6',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <InIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            07.30
+                          </Text>
+                        </View>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#FFEDEC',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <OutIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            16.30
+                          </Text>
+                        </View>
                       </View>
-                      <Text style={{fontSize: 12, color: '#0C0E11'}}>
-                        16.30
+                    </View>
+                    <ArrowRightLeft color={'black'} />
+                    <View>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}>
+                        <Text style={{opacity: 0.4, color: 'black'}}>Pagi</Text>
+                        <User color={APP.COLORS['primary-500']} size={16} />
+                      </View>
+                      <Text
+                        style={{
+                          color: 'black',
+                          marginVertical: 8,
+                          fontWeight: '600',
+                        }}>
+                        1 Januari 2024
                       </Text>
+                      <View style={styles.schedule_times}>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#E7F6F6',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <InIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            07.30
+                          </Text>
+                        </View>
+                        <View style={styles.schedule_time}>
+                          <View
+                            style={[
+                              styles.schedule_icon,
+                              {
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#FFEDEC',
+                                borderRadius: 50,
+                              },
+                            ]}>
+                            <OutIcon width={11} height={11} />
+                          </View>
+                          <Text style={{fontSize: 12, color: '#0C0E11'}}>
+                            16.30
+                          </Text>
+                        </View>
+                      </View>
                     </View>
                   </View>
-                </View>
-              </View>
+                )}
+              />
               {/*  */}
             </View>
           </View>
           <Pressable
             style={{
-              position: 'absolute',
-              bottom: 10,
-              left: 0,
-              right: 0,
               marginHorizontal: 24,
               backgroundColor: APP.COLORS['primary-500'],
               flex: 1,
               padding: 12,
               borderRadius: 8,
+              marginVertical: 16,
             }}>
             <Text
               style={{

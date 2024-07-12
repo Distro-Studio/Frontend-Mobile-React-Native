@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import React from 'react';
-import {Banner, CustomHeaderApp} from '../../components';
+import {Banner, CustomHeaderApp, Input} from '../../components';
 import {APP} from '../../utils/CONSTANT';
 import {FlatList} from 'react-native-gesture-handler';
 import {IconSearch} from '../../assets/images';
@@ -29,12 +29,13 @@ const LeavesScreen = () => {
   const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
   const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
+  const [goLeave, setGoLeave] = React.useState(false);
   const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks
   const handleSheetChanges = React.useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    setIsDrawer(index === -1 ? false : true);
   }, []);
 
   const dataCuti = [
@@ -94,13 +95,18 @@ const LeavesScreen = () => {
         <Pressable
           style={[styles.header_dropdown_menu]}
           onPress={() => setIsDrawer(!isDrawer)}>
-          <Text style={{color: 'black', fontWeight: '600'}}>
-            Filter Karyawan
-          </Text>
+          <Text style={{color: 'black', fontWeight: '600'}}>Filter Cuti</Text>
           <Settings2 color={'black'} size={16} />
         </Pressable>
       </CustomHeaderApp>
-      {!isDrawer && <FAB />}
+      {!isDrawer && (
+        <FAB
+          onPressFunc={() => {
+            setIsDrawer(true);
+            setGoLeave(true);
+          }}
+        />
+      )}
       <ScrollView style={styles.container}>
         <Text style={{fontWeight: '700', color: 'black'}}>Statistik Cuti</Text>
         <View style={{marginTop: 8, marginBottom: 16}}>
@@ -413,7 +419,187 @@ const LeavesScreen = () => {
           sheetRef={bottomSheetRef}
           handleSheetChanges={handleSheetChanges}
           snapPoints={snapPoints}>
-          <Text style={{color: 'black'}}>Drawer Cuti</Text>
+          {!goLeave && (
+            <View
+              style={{
+                paddingHorizontal: 24,
+                paddingVertical: 8,
+              }}>
+              <View>
+                <Text
+                  style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                  Filter Cuti
+                </Text>
+                <Pressable style={{marginTop: 16}}>
+                  <Input
+                    name="Rentang Tanggal"
+                    placeholder="Pilih Tanggal"
+                    editable={false}
+                  />
+                </Pressable>
+                <Text
+                  style={{
+                    color: '#222831',
+                    fontWeight: '500',
+                    marginVertical: 16,
+                  }}>
+                  Status Kerja
+                </Text>
+                <Dropdown
+                  style={[styles.dropdown]}
+                  placeholderStyle={styles.placeholderStyle}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={[
+                    {label: 'Kerja', value: 'Kerja'},
+                    {label: 'Cuti', value: 'Cuti'},
+                    {label: 'Izin', value: 'Izin'},
+                    {label: 'Libur', value: 'Libur'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Pilih Status Kerja"
+                  // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                  // value={dataMonth[0]}
+                  // onFocus={() => setIsFocusMonth(true)}
+                  // onBlur={() => setIsFocusMonth(false)}
+                  onChange={() => {}}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
+                />
+                <Text
+                  style={{
+                    color: '#222831',
+                    fontWeight: '500',
+                    marginVertical: 16,
+                  }}>
+                  Jenis Karyawan
+                </Text>
+                <Dropdown
+                  style={[styles.dropdown]}
+                  placeholderStyle={styles.placeholderStyle}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={[
+                    {label: 'Shift', value: 'Shift'},
+                    {label: 'Non Shift', value: 'Non Shift'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Pilih Jenis Karyawan"
+                  // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                  // value={dataMonth[0]}
+                  // onFocus={() => setIsFocusMonth(true)}
+                  // onBlur={() => setIsFocusMonth(false)}
+                  onChange={() => {}}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
+                />
+              </View>
+              <View style={{marginTop: 24}}>
+                <Pressable
+                  style={{
+                    backgroundColor: APP.COLORS['primary-500'],
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: 8,
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      color: '#FFFFFF',
+                      fontWeight: '700',
+                    }}>
+                    Konfirmasi
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          )}
+          {goLeave && (
+            <View
+              style={{
+                paddingHorizontal: 24,
+                paddingVertical: 8,
+              }}>
+              <View>
+                <Text
+                  style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+                  Ajukan Cuti
+                </Text>
+                <Pressable style={{marginTop: 16}}>
+                  <Input
+                    name="Rentang Tanggal"
+                    placeholder="Pilih Tanggal"
+                    editable={false}
+                  />
+                </Pressable>
+                <Text
+                  style={{
+                    color: '#222831',
+                    fontWeight: '500',
+                    marginVertical: 16,
+                  }}>
+                  Jenis Cuti
+                </Text>
+                <Dropdown
+                  style={[styles.dropdown]}
+                  placeholderStyle={styles.placeholderStyle}
+                  selectedTextStyle={styles.selectedTextStyle}
+                  data={[
+                    {label: 'Cuti Tahunan', value: 'Cuti Tahunan'},
+                    {
+                      label: 'Cuti di Luar Tanggungan',
+                      value: 'Cuti di Luar Tanggungan',
+                    },
+                    {label: 'Cuti Besar', value: 'Cuti Besar'},
+                    {label: 'Cuti Kelahiran', value: 'Cuti Kelahiran'},
+                    {label: 'Cuti Sakit', value: 'Cuti Sakit'},
+                    {label: 'Cuti Nikah', value: 'Cuti Nikah'},
+                    {label: 'Cuti Kematian', value: 'Cuti Kematian'},
+                  ]}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Pilih Jenis Karyawan"
+                  // placeholder={!isFocusMonth ? 'Select item' : '...'}
+                  // value={dataMonth[0]}
+                  // onFocus={() => setIsFocusMonth(true)}
+                  // onBlur={() => setIsFocusMonth(false)}
+                  onChange={() => {}}
+                  containerStyle={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                  }}
+                  itemTextStyle={{color: '#454545'}}
+                />
+              </View>
+              <View style={{marginTop: 24}}>
+                <Pressable
+                  style={{
+                    backgroundColor: APP.COLORS['primary-500'],
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: 8,
+                  }}>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      color: '#FFFFFF',
+                      fontWeight: '700',
+                    }}>
+                    Konfirmasi
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          )}
         </CustomButtonSheet>
       )}
     </>
@@ -429,8 +615,8 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#0C0E11',
+    fontWeight: '400',
+    color: '#C5C5C5',
   },
   selectedTextStyle: {
     fontSize: 14,
@@ -440,9 +626,10 @@ const styles = StyleSheet.create({
   dropdown: {
     flex: 1,
     height: 40,
-    borderWidth: 0,
+    borderWidth: 1,
     borderRadius: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    borderColor: '#ECECEC',
   },
   container: {
     paddingHorizontal: 24,
