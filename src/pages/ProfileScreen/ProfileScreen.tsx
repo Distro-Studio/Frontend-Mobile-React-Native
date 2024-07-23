@@ -23,9 +23,9 @@ const ProfileScreen = () => {
   return (
     <>
       <CustomHeaderApp
-        backButton={true}
+        // backButton={true}
         screenName={'Profil'}
-        rightIcon={headerIcon()}
+        // rightIcon={headerIcon()}
       />
       <View style={styles.container}>
         <View style={{flex: 1}}>
@@ -52,9 +52,9 @@ const ProfileScreen = () => {
                   Project Manager
                 </Text>
               </View>
-              <View style={{}}>
+              {/* <View style={{}}>
                 <PencilIcon />
-              </View>
+              </View> */}
             </View>
             <View
               style={{
@@ -73,47 +73,47 @@ const ProfileScreen = () => {
             </View>
           </View>
           <View style={{marginTop: 16}}>
-            <Text>Account</Text>
+            <Text style={{color: 'black', opacity: 0.4}}>Akun</Text>
             <View style={{gap: 8, marginTop: 8}}>
               <View style={styles.card_container}>
-                <CertificateIcon width={20} height={20} />
+                <PencilIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
-                  Penghargaan
+                  Perubahan Data
                 </Text>
               </View>
-              <View style={styles.card_container}>
+              {/* <View style={styles.card_container}>
                 <EmployeeIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Data Keluarga
                 </Text>
-              </View>
+              </View> */}
             </View>
           </View>
           <View style={{marginTop: 16}}>
-            <Text>Others</Text>
+            <Text style={{color: 'black', opacity: 0.4}}>Lainnya</Text>
             <View style={{gap: 8, marginTop: 8}}>
-              <View style={styles.card_container}>
+              {/* <View style={styles.card_container}>
                 <BrowserIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Bahasa
                 </Text>
-              </View>
+              </View> */}
               <View style={styles.card_container}>
                 <TermIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
-                  Term & COnditions
+                  Syarat & Ketentuan
                 </Text>
               </View>
               <View style={styles.card_container}>
                 <HelpIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
-                  Bantuan
+                  FAQs
                 </Text>
               </View>
               <View style={styles.card_container}>
                 <ContactIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
-                  Kontak Kami
+                  Kontak Bantuan
                 </Text>
               </View>
             </View>
@@ -125,7 +125,7 @@ const ProfileScreen = () => {
             paddingVertical: 10,
             borderRadius: 8,
           }}>
-          <Text style={{color: '#FC4C3C', textAlign: 'center'}}>Logout</Text>
+          <Text style={{color: '#FC4C3C', textAlign: 'center'}}>Keluar</Text>
         </Pressable>
       </View>
     </>

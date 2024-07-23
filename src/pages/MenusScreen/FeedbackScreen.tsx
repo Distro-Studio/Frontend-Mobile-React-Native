@@ -15,7 +15,7 @@ import {getResponsive} from '../../utils';
 const Feedback = ({navigation}) => {
   const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
-  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  const snapPoints = React.useMemo(() => [getResponsive(250, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks

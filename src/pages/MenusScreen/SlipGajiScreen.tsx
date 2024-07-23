@@ -23,7 +23,7 @@ const SlipGajiScreen = () => {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks
   const handleSheetChanges = React.useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    setIsDrawer(index === -1 ? false : true);
   }, []);
   const dataMonth = [
     {label: 'Januari', value: 'Januari'},

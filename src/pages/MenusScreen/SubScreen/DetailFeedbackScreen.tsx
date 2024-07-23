@@ -136,16 +136,21 @@ const DetailFeedback = () => {
                     <View
                       key={score}
                       style={{
-                        borderWidth: 2,
+                        borderWidth: 1,
                         borderRadius: 50,
-                        borderColor: 'black',
+                        borderColor: 'rgba(0,0,0,0.4)',
                         width: getResponsive(35, 'width'),
                         height: getResponsive(35, 'height'),
                         padding: 4,
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}>
-                      <Text style={{color: 'black', textAlign: 'center'}}>
+                      <Text
+                        style={{
+                          color: 'black',
+                          textAlign: 'center',
+                          opacity: 0.4,
+                        }}>
                         {score}
                       </Text>
                     </View>

@@ -30,7 +30,7 @@ const LeavesScreen = () => {
   const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
   const [goLeave, setGoLeave] = React.useState(false);
-  const snapPoints = React.useMemo(() => [getResponsive(350, 'height')], []);
+  const snapPoints = React.useMemo(() => [getResponsive(250, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks
@@ -94,7 +94,10 @@ const LeavesScreen = () => {
         screenName={'Cuti'}>
         <Pressable
           style={[styles.header_dropdown_menu]}
-          onPress={() => setIsDrawer(!isDrawer)}>
+          onPress={() => {
+            setIsDrawer(!isDrawer);
+            setGoLeave(false);
+          }}>
           <Text style={{color: 'black', fontWeight: '600'}}>Filter Cuti</Text>
           <Settings2 color={'black'} size={16} />
         </Pressable>

@@ -40,7 +40,7 @@ const DetailEmployeeScreen = ({navigation}: any) => {
 
   // callbacks
   const handleSheetChanges = React.useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    setState(index === -1 ? false : true);
   }, []);
 
   const headerIcon = () => {
