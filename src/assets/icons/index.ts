@@ -11,3 +11,6 @@ export {default as IconProfileActive} from './IconProfileActive.svg';
 //
 export {default as CameraButton} from './CameraButton.svg';
 export {default as CalendarIcon} from './IconCalendar.svg';
+//
+export {default as IconInbox} from './icon-inbox-inactive.svg';
+export {default as IconInboxActive} from './icon-inbox-active.svg';

@@ -35,6 +35,7 @@ export {default as IconSlipGaji} from './icon-slip-gaji.png';
 export {default as IconDokumen} from './icon-dokumen.png';
 export {default as IconKoperasi} from './icon-koperasi.png';
 export {default as IconLaporan} from './icon-laporan.png';
+export {default as IconFeedback} from './icon-feedback.png';
 //
 export {default as IconActivityIn} from './icon-activity-in.png';
 export {default as IconActivityOut} from './icon-activity-out.png';

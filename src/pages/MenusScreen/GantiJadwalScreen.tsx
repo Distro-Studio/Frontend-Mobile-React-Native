@@ -90,7 +90,10 @@ const GantiJadwalScreen = ({navigation}) => {
         screenName={'Pengajuan Tukar Jadwal'}>
         <Pressable
           style={[styles.header_dropdown_menu]}
-          onPress={() => setIsDrawer(!isDrawer)}>
+          onPress={() => {
+            setGoSwap(false);
+            setIsDrawer(!isDrawer);
+          }}>
           <Text style={{color: 'black', fontWeight: '600'}}>
             Filter Tukar Jadwal
           </Text>

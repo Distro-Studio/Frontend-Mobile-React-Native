@@ -4,6 +4,7 @@ import {
   FlatList,
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -171,7 +172,7 @@ const ScheduleScreen = ({navigation}) => {
 
       </View> */}
 
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View
           style={{
             backgroundColor: '#bee3f8',
@@ -186,10 +187,11 @@ const ScheduleScreen = ({navigation}) => {
         </View>
         <FlatList
           data={data}
+          scrollEnabled={false}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem}
         />
-      </View>
+      </ScrollView>
       {isDrawer && (
         <CustomButtonSheet
           sheetRef={bottomSheetRef}

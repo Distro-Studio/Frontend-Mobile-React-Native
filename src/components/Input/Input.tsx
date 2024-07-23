@@ -13,6 +13,7 @@ import EyeIcon from '../../assets/icons/eye-icon.svg';
 
 const Input = (props: any) => {
   const {name, placeholder, type, ...rest} = props;
+  console.log({...rest}.multiline);
   const [isShowPassword, setIsShowPassword] = React.useState(false);
   return (
     <View style={styles.form_group}>
@@ -24,7 +25,7 @@ const Input = (props: any) => {
             {
               paddingHorizontal: 16,
               paddingVertical: 14,
-              height: 48,
+              height: {...rest}.multiline ? 'auto' : 48,
               borderRadius: 12,
               backgroundColor: props.disabled ? '#F1F2F3' : '#FCFCFC',
               borderColor: '#ECECEC',

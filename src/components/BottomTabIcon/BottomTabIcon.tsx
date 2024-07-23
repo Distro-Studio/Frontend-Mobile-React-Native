@@ -11,6 +11,8 @@ import {
   IconProfileActive,
   IconSchedule,
   IconScheduleActive,
+  IconInbox,
+  IconInboxActive,
 } from '../../assets/icons';
 import {APP} from '../../utils/CONSTANT';
 // import {IconActivity, IconEmployee, IconProfile} from '../../assets/images';
@@ -28,8 +30,8 @@ const AppImages = {
     source: IconEmployeeActive,
     style: {width: 20, height: 20},
   },
-  activeAktivitasIcon: {
-    source: IconActivityActive,
+  activeInboxIcon: {
+    source: IconInboxActive,
     style: {width: 20, height: 20},
   },
   activeProfilIcon: {
@@ -48,8 +50,8 @@ const AppImages = {
     source: IconEmployee,
     style: {width: 20, height: 20},
   },
-  inactiveAktivitasIcon: {
-    source: IconActivity,
+  inactiveInboxIcon: {
+    source: IconInbox,
     style: {width: 20, height: 20},
   },
   inactiveProfilIcon: {
@@ -63,7 +65,24 @@ const BottomTabIcon = ({title, focused}: any) => {
   const imgSrc = AppImages[iconName];
   return (
     <View style={styles.tabButton}>
-      <View>
+      <View style={{position: 'relative'}}>
+        {(title === 'Beranda' || title === 'Inbox') && (
+          <View
+            style={{
+              position: 'absolute',
+              zIndex: 10,
+              top: -4,
+              right: -4,
+              backgroundColor: 'red',
+              width: 12,
+              height: 12,
+              borderRadius: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white', fontSize: 10}}>1</Text>
+          </View>
+        )}
         <imgSrc.source />
       </View>
       <Text style={styles.tabTitle(focused)}>{title}</Text>

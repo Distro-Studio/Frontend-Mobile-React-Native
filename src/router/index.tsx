@@ -41,6 +41,11 @@ import {
   GantiJadwalPilihJadwalUser,
   EventScreen,
   GantiJadwalDetailScreen,
+  PengumumanScreen,
+  FeedbackScreen,
+  DetailFeedback,
+  DetailFeedbackScreen,
+  InboxScreen,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppSelector} from '../redux';
@@ -67,7 +72,7 @@ const MainApp = () => {
       <Tab.Screen name="Beranda" component={HomeScreen} />
       <Tab.Screen name="Jadwal" component={ScheduleScreen} />
       <Tab.Screen name="Karyawan" component={EmployeeScreen} />
-      <Tab.Screen name="Aktivitas" component={ActivityScreen} />
+      <Tab.Screen name="Inbox" component={InboxScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -142,6 +147,16 @@ const Router = () => {
           name="DokumenScreen"
           options={{headerTitleAlign: 'center', header: () => null}}
           component={DokumenScreen}
+        />
+        <Stack.Screen
+          name="FeedbackScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={FeedbackScreen}
+        />
+        <Stack.Screen
+          name="DetailFeedbackScreen"
+          options={{headerTitleAlign: 'center', header: () => null}}
+          component={DetailFeedbackScreen}
         />
         <Stack.Screen
           name="GantiJadwalScreen"
@@ -227,6 +242,12 @@ const Router = () => {
         name="DetailScheduleScreen"
         options={{headerTitleAlign: 'center', header: () => null}}
         component={DetailScheduleScreen}
+      />
+      {/* other pages */}
+      <Stack.Screen
+        name="PengumumanScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={PengumumanScreen}
       />
     </Stack.Navigator>
   );
