@@ -75,12 +75,14 @@ const ProfileScreen = ({navigation}) => {
           <View style={{marginTop: 16}}>
             <Text style={{color: 'black', opacity: 0.4}}>Akun</Text>
             <View style={{gap: 8, marginTop: 8}}>
-              <View style={styles.card_container}>
+              <Pressable
+                style={styles.card_container}
+                onPress={() => navigation.navigate('EditProfileScreen')}>
                 <PencilIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Perubahan Data
                 </Text>
-              </View>
+              </Pressable>
               {/* <View style={styles.card_container}>
                 <EmployeeIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>

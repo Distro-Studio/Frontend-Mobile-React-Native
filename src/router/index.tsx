@@ -47,6 +47,8 @@ import {
   DetailFeedbackScreen,
   InboxScreen,
   TermConditionScreen,
+  EditProfileScreen,
+  HistoryProfileScreen,
 } from '../pages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppSelector} from '../redux';
@@ -254,6 +256,16 @@ const Router = () => {
         name="TermConditionScreen"
         options={{headerTitleAlign: 'center', header: () => null}}
         component={TermConditionScreen}
+      />
+      <Stack.Screen
+        name="EditProfileScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={EditProfileScreen}
+      />
+      <Stack.Screen
+        name="HistoryProfileScreen"
+        options={{headerTitleAlign: 'center', header: () => null}}
+        component={HistoryProfileScreen}
       />
     </Stack.Navigator>
   );

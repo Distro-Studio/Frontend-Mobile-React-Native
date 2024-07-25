@@ -23,7 +23,7 @@ const EmployeeScreen = ({navigation}: any) => {
   const [isFocusWeeks, setIsFocusWeeks] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
-  const snapPoints = React.useMemo(() => [getResponsive(250, 'height')], []);
+  const snapPoints = React.useMemo(() => [getResponsive(160, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks

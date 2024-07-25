@@ -14,7 +14,7 @@ import {APP} from '../../utils/CONSTANT';
 
 const ActivityScreen = () => {
   const [isDrawer, setIsDrawer] = React.useState(false);
-  const snapPoints = React.useMemo(() => [getResponsive(250, 'height')], []);
+  const snapPoints = React.useMemo(() => [getResponsive(160, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // callbacks
