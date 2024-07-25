@@ -47,3 +47,4 @@ export {default as EventScreen} from './MenusScreen/EventScreen';
 //
 export {default as PengumumanScreen} from './PengumumanScreen/index';
 export {default as InboxScreen} from './InboxScreen/index';
+export {default as TermConditionScreen} from './TermConditionScreen';

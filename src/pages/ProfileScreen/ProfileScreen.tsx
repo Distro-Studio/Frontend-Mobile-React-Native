@@ -11,7 +11,7 @@ import HelpIcon from '../../assets/icons/help-icon.svg';
 import ContactIcon from '../../assets/icons/contact-icon.svg';
 import NotifyBlack from '../../assets/icons/activity-icon-black.svg';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
   const headerIcon = () => {
     return (
       <Pressable>
@@ -98,12 +98,14 @@ const ProfileScreen = () => {
                   Bahasa
                 </Text>
               </View> */}
-              <View style={styles.card_container}>
+              <Pressable
+                style={styles.card_container}
+                onPress={() => navigation.navigate('TermConditionScreen')}>
                 <TermIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
                   Syarat & Ketentuan
                 </Text>
-              </View>
+              </Pressable>
               <View style={styles.card_container}>
                 <HelpIcon width={20} height={20} />
                 <Text style={{fontSize: 14, fontWeight: '500', color: 'black'}}>
