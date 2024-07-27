@@ -188,12 +188,12 @@ const FillScreen4 = ({navigation}) => {
 
 const styles = StyleSheet.create({
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     color: '#222831',
   },
   selectedTextStyle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     color: '#222831',
   },

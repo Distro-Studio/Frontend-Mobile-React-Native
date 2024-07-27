@@ -7,12 +7,50 @@ import FillDataScreenLayout from '../../layouts/FillDataScreenLayout';
 import {useAppDispatch} from '../../redux';
 import {getResponsive} from '../../utils';
 import {APP} from '../../utils/CONSTANT';
+import DocumentPicker from 'react-native-document-picker';
 import {setAttendanceState} from '../../redux/attendanceSlice';
 import {setAuthState} from '../../redux/authSlice';
 
 const FillScreen6 = ({navigation}) => {
   const route = useRoute();
   const dispatch = useAppDispatch();
+  const [fileKTP, setFileKTP] = React.useState(null);
+  const [fileKK, setFileKK] = React.useState(null);
+  const [fileSIP, setFileSIP] = React.useState(null);
+  const [fileBPJSKesehatan, setFileBPJSKesehatan] = React.useState(null);
+  const [fileBPJSKetenagakerjaan, setFileBPJSKetenagakerjaan] =
+    React.useState(null);
+  const [fileSertifikat, setFileSertifikat] = React.useState(null);
+
+  const pickDocument = async type => {
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      switch (type) {
+        case 'KTP':
+          return setFileKTP(res);
+        case 'KK':
+          return setFileKK(res);
+        case 'SIP':
+          return setFileSIP(res);
+        case 'BPJS Kesehatan':
+          return setFileBPJSKesehatan(res);
+        case 'BPJS Ketenagakerjaan':
+          return setFileBPJSKetenagakerjaan(res);
+        case 'Sertifikat':
+          return setFileSertifikat(res);
+      }
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker
+      } else {
+        throw err;
+      }
+    }
+  };
+
+  console.log(fileKTP);
 
   async function storeLoggedIn(value: string) {
     try {
@@ -38,6 +76,7 @@ const FillScreen6 = ({navigation}) => {
               KTP
             </Text>
             <Pressable
+              onPress={() => pickDocument('KTP')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -47,11 +86,26 @@ const FillScreen6 = ({navigation}) => {
                 borderColor: APP.COLORS['primary-500'],
                 borderWidth: 1,
                 borderStyle: 'dashed',
+                // overflow: 'scroll',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileKTP && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileKTP && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileKTP[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
           <View>
@@ -60,6 +114,7 @@ const FillScreen6 = ({navigation}) => {
               Kartu Keluarga
             </Text>
             <Pressable
+              onPress={() => pickDocument('KK')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -70,10 +125,24 @@ const FillScreen6 = ({navigation}) => {
                 borderWidth: 1,
                 borderStyle: 'dashed',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileKK && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileKK && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileKK[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
           <View>
@@ -82,6 +151,7 @@ const FillScreen6 = ({navigation}) => {
               SIP
             </Text>
             <Pressable
+              onPress={() => pickDocument('SIP')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -92,10 +162,24 @@ const FillScreen6 = ({navigation}) => {
                 borderWidth: 1,
                 borderStyle: 'dashed',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileSIP && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileSIP && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileSIP[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
           <View>
@@ -104,6 +188,7 @@ const FillScreen6 = ({navigation}) => {
               BPJS Kesehatan
             </Text>
             <Pressable
+              onPress={() => pickDocument('BPJS Kesehatan')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -114,10 +199,24 @@ const FillScreen6 = ({navigation}) => {
                 borderWidth: 1,
                 borderStyle: 'dashed',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileBPJSKesehatan && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileBPJSKesehatan && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileBPJSKesehatan[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
           <View>
@@ -126,6 +225,7 @@ const FillScreen6 = ({navigation}) => {
               BPJS Ketenagakerjaan
             </Text>
             <Pressable
+              onPress={() => pickDocument('BPJS Ketenagakerjaan')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -136,10 +236,24 @@ const FillScreen6 = ({navigation}) => {
                 borderWidth: 1,
                 borderStyle: 'dashed',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileBPJSKetenagakerjaan && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileBPJSKetenagakerjaan && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileBPJSKetenagakerjaan[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
           <View>
@@ -148,6 +262,7 @@ const FillScreen6 = ({navigation}) => {
               Sertifikat Kompetensi
             </Text>
             <Pressable
+              onPress={() => pickDocument('Sertifikat')}
               style={{
                 paddingHorizontal: 16,
                 paddingVertical: 14,
@@ -158,10 +273,24 @@ const FillScreen6 = ({navigation}) => {
                 borderWidth: 1,
                 borderStyle: 'dashed',
               }}>
-              <Text
-                style={{color: APP.COLORS['primary-500'], textAlign: 'center'}}>
-                Pilih File
-              </Text>
+              {!fileSertifikat && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  Pilih File
+                </Text>
+              )}
+              {fileSertifikat && (
+                <Text
+                  style={{
+                    color: APP.COLORS['primary-500'],
+                    textAlign: 'center',
+                  }}>
+                  {fileSertifikat[0]?.name}
+                </Text>
+              )}
             </Pressable>
           </View>
         </View>
