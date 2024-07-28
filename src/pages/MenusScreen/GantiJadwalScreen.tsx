@@ -1,31 +1,19 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  FlatList,
-  Image,
-  TextInput,
-} from 'react-native';
-import React from 'react';
-import {Banner, CustomHeaderApp, Input} from '../../components';
-import {APP} from '../../utils/CONSTANT';
-import {IconSearch} from '../../assets/images';
-import {Dropdown} from 'react-native-element-dropdown';
-import FAB from '../../components/FAB';
-import SearchIcon from '../../assets/icons/search-icon.svg';
-import PlusIcon from '../../assets/icons/plus-icon.svg';
-import {getResponsive} from '../../utils';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import {ArrowDown, ArrowUp, Settings2} from 'lucide-react-native';
+import React from 'react';
+import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Dropdown} from 'react-native-element-dropdown';
+import {CustomHeaderApp, Input} from '../../components';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import FAB from '../../components/FAB';
+import {getResponsive} from '../../utils';
+import {APP} from '../../utils/CONSTANT';
+import RangeDatePicker from '../../components/CustomNewDatePicker/RangeDatePicker';
 
 const GantiJadwalScreen = ({navigation}) => {
-  const [activeMenu, setActiveMenu] = React.useState('Upcoming');
-  const menus = ['Upcoming', 'Past', 'Requested'];
-  const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
   const [goSwap, setGoSwap] = React.useState(false);
+  const [isRangeDatePicker, setIsRangeDatePicker] = React.useState(false);
   const snapPoints = React.useMemo(() => [getResponsive(160, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
@@ -33,61 +21,16 @@ const GantiJadwalScreen = ({navigation}) => {
   const handleSheetChanges = React.useCallback((index: number) => {
     setIsDrawer(index === -1 ? false : true);
   }, []);
-
-  const dataTukar = [
-    {label: 'Menunggu', value: 'Menunggu'},
-    {label: 'Disetujui', value: 'Disetujui'},
-    {label: 'Ditolak', value: 'Ditolak'},
-  ];
-  const dataFilter = [
-    {label: 'Terbaru', value: 'Terbaru'},
-    {label: 'Terlama', value: 'Terlama'},
-  ];
-
-  const headerIcon = () => {
-    return (
-      <Pressable onPress={() => setIsSearch(true)}>
-        <SearchIcon />
-        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
-      </Pressable>
-    );
-  };
-
-  const SearchForm = React.useCallback(() => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          borderColor: '#E3E3E3',
-          borderWidth: 1,
-          borderRadius: 8,
-          paddingVertical: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingHorizontal: 10,
-          gap: 4,
-        }}>
-        <SearchIcon style={{width: 20, height: 20}} />
-        <TextInput
-          placeholder="Search"
-          style={{
-            width: '100%',
-            paddingVertical: 6,
-          }}
-        />
-      </View>
-    );
+  // ref
+  const bottomSheetDatePickerRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChangesDatePicker = React.useCallback((index: number) => {
+    setIsRangeDatePicker(index === -1 ? false : true);
   }, []);
 
   return (
     <>
-      <CustomHeaderApp
-        backButton={!isSearch ? true : false}
-        // rightIcon={headerIcon()}
-        isSearch={isSearch}
-        searchForm={SearchForm()}
-        setIsSearch={setIsSearch}
-        screenName={'Pengajuan Tukar Jadwal'}>
+      <CustomHeaderApp backButton={true} screenName={'Pengajuan Tukar Jadwal'}>
         <Pressable
           style={[styles.header_dropdown_menu]}
           onPress={() => {
@@ -324,7 +267,9 @@ const GantiJadwalScreen = ({navigation}) => {
                   style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
                   Filter Aktivitas
                 </Text>
-                <Pressable style={{marginTop: 16}}>
+                <Pressable
+                  onPress={() => setIsRangeDatePicker(true)}
+                  style={{marginTop: 16}}>
                   <Input
                     name="Rentang Tanggal"
                     placeholder="Pilih Tanggal"
@@ -501,6 +446,38 @@ const GantiJadwalScreen = ({navigation}) => {
               </View>
             </View>
           )}
+        </CustomButtonSheet>
+      )}
+      {isRangeDatePicker && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetDatePickerRef}
+          handleSheetChanges={handleSheetChangesDatePicker}
+          snapPoints={snapPoints}>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <RangeDatePicker />
+            <Pressable
+              style={{
+                backgroundColor: APP.COLORS['primary-500'],
+                flex: 1,
+                padding: 8,
+                borderRadius: 8,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: 24,
+              }}>
+              <Text
+                style={{
+                  color: '#FFFFFF',
+                  fontWeight: '700',
+                }}>
+                Konfirmasi
+              </Text>
+            </Pressable>
+          </View>
         </CustomButtonSheet>
       )}
     </>

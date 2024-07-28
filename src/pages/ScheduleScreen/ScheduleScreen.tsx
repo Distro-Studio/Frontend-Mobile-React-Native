@@ -1,26 +1,24 @@
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import {useRoute} from '@react-navigation/native';
+import {Calendar as CalendarIcon} from 'lucide-react-native';
 import React from 'react';
 import {
   FlatList,
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
+import {Calendar} from 'react-native-calendars';
 import {CustomHeaderApp, ScheduleCard} from '../../components';
-import CalendarIcon from '../../assets/icons/calendar-icon.svg';
-import SearchIcon from '../../assets/icons/search-icon.svg';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
 import {getResponsive} from '../../utils';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import {Calendar} from 'lucide-react-native';
+import {APP} from '../../utils/CONSTANT';
+import RangeDatePicker from '../../components/CustomNewDatePicker/RangeDatePicker';
 
 const ScheduleScreen = ({navigation}) => {
   const route = useRoute();
-  const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
   const snapPoints = React.useMemo(() => [getResponsive(160, 'height')], []);
   // ref
@@ -30,40 +28,7 @@ const ScheduleScreen = ({navigation}) => {
   const handleSheetChanges = React.useCallback((index: number) => {
     setIsDrawer(index === -1 ? false : true);
   }, []);
-  const SearchForm = React.useCallback(() => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          borderColor: '#E3E3E3',
-          borderWidth: 1,
-          borderRadius: 8,
-          paddingVertical: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingHorizontal: 10,
-          gap: 4,
-        }}>
-        <SearchIcon style={{width: 20, height: 20}} />
-        <TextInput
-          placeholder="Search"
-          style={{
-            width: '100%',
-            paddingVertical: 6,
-          }}
-        />
-      </View>
-    );
-  }, []);
 
-  const headerIcon = () => {
-    return (
-      <Pressable onPress={() => setIsSearch(true)}>
-        <SearchIcon />
-        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
-      </Pressable>
-    );
-  };
   const data = [
     {
       id: 1,
@@ -136,6 +101,7 @@ const ScheduleScreen = ({navigation}) => {
       cardState: 'active',
     },
   ];
+
   function renderItem({item}) {
     return (
       <View style={{marginTop: 16}}>
@@ -149,22 +115,17 @@ const ScheduleScreen = ({navigation}) => {
       </View>
     );
   }
+
   return (
     <>
-      <CustomHeaderApp
-        backButton={isSearch ? true : false}
-        // rightIcon={headerIcon()}
-        isSearch={isSearch}
-        searchForm={SearchForm()}
-        setIsSearch={setIsSearch}
-        screenName={'Jadwal'}>
+      <CustomHeaderApp screenName={'Jadwal'}>
         <Pressable
           style={[styles.header_dropdown_menu]}
           onPress={() => setIsDrawer(!isDrawer)}>
           <Text style={{color: 'black', fontWeight: '600'}}>
             28 Dec 22 - 10 Jan 23
           </Text>
-          <Calendar size={16} color={'black'} />
+          <CalendarIcon size={16} color={'black'} />
           {/* <Image source={CalendarIcon} style={{width: 20, height: 20}} /> */}
         </Pressable>
       </CustomHeaderApp>
@@ -204,8 +165,27 @@ const ScheduleScreen = ({navigation}) => {
             }}>
             <View>
               <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
-                Drawer Schedule
+                Pilih Rentang Tanggal
               </Text>
+              <RangeDatePicker />
+              <Pressable
+                style={{
+                  backgroundColor: APP.COLORS['primary-500'],
+                  flex: 1,
+                  padding: 8,
+                  borderRadius: 8,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  marginTop: 24,
+                }}>
+                <Text
+                  style={{
+                    color: '#FFFFFF',
+                    fontWeight: '700',
+                  }}>
+                  Konfirmasi
+                </Text>
+              </Pressable>
             </View>
           </View>
         </CustomButtonSheet>

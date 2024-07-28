@@ -1,35 +1,20 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Image,
-  TextInput,
-  Dimensions,
-  ScrollView,
-  SafeAreaView,
-} from 'react-native';
-import React from 'react';
-import {Banner, CustomHeaderApp, Input} from '../../components';
-import {APP} from '../../utils/CONSTANT';
-import {FlatList} from 'react-native-gesture-handler';
-import {IconSearch} from '../../assets/images';
-import {Dropdown} from 'react-native-element-dropdown';
-import FAB from '../../components/FAB';
-import SearchIcon from '../../assets/icons/search-icon.svg';
-import PlusIcon from '../../assets/icons/plus-icon.svg';
-import {BarChart2, LineChart, Settings2} from 'lucide-react-native';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import {BarChart2, LineChart, Settings2} from 'lucide-react-native';
+import React from 'react';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dropdown} from 'react-native-element-dropdown';
+import {FlatList} from 'react-native-gesture-handler';
+import {CustomHeaderApp, Input} from '../../components';
 import CustomButtonSheet from '../../components/CustomBottomSheet/CustomButtonSheet';
+import RangeDatePicker from '../../components/CustomNewDatePicker/RangeDatePicker';
+import FAB from '../../components/FAB';
 import {getResponsive} from '../../utils';
+import {APP} from '../../utils/CONSTANT';
 
 const LeavesScreen = () => {
-  const [activeMenu, setActiveMenu] = React.useState('Terbaru');
-  const menus = ['Terbaru', 'Histori'];
-  const leaveBoxes = ['Jumlah Cuti', 'Dalam Proses', 'Disetujui', 'Ditolak'];
-  const [isSearch, setIsSearch] = React.useState(false);
   const [isDrawer, setIsDrawer] = React.useState(false);
   const [goLeave, setGoLeave] = React.useState(false);
+  const [isRangeDatePicker, setIsRangeDatePicker] = React.useState(false);
   const snapPoints = React.useMemo(() => [getResponsive(160, 'height')], []);
   // ref
   const bottomSheetRef = React.useRef<BottomSheet>(null);
@@ -37,61 +22,16 @@ const LeavesScreen = () => {
   const handleSheetChanges = React.useCallback((index: number) => {
     setIsDrawer(index === -1 ? false : true);
   }, []);
-
-  const dataCuti = [
-    {label: 'Tahunan', value: 'Tahunan'},
-    {label: 'Melahirkan', value: 'Melahirkan'},
-    {label: 'Sakit', value: 'Sakit'},
-  ];
-  const dataFilter = [
-    {label: 'Terbaru', value: 'Terbaru'},
-    {label: 'Terlama', value: 'Terlama'},
-  ];
-
-  const headerIcon = () => {
-    return (
-      <Pressable onPress={() => setIsSearch(true)}>
-        <SearchIcon />
-        {/* <Image source={IconSearch} style={{width: 20, height: 20}} /> */}
-      </Pressable>
-    );
-  };
-
-  const SearchForm = React.useCallback(() => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          borderColor: '#E3E3E3',
-          borderWidth: 1,
-          borderRadius: 8,
-          paddingVertical: 0,
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingHorizontal: 10,
-          gap: 4,
-        }}>
-        <SearchIcon style={{width: 20, height: 20}} />
-        <TextInput
-          placeholder="Search"
-          style={{
-            width: '100%',
-            paddingVertical: 6,
-          }}
-        />
-      </View>
-    );
+  // ref
+  const bottomSheetDatePickerRef = React.useRef<BottomSheet>(null);
+  // callbacks
+  const handleSheetChangesDatePicker = React.useCallback((index: number) => {
+    setIsRangeDatePicker(index === -1 ? false : true);
   }, []);
 
   return (
     <>
-      <CustomHeaderApp
-        backButton={!isSearch ? true : false}
-        // rightIcon={headerIcon()}
-        isSearch={isSearch}
-        searchForm={SearchForm()}
-        setIsSearch={setIsSearch}
-        screenName={'Cuti'}>
+      <CustomHeaderApp backButton={true} screenName={'Cuti'}>
         <Pressable
           style={[styles.header_dropdown_menu]}
           onPress={() => {
@@ -433,7 +373,9 @@ const LeavesScreen = () => {
                   style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
                   Filter Cuti
                 </Text>
-                <Pressable style={{marginTop: 16}}>
+                <Pressable
+                  onPress={() => setIsRangeDatePicker(true)}
+                  style={{marginTop: 16}}>
                   <Input
                     name="Rentang Tanggal"
                     placeholder="Pilih Tanggal"
@@ -603,6 +545,38 @@ const LeavesScreen = () => {
               </View>
             </View>
           )}
+        </CustomButtonSheet>
+      )}
+      {isRangeDatePicker && (
+        <CustomButtonSheet
+          sheetRef={bottomSheetDatePickerRef}
+          handleSheetChanges={handleSheetChangesDatePicker}
+          snapPoints={snapPoints}>
+          <View
+            style={{
+              paddingHorizontal: 24,
+              paddingVertical: 8,
+            }}>
+            <RangeDatePicker />
+            <Pressable
+              style={{
+                backgroundColor: APP.COLORS['primary-500'],
+                flex: 1,
+                padding: 8,
+                borderRadius: 8,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: 24,
+              }}>
+              <Text
+                style={{
+                  color: '#FFFFFF',
+                  fontWeight: '700',
+                }}>
+                Konfirmasi
+              </Text>
+            </Pressable>
+          </View>
         </CustomButtonSheet>
       )}
     </>
